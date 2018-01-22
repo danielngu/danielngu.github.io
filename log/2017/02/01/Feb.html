@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Feb</title>
+  <meta name="description" content="Fri, Feb 02, 2017">
+
+  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/log/2017/02/01/Feb.html">
+  <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/log/">Daniel Ngu&#39;s Log</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="fri-feb-02-2017">Fri, Feb 02, 2017</h3>
+
+<h3 id="035324-utc-raspberry-pi">03:53:24 UTC: RASPBERRY PI</h3>
+
+<h4 id="backup">[Backup]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo dd </span><span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>/dev/sde <span class="nv">of</span><span class="o">=</span>raspbian.img    <span class="c"># backup</span>
+<span class="nv">$ </span><span class="nb">sudo dd </span><span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>raspbian.img <span class="nv">of</span><span class="o">=</span>/dev/sde    <span class="c"># restore</span>
+</code></pre></div></div>
+<p>or</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo dd </span><span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>/dev/sde | <span class="nb">gzip</span> <span class="o">&gt;</span> rasbian.img.gz             <span class="c"># backup</span>
+<span class="nv">$ </span><span class="nb">gunzip</span> <span class="nt">--stdout</span> rasbian.img.gz | <span class="nb">sudo dd </span><span class="nv">bs</span><span class="o">=</span>4M <span class="nv">of</span><span class="o">=</span>/dev/sde    <span class="c"># restore</span>
+</code></pre></div></div>
+
+<p>Reference:
+<a href="https://www.raspberrypi.org/documentation/linux/filesystem/backup.md">Backups</a></p>
+
+<h4 id="media">[Media]</h4>
+
+<p>ISO available via Arch 
+<a href="http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz">download</a> 
+page.</p>
+
+<h4 id="installation">[Installation]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>fdisk /dev/sde
+<span class="nv">$ </span>o                      <span class="c"># Clear out any partitions on the drive</span>
+<span class="nv">$ </span>p                      <span class="c"># List partitions</span>
+<span class="nv">$ </span>n                      <span class="c"># New partition</span>
+<span class="nv">$ </span>p                      <span class="c"># Primary</span>
+<span class="nv">$ </span>1                      <span class="c"># First partition on drive</span>
+<span class="nv">$ </span>Enter                  <span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>+100M                  <span class="c"># 100MB for boot partition</span>
+<span class="nv">$ </span>t                      <span class="c"># Partition type</span>
+<span class="nv">$ </span>c                      <span class="c"># Set partition type to W95 FAT32 (LBA)</span>
+<span class="nv">$ </span>n                      <span class="c"># New partition</span>
+<span class="nv">$ </span>p                      <span class="c"># Primary</span>
+<span class="nv">$ </span>2                      <span class="c"># Second partition on drive</span>
+<span class="nv">$ </span>Enter                  <span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>Enter                  <span class="c"># Accept default last sector</span>
+<span class="nv">$ </span>mkfs.vfat /dev/sde1    <span class="c"># Create and mount the FAT filesystem</span>
+<span class="nv">$ </span><span class="nb">mkdir </span>boot
+<span class="nv">$ </span>mount /dev/sde1 boot
+<span class="nv">$ </span>mkfs.ext4 /dev/sde2    <span class="c"># Create and mount the ext4 filesystem</span>
+<span class="nv">$ </span><span class="nb">mkdir </span>root
+<span class="nv">$ </span>mount /dev/sde2 root
+<span class="nv">$ </span>wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
+<span class="nv">$ </span>bsdtar <span class="nt">-xpf</span> ArchLinuxARM-rpi-2-latest.tar.gz <span class="nt">-C</span> root
+<span class="nv">$ </span><span class="nb">sync</span>
+<span class="nv">$ </span><span class="nb">mv </span>root/boot/<span class="k">*</span> boot    <span class="c"># Move boot files to the first partition</span>
+<span class="nv">$ </span>umount boot root       <span class="c"># Unmount the two partitions</span>
+</code></pre></div></div>
+
+<p>Default:<br />
+user: alarm<br />
+password: alarm<br />
+<br />
+user: root<br />
+password: root<br />
+<br />
+Reference: <a href="https://goo.gl/63Gkry">ARMv7 Installation</a></p>
+
+<h4 id="wireless">[Wireless]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant
+<span class="nv">$ </span>wifi-menu
+<span class="nv">$ </span><span class="nb">ls</span> /etc/netctl/               <span class="c"># Find the wifi profile</span>
+<span class="nv">$ </span>netctl <span class="nb">enable </span>profile-name    <span class="c"># Substitute profile-name as obtained above</span>
+</code></pre></div></div>
+
+<h4 id="create-new-user">[Create New User]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> wheel <span class="nt">-s</span> /bin/bash daniel
+<span class="nv">$ </span>passwd daniel
+<span class="nv">$ </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> audio,network,power,scanner,storage,systemd-journal,video daniel
+</code></pre></div></div>
+
+<p>The above creates a new user with home directory, change password and add user
+to additional groups.</p>
+
+<h4 id="sudo">[Sudo]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span>
+</code></pre></div></div>
+
+<p>Run visudo, edit it to restrict sudo to specific group or user.</p>
+
+<h4 id="update">[Update]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-Syu</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-Syy</span>              <span class="c"># If above failed</span>
+</code></pre></div></div>
+
+<h4 id="xfce">[Xfce]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xfce4
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xorg-server xorg-server-utils xorg-xinit
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xf86-video-fbdev
+<span class="nv">$ </span>startxfce4                    <span class="c"># NOTE: To manually start Xfce</span>
+</code></pre></div></div>
+
+<p>Updated:</p>
+
+<p>xorg-server-utils has been replaced by xorg-apps</p>
+
+<h4 id="additional-install">[Additional Install]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> openssh
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> vim
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> tigervnc
+</code></pre></div></div>
+
+<p>Apply dotfiles.</p>
+
+<h4 id="vnc-setup">[VNC Setup]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vncserver                     <span class="c"># Create configs</span>
+<span class="nv">$ </span>vncserver <span class="nt">-kill</span> :1            <span class="c"># NOTE: To shutdown vncserver</span>
+</code></pre></div></div>
+
+<p><em>~/.vnc/xstartup</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+
+<span class="nb">exec</span> /bin/sh /etc/xdg/xfce4/xinitrc
+</code></pre></div></div>
+
+<p><em>/etc/systemd/system/vncserver@:1.service</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=daniel
+PAMName=login
+PIDFile=/home/daniel/.vnc/%H:%i.pid
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :'
+ExecStart=/usr/bin/vncserver -geometry 1280x720 -alwaysshared -fg %i
+ExecStop=/usr/bin/vncserver -kill %i
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Enable <code class="highlighter-rouge">vncserver@:1.service</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>vncserver@:1.service
+</code></pre></div></div>
+
+<h4 id="vnc-client">[VNC Client]</h4>
+
+<p>Use <a href="http://www.tightvnc.com/download.php">TightVNC</a><br />
+Port: 5901</p>
+
+<h4 id="mount-usb-drive">[Mount USB Drive]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>mount /dev/sda1 /mnt/usb <span class="nt">-o</span> <span class="nv">uid</span><span class="o">=</span>1000,gid<span class="o">=</span>1000,utf8,dmask<span class="o">=</span>027,fmask<span class="o">=</span>137
+</code></pre></div></div>
+
+<h4 id="sshfs">[sshfs]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask <span class="nb">install </span>osxfuse
+<span class="nv">$ </span>brew <span class="nb">install </span>sshfs
+</code></pre></div></div>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+  
+  <div class="wrapper">
+
+
+    <div class="footer-col-wrapper">
+      
+      <div class="footer-col footer-col-1">
+	Copyright &copy; 2018 - Daniel Ngu's Log
+      </div>
+    
+    </div>
+
+</footer>
+
+
+  </body>
+
+</html>

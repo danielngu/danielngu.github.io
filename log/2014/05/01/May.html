@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>May</title>
+  <meta name="description" content="Sun, May 18, 2014">
+
+  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/log/2014/05/01/May.html">
+  <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/log/">Daniel Ngu&#39;s Log</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="sun-may-18-2014">Sun, May 18, 2014</h3>
+
+<h3 id="103513-utc-external-monitor">10:35:13 UTC: EXTERNAL MONITOR</h3>
+
+<h4 id="resolution">[Resolution]</h4>
+
+<p>Workaround for undetected resolutions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nvidia-xconfig                <span class="c"># Create xorg.conf based on detected hardware</span>
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/X11/xorg.conf
+</code></pre></div></div>
+
+<p>Amend Monitor section of xorg.conf with the correct specifications. In my case,
+the <code class="highlighter-rouge">HorizSync</code> and <code class="highlighter-rouge">VertRefresh</code> values were incorrect.</p>
+
+<p>Reboot, then check display for native resolution.</p>
+
+<p>If it’s not listed, run the following to get its modeline details.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cvt 1680 1050
+<span class="c"># 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz</span>
+Modeline <span class="s2">"1680x1050_60.00"</span>  146.25  1680 1784 1960 2240  1050 1053 1059 1089
+<span class="nt">-hsync</span> +vsync
+</code></pre></div></div>
+
+<p>Add the modeline values to xorg.conf</p>
+
+<p><em>/etc/X11/xorg.conf</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Section "Monitor"
+    Identifier     "Monitor0"
+    VendorName     "Samsung"
+    ModelName      "SyncMaster 2253BW"
+    HorizSync       30.0 - 81.0
+    VertRefresh     56.0 - 75.0
+    Option         "DPMS"
+    Modeline       "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053
+                    1059 1089 -hsync +vsync
+EndSection
+</code></pre></div></div>
+
+<p>Reboot, the native resolution should now be listed.<br />
+<br /></p>
+<h3 id="mon-may-19-2014">Mon, May 19, 2014</h3>
+
+<h3 id="010920-utc-os-x-installation">01:09:20 UTC: OS X INSTALLATION</h3>
+
+<h4 id="media">[Media]</h4>
+
+<p>Obtainable from Applications prior to installation when downloaded from App
+Store.</p>
+
+<p>To create bootable USB flash drive:&lt;/br&gt;
+Open Disk Utility, select the drive.&lt;/br&gt;
+Choose Partition tab, select 1 Partition from Partition Layout.&lt;/br&gt;
+Click Options, choose GUID Partition Table, then OK and Apply.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app/Contents/Resources/createinstallmedia <span class="se">\</span>
+<span class="nt">--volume</span> /Volumes/untitled <span class="nt">--applicationpath</span> Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app <span class="se">\</span>
+<span class="nt">--nointeraction</span>
+</code></pre></div></div>
+
+<h4 id="installation">[Installation]</h4>
+
+<p>Reboot while holding down the option key.&lt;/br&gt;
+Select the USB flash drive.&lt;/br&gt;
+For clean install, select Disk Utility. Erase the / partition.&lt;/br&gt;
+After that, select Reinstall OS X.</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+  
+  <div class="wrapper">
+
+
+    <div class="footer-col-wrapper">
+      
+      <div class="footer-col footer-col-1">
+	Copyright &copy; 2018 - Daniel Ngu's Log
+      </div>
+    
+    </div>
+
+</footer>
+
+
+  </body>
+
+</html>

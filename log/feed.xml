@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-22T22:59:45+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;h3 id=&quot;fri-feb-02-2017&quot;&gt;Fri, Feb 02, 2017&lt;/h3&gt;
+
+&lt;h3 id=&quot;035324-utc-raspberry-pi&quot;&gt;03:53:24 UTC: RASPBERRY PI&lt;/h3&gt;
+
+&lt;h4 id=&quot;backup&quot;&gt;[Backup]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img    &lt;span class=&quot;c&quot;&gt;# backup&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c&quot;&gt;# restore&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde | &lt;span class=&quot;nb&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; rasbian.img.gz             &lt;span class=&quot;c&quot;&gt;# backup&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;gunzip&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--stdout&lt;/span&gt; rasbian.img.gz | &lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c&quot;&gt;# restore&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reference:
+&lt;a href=&quot;https://www.raspberrypi.org/documentation/linux/filesystem/backup.md&quot;&gt;Backups&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;media&quot;&gt;[Media]&lt;/h4&gt;
+
+&lt;p&gt;ISO available via Arch 
+&lt;a href=&quot;http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz&quot;&gt;download&lt;/a&gt; 
+page.&lt;/p&gt;
+
+&lt;h4 id=&quot;installation&quot;&gt;[Installation]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fdisk /dev/sde
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o                      &lt;span class=&quot;c&quot;&gt;# Clear out any partitions on the drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# List partitions&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n                      &lt;span class=&quot;c&quot;&gt;# New partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# Primary&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;1                      &lt;span class=&quot;c&quot;&gt;# First partition on drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+100M                  &lt;span class=&quot;c&quot;&gt;# 100MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;t                      &lt;span class=&quot;c&quot;&gt;# Partition type&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;c                      &lt;span class=&quot;c&quot;&gt;# Set partition type to W95 FAT32 (LBA)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n                      &lt;span class=&quot;c&quot;&gt;# New partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# Primary&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;2                      &lt;span class=&quot;c&quot;&gt;# Second partition on drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.vfat /dev/sde1    &lt;span class=&quot;c&quot;&gt;# Create and mount the FAT filesystem&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;boot
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sde1 boot
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/sde2    &lt;span class=&quot;c&quot;&gt;# Create and mount the ext4 filesystem&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sde2 root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bsdtar &lt;span class=&quot;nt&quot;&gt;-xpf&lt;/span&gt; ArchLinuxARM-rpi-2-latest.tar.gz &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;root/boot/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; boot    &lt;span class=&quot;c&quot;&gt;# Move boot files to the first partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount boot root       &lt;span class=&quot;c&quot;&gt;# Unmount the two partitions&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Default:&lt;br /&gt;
+user: alarm&lt;br /&gt;
+password: alarm&lt;br /&gt;
+&lt;br /&gt;
+user: root&lt;br /&gt;
+password: root&lt;br /&gt;
+&lt;br /&gt;
+Reference: &lt;a href=&quot;https://goo.gl/63Gkry&quot;&gt;ARMv7 Installation&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/               &lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name    &lt;span class=&quot;c&quot;&gt;# Substitute profile-name as obtained above&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-new-user&quot;&gt;[Create New User]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above creates a new user with home directory, change password and add user
+to additional groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;sudo&quot;&gt;[Sudo]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
+
+&lt;h4 id=&quot;update&quot;&gt;[Update]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Syu&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Syy&lt;/span&gt;              &lt;span class=&quot;c&quot;&gt;# If above failed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;xfce&quot;&gt;[Xfce]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xfce4
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xorg-server xorg-server-utils xorg-xinit
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xf86-video-fbdev
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;startxfce4                    &lt;span class=&quot;c&quot;&gt;# NOTE: To manually start Xfce&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Updated:&lt;/p&gt;
+
+&lt;p&gt;xorg-server-utils has been replaced by xorg-apps&lt;/p&gt;
+
+&lt;h4 id=&quot;additional-install&quot;&gt;[Additional Install]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; openssh
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; vim
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; tigervnc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Apply dotfiles.&lt;/p&gt;
+
+&lt;h4 id=&quot;vnc-setup&quot;&gt;[VNC Setup]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vncserver                     &lt;span class=&quot;c&quot;&gt;# Create configs&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1            &lt;span class=&quot;c&quot;&gt;# NOTE: To shutdown vncserver&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.vnc/xstartup&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; /bin/sh /etc/xdg/xfce4/xinitrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/systemd/system/vncserver@:1.service&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=daniel
+PAMName=login
+PIDFile=/home/daniel/.vnc/%H:%i.pid
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 || :'
+ExecStart=/usr/bin/vncserver -geometry 1280x720 -alwaysshared -fg %i
+ExecStop=/usr/bin/vncserver -kill %i
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Enable &lt;code class=&quot;highlighter-rouge&quot;&gt;vncserver@:1.service&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;vnc-client&quot;&gt;[VNC Client]&lt;/h4&gt;
+
+&lt;p&gt;Use &lt;a href=&quot;http://www.tightvnc.com/download.php&quot;&gt;TightVNC&lt;/a&gt;&lt;br /&gt;
+Port: 5901&lt;/p&gt;
+
+&lt;h4 id=&quot;mount-usb-drive&quot;&gt;[Mount USB Drive]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/sda1 /mnt/usb &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000,gid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000,utf8,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;027,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;137
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;sshfs&quot;&gt;[sshfs]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew cask &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;osxfuse
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;sshfs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Fri, Feb 02, 2017</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="Mar" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;h3 id=&quot;sat-may-14-2016&quot;&gt;Sat, May 14, 2016&lt;/h3&gt;
+
+&lt;h3 id=&quot;005335-utc-plex&quot;&gt;00:53:35 UTC: PLEX&lt;/h3&gt;
+
+&lt;h4 id=&quot;plex-media-server&quot;&gt;[Plex Media Server]&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/prelink/&quot;&gt;prelink&lt;/a&gt; from AUR.&lt;br /&gt;
+&lt;a href=&quot;https://aur.archlinux.org/packages/plex-media-server/&quot;&gt;plex-media-server&lt;/a&gt;
+from AUR.&lt;/p&gt;
+
+&lt;h4 id=&quot;configuration&quot;&gt;[Configuration]&lt;/h4&gt;
+
+&lt;p&gt;Set a maximum amount of memory:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/usr/lib/systemd/system/plexmediaserver.service&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MemoryLimit=2G
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;iptables:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; INPUT &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; tcp &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; multiport &lt;span class=&quot;nt&quot;&gt;--dports&lt;/span&gt; 32400,32469 &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; ACCEPT
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; INPUT &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; udp &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; multiport &lt;span class=&quot;nt&quot;&gt;--dports&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 1900,32410,32412,32413,32414 &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; ACCEPT
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;plexmediaserver.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;storage&quot;&gt;[Storage]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /shares
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;blkid /dev/sdb1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/fstab&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# UUID=1f22599a-6b0f-4b90-81b0-4c471f761f47
+/dev/sdb1    /shares    ext4    rw,relatime,data=ordered    0 3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reboot&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /shares
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chgrp &lt;/span&gt;plex plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;g+w,o-rx plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; plex daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Sat, May 14, 2016</summary></entry><entry><title type="html">Nov</title><link href="http://localhost:4000/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/11/01/Nov</id><content type="html" xml:base="http://localhost:4000/log/2015/11/01/Nov.html">&lt;h3 id=&quot;mon-nov-02-2015&quot;&gt;Mon, Nov 02, 2015&lt;/h3&gt;
+
+&lt;h3 id=&quot;021337-utc-octopress&quot;&gt;02:13:37 UTC: OCTOPRESS&lt;/h3&gt;
+
+&lt;p&gt;General maintenance related tasks:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm get stable                 &lt;span class=&quot;c&quot;&gt;# RVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.2.3              &lt;span class=&quot;c&quot;&gt;# Ruby&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nt&quot;&gt;--default&lt;/span&gt; use 2.2.3        &lt;span class=&quot;c&quot;&gt;# Set default version&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm rubygems latest            &lt;span class=&quot;c&quot;&gt;# RubyGems&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler            &lt;span class=&quot;c&quot;&gt;# Dependencies&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;                 &lt;span class=&quot;c&quot;&gt;# Run within blog directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;                         &lt;span class=&quot;c&quot;&gt;# Check versions&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which ruby
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which gem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Arch uses Python version 3, whereas Octopress requires verions 2. Edit the 
+first line of mentos.py to the following instead:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;~/.rvm/gems/ruby-2.2.3/gems/pygments.rb-0.3.4/lib/pygments/mentos.py&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env python2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Migrating to another computer:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable &lt;span class=&quot;nt&quot;&gt;--ruby&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then do the upgrades as listed above.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;git@github.com:username/username.github.io.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;username.github.io.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone git@github.com:username/username.github.io.git _deploy 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Install the dependencies as listed above.&lt;/p&gt;
+
+&lt;p&gt;To maintain the blog on multiple computers:&lt;/p&gt;
+
+&lt;p&gt;Push on one:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake generate
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake deploy
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pull on the other:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ./_deploy
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;073800-utc-i3&quot;&gt;07:38:00 UTC: I3&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; i3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dmenu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; feh                     &lt;span class=&quot;c&quot;&gt;# for wallpaper&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; scrot                   &lt;span class=&quot;c&quot;&gt;# for screenshot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; mplayer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; archey3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; cmus
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gpicview
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; firefox                 &lt;span class=&quot;c&quot;&gt;# optional&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dnsutils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; whois
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; imagemagick
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; easytag
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; rdesktop freerdp        &lt;span class=&quot;c&quot;&gt;# optional&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.config/i3/config&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle #mute sound
+
+# pause / play / next / previous
+bindsym XF86AudioPlay exec cmus-remote -C &quot;player-pause&quot;
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 #increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 #decrease screen brightness
+
+exec --no-startup-id feh --recursive --randomize --bg-center ~/Pictures/wallpaper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Optional: &lt;a href=&quot;https://aur.archlinux.org/packages/jre7/&quot;&gt;JRE&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/code&gt; to configure.&lt;/p&gt;</content><author><name></name></author><summary type="html">Mon, Nov 02, 2015</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/03/01/Mar</id><content type="html" xml:base="http://localhost:4000/log/2015/03/01/Mar.html">&lt;h3 id=&quot;sun-mar-15-2015&quot;&gt;Sun, Mar 15, 2015&lt;/h3&gt;
+
+&lt;h3 id=&quot;034007-utc-backup-and-restore&quot;&gt;03:40:07 UTC: BACKUP AND RESTORE&lt;/h3&gt;
+
+&lt;p&gt;I’m currently using Partclone for backing up and restoring Arch. That’s
+essentially done by booting up Clonezilla ISO available via 
+&lt;a href=&quot;http://clonezilla.org/downloads.php&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;Follow through the wizard to mount external drive and then use the Partclone 
+commands off Arch
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Partclone&quot;&gt;wiki&lt;/a&gt; page with sudo.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, a better option is to clone the entire drive 
+(&lt;a href=&quot;http://goo.gl/L5pgF9&quot;&gt;save disk image&lt;/a&gt;) for backup. Then restore it with 
+&lt;a href=&quot;http://goo.gl/bRLzfJ&quot;&gt;“restore disk image”&lt;/a&gt;.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Sun, Mar 15, 2015</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2014/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2014/05/01/May.html">&lt;h3 id=&quot;sun-may-18-2014&quot;&gt;Sun, May 18, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;103513-utc-external-monitor&quot;&gt;10:35:13 UTC: EXTERNAL MONITOR&lt;/h3&gt;
+
+&lt;h4 id=&quot;resolution&quot;&gt;[Resolution]&lt;/h4&gt;
+
+&lt;p&gt;Workaround for undetected resolutions:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nvidia-xconfig                &lt;span class=&quot;c&quot;&gt;# Create xorg.conf based on detected hardware&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/X11/xorg.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Amend Monitor section of xorg.conf with the correct specifications. In my case,
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;HorizSync&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;VertRefresh&lt;/code&gt; values were incorrect.&lt;/p&gt;
+
+&lt;p&gt;Reboot, then check display for native resolution.&lt;/p&gt;
+
+&lt;p&gt;If it’s not listed, run the following to get its modeline details.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cvt 1680 1050
+&lt;span class=&quot;c&quot;&gt;# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz&lt;/span&gt;
+Modeline &lt;span class=&quot;s2&quot;&gt;&quot;1680x1050_60.00&quot;&lt;/span&gt;  146.25  1680 1784 1960 2240  1050 1053 1059 1089
+&lt;span class=&quot;nt&quot;&gt;-hsync&lt;/span&gt; +vsync
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the modeline values to xorg.conf&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/X11/xorg.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Section &quot;Monitor&quot;
+    Identifier     &quot;Monitor0&quot;
+    VendorName     &quot;Samsung&quot;
+    ModelName      &quot;SyncMaster 2253BW&quot;
+    HorizSync       30.0 - 81.0
+    VertRefresh     56.0 - 75.0
+    Option         &quot;DPMS&quot;
+    Modeline       &quot;1680x1050_60.00&quot;  146.25  1680 1784 1960 2240  1050 1053
+                    1059 1089 -hsync +vsync
+EndSection
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Reboot, the native resolution should now be listed.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;mon-may-19-2014&quot;&gt;Mon, May 19, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;010920-utc-os-x-installation&quot;&gt;01:09:20 UTC: OS X INSTALLATION&lt;/h3&gt;
+
+&lt;h4 id=&quot;media&quot;&gt;[Media]&lt;/h4&gt;
+
+&lt;p&gt;Obtainable from Applications prior to installation when downloaded from App
+Store.&lt;/p&gt;
+
+&lt;p&gt;To create bootable USB flash drive:&amp;lt;/br&amp;gt;
+Open Disk Utility, select the drive.&amp;lt;/br&amp;gt;
+Choose Partition tab, select 1 Partition from Partition Layout.&amp;lt;/br&amp;gt;
+Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app/Contents/Resources/createinstallmedia &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--volume&lt;/span&gt; /Volumes/untitled &lt;span class=&quot;nt&quot;&gt;--applicationpath&lt;/span&gt; Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--nointeraction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;installation&quot;&gt;[Installation]&lt;/h4&gt;
+
+&lt;p&gt;Reboot while holding down the option key.&amp;lt;/br&amp;gt;
+Select the USB flash drive.&amp;lt;/br&amp;gt;
+For clean install, select Disk Utility. Erase the / partition.&amp;lt;/br&amp;gt;
+After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><summary type="html">Sun, May 18, 2014</summary></entry><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2014/04/01/Apr.html">&lt;h3 id=&quot;sun-apr-20-2014&quot;&gt;Sun, Apr 20, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;023603-utc-arch-installation--setup&quot;&gt;02:36:03 UTC: ARCH INSTALLATION / SETUP&lt;/h3&gt;
+
+&lt;h4 id=&quot;media&quot;&gt;[Media]&lt;/h4&gt;
+
+&lt;p&gt;ISO available via Arch &lt;a href=&quot;https://www.archlinux.org/download/&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;Installation Guide available there as well or as text file after booting up the 
+ISO.&lt;/p&gt;
+
+&lt;h4 id=&quot;keyboard&quot;&gt;[Keyboard]&lt;/h4&gt;
+
+&lt;p&gt;I found this optional but for completeness:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys us
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;partition&quot;&gt;[Partition]&lt;/h4&gt;
+
+&lt;p&gt;I opted for simpler partitioning, keeping my home directory separate.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# List parition tables&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdisk /dev/sda		&lt;span class=&quot;c&quot;&gt;# To partition /dev/sda&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o				&lt;span class=&quot;c&quot;&gt;# Either new or start over&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+100G				&lt;span class=&quot;c&quot;&gt;# Allocated 100GB for home partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8302				&lt;span class=&quot;c&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Similarly, repeat 5 to 8 to create the rest of the partitions. In my case, I’ve
+created /dev/sda2 for swap with 8200 and /dev/sda3 for / with 8300 using the
+remaining available.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w				&lt;span class=&quot;c&quot;&gt;# Write changes&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternatively, use cgdisk or cfdisk if dual boot with Windows.&lt;/p&gt;
+
+&lt;h4 id=&quot;format&quot;&gt;[Format]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/sda1		&lt;span class=&quot;c&quot;&gt;# Format home partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkswap /dev/sda2		&lt;span class=&quot;c&quot;&gt;# Format swap partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/sda3		&lt;span class=&quot;c&quot;&gt;# Format / partition&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;mount&quot;&gt;[Mount]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swapon /dev/sda2
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sda3 /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pv&lt;/span&gt; /mnt/home
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sda1 /mnt/home
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-base-system&quot;&gt;[Install Base System]&lt;/h4&gt;
+
+&lt;p&gt;Edit /etc/pacman.d/mirrorlist so that the preferred mirror is on top of the 
+list.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-the-system&quot;&gt;[Configure the System]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add hostname to /etc/hostname and /etc/hosts. For /etc/hosts, append it to the 
+127.0.0.1 line.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Uncomment the locale in /etc/locale.gen&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set locale preference by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;LANG=&quot;en_NZ.UTF-8&quot;&lt;/code&gt; to /etc/locale.conf&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux			&lt;span class=&quot;c&quot;&gt;# Create RAM disk&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd				&lt;span class=&quot;c&quot;&gt;# Set root password&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-boot-loader&quot;&gt;[Install Boot Loader]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gdisk			&lt;span class=&quot;c&quot;&gt;# Prerequisite&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; syslinux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;syslinux-install_update &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; intel-ucode				&lt;span class=&quot;c&quot;&gt;# If it's an Intel CPU&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; grub os-prober
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grub-install &lt;span class=&quot;nt&quot;&gt;--recheck&lt;/span&gt; /dev/sda		&lt;span class=&quot;c&quot;&gt;# Install bootloader&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grub-mkconfig &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /boot/grub/grub.cfg		&lt;span class=&quot;c&quot;&gt;# Generate grub.cfg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Grub is for MBR only.&lt;/p&gt;
+
+&lt;h4 id=&quot;additional-install&quot;&gt;[Additional Install]&lt;/h4&gt;
+
+&lt;p&gt;Wireless connection will be setup within Gnome later so in the interim, install
+the following to continue using wifi-menu after booting in to the new system.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant		&lt;span class=&quot;c&quot;&gt;# Required by wifi-menu&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;umount-and-reboot&quot;&gt;[Umount and Reboot]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-new-user&quot;&gt;[Create New User]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above creates a new user with home directory, change password and add user
+to additional groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;sudo&quot;&gt;[Sudo]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
+
+&lt;h4 id=&quot;gnome&quot;&gt;[Gnome]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gnome
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For Nvidia GPU, choose nvidia-libgl when prompted. After that install the nvidia
+package as well.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; nvidia
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;gdm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Updated:&lt;/p&gt;
+
+&lt;p&gt;Since Gnome 3.14 update, I’ve replaced  Nvidia proprietary driver with Nouveau open source driver for NVIDIA graphic cards instead due to compatibility issues.&lt;/p&gt;
+
+&lt;p&gt;Boot up Arch ISO then chroot to carry out the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Rdds&lt;/span&gt; nvidia nvidia-utils nvidia-libgl libvdpau libcl
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; /etc/X11/xorg.conf
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Rdds&lt;/span&gt; xf86-input-evdev
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xorg-server mesa
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xf86-video-nouveau
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; mesa-libgl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;touchpad&quot;&gt;[Touchpad]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xf86-input-synaptics
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:&amp;lt;/br&amp;gt;
+Set scroll-method to edge-scrolling.&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless-network&quot;&gt;[Wireless Network]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; wireless_tools
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; networkmanager
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; network-manager-applet
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;NetworkManager.service        &lt;span class=&quot;c&quot;&gt;# Enable Network Manager&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Disable dhcpcd since Network Manager will be handling the dhcpcd instead.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl disable dhcpcd.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl disable dhcpcd@.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternatively, &lt;code class=&quot;highlighter-rouge&quot;&gt;ip address&lt;/code&gt; to get the interface name and do &lt;code class=&quot;highlighter-rouge&quot;&gt;dhcpcd &amp;lt;name&amp;gt;&lt;/code&gt; to 
+enable it manually or &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo systemctl enable dhcpcd.service&lt;/code&gt; to enable it as a
+service. Especially in case of using ethernet during installation or not
+using/installing Network Manager.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;wpa_supplicant.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;aur-and-yaourt&quot;&gt;[AUR and Yaourt]&lt;/h4&gt;
+
+&lt;p&gt;These are required to install AUR and Yaourt packages.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--needed&lt;/span&gt; base-devel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To install &lt;a href=&quot;https://aur.archlinux.org/&quot;&gt;AUR&lt;/a&gt; packages, extract tarball, 
+run makepkg -s followed by pacman -U against the generated .pkg.tar.xz 
+package to install it.&lt;/p&gt;
+
+&lt;p&gt;Yaourt Prerequisite:&lt;br /&gt;
+&lt;a href=&quot;https://aur.archlinux.org/packages/package-query/&quot;&gt;package-query&lt;/a&gt; 
+from AUR.&lt;/p&gt;
+
+&lt;p&gt;Install Yaourt:&lt;br /&gt;
+&lt;a href=&quot;https://aur.archlinux.org/packages/yaourt/&quot;&gt;yaourt&lt;/a&gt; from AUR.&lt;/p&gt;
+
+&lt;h4 id=&quot;fonts&quot;&gt;[Fonts]&lt;/h4&gt;
+
+&lt;p&gt;Add this to &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.config/fontconfig/fonts.conf&lt;/code&gt; for better font rendering.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;match target=&quot;font&quot;&amp;gt;
+  &amp;lt;edit mode=&quot;assign&quot; name=&quot;autohint&quot;&amp;gt;&amp;lt;bool&amp;gt;true&amp;lt;/bool&amp;gt;&amp;lt;/edit&amp;gt;
+  &amp;lt;edit mode=&quot;assign&quot; name=&quot;hinting&quot;&amp;gt;&amp;lt;bool&amp;gt;true&amp;lt;/bool&amp;gt;&amp;lt;/edit&amp;gt;
+  &amp;lt;edit mode=&quot;assign&quot; name=&quot;hintstyle&quot;&amp;gt;&amp;lt;const&amp;gt;hintslight&amp;lt;/const&amp;gt;&amp;lt;/edit&amp;gt;
+&amp;lt;/match&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gsfonts
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yaourt &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; ttf-dejavu ttf-droid ttf-bitstream-vera ttf-cheapskate &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; ttf-freefont ttf-inconsolata ttf-indic-otf ttf-junicode ttf-liberation &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; ttf-linux-libertine
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From AUR:&lt;br /&gt;
+&lt;a href=&quot;https://aur.archlinux.org/packages/ttf-ms-fonts/&quot;&gt;ttf-ms-fonts&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;audio&quot;&gt;[Audio]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; alsa-utils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;amixer sset Master unmute        &lt;span class=&quot;c&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;multimedia&quot;&gt;[Multimedia]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gst-libav gst-plugins-ugly
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Sy&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--needed&lt;/span&gt; totem &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; gstreamer0.10-&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt;bad,good,ugly,base&lt;span class=&quot;o&quot;&gt;}{&lt;/span&gt;,-plugins&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,ffmpeg&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; x264
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; ffmpeg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;additional-install-1&quot;&gt;[Additional Install]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; brasero
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; chromium
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; file-roller
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gedit
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gimp
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; git 
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gnome-tweak-tool
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gparted
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gvfs-mtp
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gvfs-smb
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; irssi
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; handbrake
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; libreoffice
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; mutt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; msmtp
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; net-tools
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; networkmanager-openconnect openconnect        &lt;span class=&quot;c&quot;&gt;# VPN&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; offlineimap
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; openssh
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; pulseaudio-alsa
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; seahorse
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; rhythmbox
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; vim
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; vlc
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xorg-xrandr                                   &lt;span class=&quot;c&quot;&gt;# Optional&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xorg-server-utils                             &lt;span class=&quot;c&quot;&gt;# Optional&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Updated:&lt;/p&gt;
+
+&lt;p&gt;xorg-server-utils has been replaced by xorg-apps&lt;/p&gt;
+
+&lt;p&gt;From AUR:&lt;br /&gt;
+&lt;a href=&quot;http://goo.gl/9bi8Gr&quot;&gt;chromium-pepper-flash&lt;/a&gt;&lt;br /&gt;
+&lt;del&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/chromium-libpdf/&quot;&gt;chromium-libpdf&lt;/a&gt;&lt;br /&gt;&lt;/del&gt;
+&lt;a href=&quot;https://aur.archlinux.org/packages/etherwake/&quot;&gt;etherwake&lt;/a&gt;&lt;br /&gt;
+&lt;del&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/realvnc-viewer/&quot;&gt;realvnc-viewer&lt;/a&gt;&lt;/del&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;sshd.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;mon-apr-21-2014&quot;&gt;Mon, Apr 21, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;035659-utc-arch-customisation&quot;&gt;03:56:59 UTC: ARCH CUSTOMISATION&lt;/h3&gt;
+
+&lt;h4 id=&quot;numix-theme&quot;&gt;[Numix Theme]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; numix-themes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From AUR:&lt;br /&gt;
+&lt;a href=&quot;http://goo.gl/alI4VE&quot;&gt;numix-icon-theme-git&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://goo.gl/QIqWh2&quot;&gt;numix-circle-icon-theme-git&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;gnome-dash-to-dock&quot;&gt;[Gnome Dash to Dock]&lt;/h4&gt;
+
+&lt;p&gt;From AUR:&lt;br /&gt;
+&lt;a href=&quot;http://goo.gl/YRSDX6&quot;&gt;gnome-shell-extension-dash-to-dock&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;gnome-tweak-tool&quot;&gt;[Gnome Tweak Tool]&lt;/h4&gt;
+
+&lt;p&gt;Appearance-&amp;gt;Theme:&lt;br /&gt;
+Set Window and GTK+ to Numix&lt;br /&gt;
+Set Icons to Numix-Circle&lt;/p&gt;
+
+&lt;p&gt;Extensions:&lt;br /&gt;
+Enable Dash to Dock&lt;/p&gt;
+
+&lt;p&gt;Windows-&amp;gt;Titlebar Buttons:&lt;br /&gt;
+Enable Maximize and Minimize&lt;/p&gt;
+
+&lt;h4 id=&quot;gnome-terminal&quot;&gt;[Gnome Terminal]&lt;/h4&gt;
+
+&lt;p&gt;Clone default profile.&lt;/p&gt;
+
+&lt;p&gt;Customise General:&lt;br /&gt;
+Deselect “Use the system fixed width font” and change the default 
+monospace 12 to 10.&lt;br /&gt;
+Decrease default terminal size from 80x24 to 80x20.&lt;/p&gt;
+
+&lt;p&gt;Customise Colors:&lt;br /&gt;
+Deselect “Use colors from system theme”.&lt;br /&gt;
+Use Green on Black scheme.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;fri-apr-25-2014&quot;&gt;Fri, Apr 25, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;001520-utc-dotfiles&quot;&gt;00:15:20 UTC: DOTFILES&lt;/h3&gt;
+
+&lt;h4 id=&quot;linux&quot;&gt;[Linux]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;~/.bashrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS1='\u@\h:\w\$ '
+
+HISTSIZE=8000
+HISTFILESIZE=8000
+
+PATH=$PATH:$HOME/Documents/bin
+
+source &quot;$HOME/.rvm/scripts/rvm&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.vimrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;filetype plugin indent on
+
+set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+set textwidth=80
+set formatoptions+=t
+
+syntax on
+
+set spelllang=en_nz
+set ruler laststatus=2 number title hlsearch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;mac&quot;&gt;[Mac]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;~/.bashrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HISTSIZE=8000
+HISTFILESIZE=8000
+
+PATH=$PATH:$HOME/Documents/bin
+
+export PATH=&quot;$PATH:$HOME/.rvm/bin&quot; # Add RVM to PATH for scripting
+
+export PS1='\u@\h:\w\$ '
+
+export PROMPT_COMMAND='echo -ne &quot;\033]0;$PWD\007&quot;'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The RVM line is actually auto added as part of Octopress install
+but included here for completeness.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;~/.bash_profile&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.vimrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;filetype plugin indent on
+
+set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+set textwidth=80
+set formatoptions+=t
+
+syntax on
+
+set spelllang=en_nz
+set ruler laststatus=2 number title hlsearch
+ 
+set background=dark
+colorscheme solarized
+
+let &amp;amp;titleold=getcwd()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.vim/ftplugin/html.vim&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;setlocal shiftwidth=2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;solarized-theme&quot;&gt;[Solarized Theme]&lt;/h4&gt;
+
+&lt;p&gt;Download &lt;a href=&quot;http://ethanschoonover.com/solarized/files/solarized.zip&quot;&gt;theme&lt;/a&gt;
+and copy vim’s colors folder to ~/.vim&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;092727-utc-email-setup&quot;&gt;09:27:27 UTC: EMAIL SETUP&lt;/h3&gt;
+
+&lt;h4 id=&quot;msmtp&quot;&gt;[msmtp]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;~/.msmtprc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;account First
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from email-address
+user email-address
+password password
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account Second
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from email-address
+user email-address
+password password
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account default : First
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;offlineimap&quot;&gt;[Offlineimap]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;~/.offlineimaprc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[general]
+ui = ttyui
+accounts = First, Second
+
+[Account First]
+localrepository = First-Local
+remoterepository = First-Remote
+
+[Repository First-Local]
+type = Maildir
+localfolders = ~/Mail/First
+
+[Repository First-Remote]
+type = Gmail
+remoteuser = email-address
+remotepass = password
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account Second]
+localrepository = Second-Local
+remoterepository = Second-Remote
+
+[Repository Second-Local]
+type = Maildir
+localfolders = ~/Mail/Second
+
+[Repository Second-Remote]
+type = Gmail
+remoteuser = email-address
+remotepass = password
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Mac:&lt;br /&gt;
+For both &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.msmtprc&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.offlineimaprc&lt;/code&gt;, change certificate path to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;h4 id=&quot;mutt&quot;&gt;[Mutt]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;~/.muttrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.mutt/accounts/First
+
+folder-hook First/* source ~/.mutt/accounts/First
+folder-hook Second/* source ~/.mutt/accounts/Second
+
+macro index \e1  &quot;&amp;lt;change-folder&amp;gt; =First/INBOX&amp;lt;enter&amp;gt;&quot;
+macro index \e2  &quot;&amp;lt;change-folder&amp;gt; =Second/INBOX&amp;lt;enter&amp;gt;&quot;
+
+set editor='vim'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.mutt/accounts/First&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set sendmail=&quot;msmtp-enqueue.sh -a First&quot;
+set envelope_from=yes
+set from=&quot;name &amp;lt;email-address&amp;gt;&quot;
+set use_from=yes
+set edit_headers=yes
+
+set mbox_type=Maildir
+set folder=~/Mail
+set spoolfile=&quot;+First/INBOX&quot;
+set mbox=&quot;+First/[Gmail].All Mail&quot;
+set postponed=&quot;+First/[Gmail].Drafts&quot;
+unset record
+mailboxes +First/INBOX
+
+macro index D \
+    &quot;&amp;lt;save-message&amp;gt;+First/[Gmail].Bin&amp;lt;enter&amp;gt;&quot; \
+    &quot;move message to the trash&quot;
+
+macro index S \
+    &quot;&amp;lt;save-message&amp;gt;+First/[Gmail].Spam&amp;lt;enter&amp;gt;&quot; \
+    &quot;mark message as spam&quot;
+
+set sort=threads
+set sort_aux=last-date-received
+
+source ~/.mutt/colour/mutt-scheme.muttrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.mutt/accounts/Second&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set sendmail=&quot;msmtp-enqueue.sh -a Second&quot;
+set envelope_from=yes
+set from=&quot;name &amp;lt;email-address&amp;gt;&quot;
+set use_from=yes
+set edit_headers=yes
+
+set mbox_type=Maildir
+set folder=~/Mail
+set spoolfile=&quot;+Second/INBOX&quot;
+set mbox=&quot;+Second/[Gmail].All Mail&quot;
+set postponed=&quot;+Second/[Gmail].Drafts&quot;
+unset record
+mailboxes +Second/INBOX
+
+macro index D \
+    &quot;&amp;lt;save-message&amp;gt;+Second/[Gmail].Bin&amp;lt;enter&amp;gt;&quot; \
+    &quot;move message to the trash&quot;
+
+macro index S \
+    &quot;&amp;lt;save-message&amp;gt;+Second/[Gmail].Spam&amp;lt;enter&amp;gt;&quot; \
+    &quot;mark message as spam&quot;
+
+set sort=threads
+set sort_aux=last-date-received
+
+source ~/.mutt/colour/mutt-scheme.muttrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;~/.mutt/colour/mutt-scheme.muttrc&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# header
+color header cyan black &quot;^from:&quot;
+color header cyan black &quot;^to:&quot;
+color header cyan black &quot;^cc:&quot;
+color header cyan black &quot;^date:&quot;
+color header cyan black &quot;^reply-to:&quot;
+color header cyan black &quot;^subject:&quot;
+color header cyan black &quot;^x-mailer:&quot;
+
+# Default color definitions
+color signature brightmagenta black
+color indicator black cyan
+color attachment yellow black
+color error red black
+color message white black
+color search brightwhite magenta
+color status brightgreen blue
+color tree red black
+color normal white black
+color tilde green black
+color bold brightyellow black
+color markers red black
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;msmtpqueue&quot;&gt;[msmtpqueue]&lt;/h4&gt;
+
+&lt;p&gt;Download and extract
+&lt;a href=&quot;http://sourceforge.net/projects/msmtp/files/msmtpqueue/&quot;&gt;msmtpqueue&lt;/a&gt; to
+~/bin&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;wed-apr-30-2014&quot;&gt;Wed, Apr 30, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;021703-utc-server-installation&quot;&gt;02:17:03 UTC: SERVER INSTALLATION&lt;/h3&gt;
+
+&lt;h4 id=&quot;media-1&quot;&gt;[Media]&lt;/h4&gt;
+
+&lt;p&gt;ISO available via Ubuntu Server 
+&lt;a href=&quot;http://www.ubuntu.com/download/server&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;h4 id=&quot;installation&quot;&gt;[Installation]&lt;/h4&gt;
+
+&lt;p&gt;Select language.&lt;br /&gt;
+Select location.&lt;/p&gt;
+
+&lt;p&gt;Configure keyboard:&lt;br /&gt;
+Detect keyboard: No&lt;br /&gt;
+Select origin and layout.&lt;/p&gt;
+
+&lt;p&gt;Enter hostname.&lt;br /&gt;
+Enter full name and username for new user.&lt;br /&gt;
+Enter password.&lt;br /&gt;
+Choose whether to encrypt home directory.&lt;br /&gt;
+Set time zone.&lt;br /&gt;
+Partition disks.&lt;br /&gt;
+Enter proxy if relevant, else leave blank and continue.&lt;br /&gt;
+Choose how to manage updates.&lt;/p&gt;
+
+&lt;p&gt;Software Selection:&lt;br /&gt;
+Basic Ubuntu server&lt;br /&gt;
+OpenSSH server&lt;br /&gt;
+Samba file server&lt;/p&gt;
+
+&lt;p&gt;Install boot loader.&lt;br /&gt;
+Reboot.&lt;/p&gt;
+
+&lt;h4 id=&quot;static-ip-address&quot;&gt;[Static IP Address]&lt;/h4&gt;
+
+&lt;p&gt;Ethernet:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/network/interfaces&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto eth0
+iface eth0 inet static
+        address &amp;lt;ip-address&amp;gt;
+        netmask &amp;lt;netmask&amp;gt;
+        network &amp;lt;network&amp;gt;
+        broadcast &amp;lt;broadcast&amp;gt;
+        gateway &amp;lt;gateway&amp;gt;
+        dns-nameservers &amp;lt;dns-nameservers&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Wireless:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/network/interfaces&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto wlan0
+iface wlan0 inet static
+        address &amp;lt;ip-address&amp;gt;
+        netmask &amp;lt;netmask&amp;gt;
+        network &amp;lt;network&amp;gt;
+        broadcast &amp;lt;broadcast&amp;gt;
+        gateway &amp;lt;gateway&amp;gt;
+        dns-nameservers &amp;lt;dns-nameservers&amp;gt;
+        wpa-ssid &amp;lt;ssid&amp;gt;
+        wpa-psk &amp;lt;passphrase&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Optional:&lt;br /&gt;
+Comment out interfaces if not required.&lt;/p&gt;
+
+&lt;h4 id=&quot;update&quot;&gt;[Update]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get upgrades
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get aptitude        &lt;span class=&quot;c&quot;&gt;# Useful if not already installed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;041254-utc-samba-setup&quot;&gt;04:12:54 UTC: SAMBA SETUP&lt;/h3&gt;
+
+&lt;h4 id=&quot;directory-structure&quot;&gt;[Directory Structure]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /shares/data          &lt;span class=&quot;c&quot;&gt;# data directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /shares/data
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir &lt;/span&gt;daniel                   &lt;span class=&quot;c&quot;&gt;# home directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;groupadd data
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chown &lt;/span&gt;daniel:data daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;o-rx daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;sysadmin&quot;&gt;[sysadmin]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; data &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash sysadmin
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;passwd sysadmin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;config&quot;&gt;Config&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/samba/smb.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;workgroup = &amp;lt;workgroup-name&amp;gt;
+wins support = yes
+name resolve order = lmhosts host wins bcast
+security = user
+
+[Data]
+comment = Data
+path = /shares/data
+browseable = yes
+read only = yes
+valid users = sysadmin
+
+[Daniel]
+comment = Daniel
+path = /shares/data/daniel
+browseable = yes
+read only = no
+valid users = daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sets Samba password. I think smbpasswd ties in with passwd but needed in this
+case since password was set prior to Samba installation.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;smbpasswd &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;203817-utc-dlna&quot;&gt;20:38:17 UTC: DLNA&lt;/h3&gt;
+
+&lt;h4 id=&quot;ps3-media-server&quot;&gt;[PS3 Media Server]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python-software-properties
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository ppa:happy-neko/ps3mediaserver
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update 
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ps3mediaserver
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;directory-structure-1&quot;&gt;[Directory Structure]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /shares/stream        &lt;span class=&quot;c&quot;&gt;# stream directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /shares
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;groupadd stream
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chgrp &lt;/span&gt;stream stream
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;g+w,o-rx stream
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; stream daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;ps3&quot;&gt;[ps3]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; stream &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash ps3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;passwd ps3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;daemon&quot;&gt;[Daemon]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/default/ps3mediaserver&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PMS_START=&quot;yes&quot;
+PMS_USER=&quot;ps3&quot;
+PMS_PROFILE=&quot;/home/$PMS_USER/.config/ps3mediaserver&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;config-1&quot;&gt;[Config]&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/samba/smb.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Stream]
+comment = Stream
+path = /shares/stream
+browseable = yes
+read only = no
+valid users = daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;/home/ps3/.config/ps3mediaserver/PMS.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;usecache = false
+hide_empty_folders = true
+folders = /shares/stream
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Remove &lt;code class=&quot;highlighter-rouge&quot;&gt;/home/ps3/.config/ps3mediaserver/WEB.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Reboot&lt;/p&gt;
+
+&lt;p&gt;Needed sometimes if media not playing, especially newly added.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service ps3mediaserver restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Sun, Apr 20, 2014</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2014/01/01/Jan.html">&lt;h3 id=&quot;fri-jan-31-2014&quot;&gt;Fri, Jan 31, 2014&lt;/h3&gt;
+
+&lt;h3 id=&quot;075304-utc-laneway-festival&quot;&gt;07:53:04 UTC: LANEWAY FESTIVAL&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/log/images/2014/laneway-festival.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Laneway 2014, weather cleared, summery but windy. I was covered up pretty 
+well but sunburned from neck up despite my conscious effort to avoid it. 
+It is summer after all.&lt;/p&gt;
+
+&lt;p&gt;Highlight was Chvrches, they were the second last act on main stage. Daughter 
+was all right though sound level could had been better but glad to have finally 
+seen them live. Well worth getting there early. Cat Power was a let down, it’s 
+just not the same without her band.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fri, Jan 31, 2014</summary></entry></feed>

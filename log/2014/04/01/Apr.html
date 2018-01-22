@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Apr</title>
+  <meta name="description" content="Sun, Apr 20, 2014">
+
+  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/log/2014/04/01/Apr.html">
+  <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/log/">Daniel Ngu&#39;s Log</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="sun-apr-20-2014">Sun, Apr 20, 2014</h3>
+
+<h3 id="023603-utc-arch-installation--setup">02:36:03 UTC: ARCH INSTALLATION / SETUP</h3>
+
+<h4 id="media">[Media]</h4>
+
+<p>ISO available via Arch <a href="https://www.archlinux.org/download/">download</a> page.</p>
+
+<p>Installation Guide available there as well or as text file after booting up the 
+ISO.</p>
+
+<h4 id="keyboard">[Keyboard]</h4>
+
+<p>I found this optional but for completeness:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>loadkeys us
+</code></pre></div></div>
+
+<h4 id="partition">[Partition]</h4>
+
+<p>I opted for simpler partitioning, keeping my home directory separate.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>fdisk <span class="nt">-l</span>			<span class="c"># List parition tables</span>
+<span class="nv">$ </span>gdisk /dev/sda		<span class="c"># To partition /dev/sda</span>
+<span class="nv">$ </span>o				<span class="c"># Either new or start over</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+<span class="nv">$ </span>n				<span class="c"># Create new partition</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default partition number</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>+100G				<span class="c"># Allocated 100GB for home partition</span>
+<span class="nv">$ </span>8302				<span class="c"># Set type of partition or L to list</span>
+</code></pre></div></div>
+
+<p>Similarly, repeat 5 to 8 to create the rest of the partitions. In my case, I’ve
+created /dev/sda2 for swap with 8200 and /dev/sda3 for / with 8300 using the
+remaining available.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>w				<span class="c"># Write changes</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+</code></pre></div></div>
+
+<p>Alternatively, use cgdisk or cfdisk if dual boot with Windows.</p>
+
+<h4 id="format">[Format]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkfs.ext4 /dev/sda1		<span class="c"># Format home partition</span>
+<span class="nv">$ </span>mkswap /dev/sda2		<span class="c"># Format swap partition</span>
+<span class="nv">$ </span>mkfs.ext4 /dev/sda3		<span class="c"># Format / partition</span>
+</code></pre></div></div>
+
+<h4 id="mount">[Mount]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>swapon /dev/sda2
+<span class="nv">$ </span>mount /dev/sda3 /mnt
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-pv</span> /mnt/home
+<span class="nv">$ </span>mount /dev/sda1 /mnt/home
+</code></pre></div></div>
+
+<h4 id="wireless">[Wireless]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wifi-menu
+</code></pre></div></div>
+
+<h4 id="install-base-system">[Install Base System]</h4>
+
+<p>Edit /etc/pacman.d/mirrorlist so that the preferred mirror is on top of the 
+list.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacstrap /mnt base
+</code></pre></div></div>
+
+<h4 id="configure-the-system">[Configure the System]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>genfstab <span class="nt">-p</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab	<span class="c"># Generate fstab</span>
+<span class="nv">$ </span>arch-chroot /mnt			<span class="c"># chroot</span>
+</code></pre></div></div>
+
+<p>Add hostname to /etc/hostname and /etc/hosts. For /etc/hosts, append it to the 
+127.0.0.1 line.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+</code></pre></div></div>
+
+<p>Uncomment the locale in /etc/locale.gen</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>locale-gen				<span class="c"># Generate locale </span>
+</code></pre></div></div>
+
+<p>Set locale preference by adding <code class="highlighter-rouge">LANG="en_NZ.UTF-8"</code> to /etc/locale.conf</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkinitcpio <span class="nt">-p</span> linux			<span class="c"># Create RAM disk</span>
+<span class="nv">$ </span>passwd				<span class="c"># Set root password</span>
+</code></pre></div></div>
+
+<h4 id="install-boot-loader">[Install Boot Loader]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> gdisk			<span class="c"># Prerequisite</span>
+<span class="nv">$ </span>pacman <span class="nt">-S</span> syslinux
+<span class="nv">$ </span>syslinux-install_update <span class="nt">-i</span> <span class="nt">-a</span> <span class="nt">-m</span>
+</code></pre></div></div>
+
+<p>Or</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> intel-ucode				<span class="c"># If it's an Intel CPU</span>
+<span class="nv">$ </span>pacman <span class="nt">-S</span> grub os-prober
+<span class="nv">$ </span>grub-install <span class="nt">--recheck</span> /dev/sda		<span class="c"># Install bootloader</span>
+<span class="nv">$ </span>grub-mkconfig <span class="nt">-o</span> /boot/grub/grub.cfg		<span class="c"># Generate grub.cfg</span>
+</code></pre></div></div>
+
+<p>Grub is for MBR only.</p>
+
+<h4 id="additional-install">[Additional Install]</h4>
+
+<p>Wireless connection will be setup within Gnome later so in the interim, install
+the following to continue using wifi-menu after booting in to the new system.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant		<span class="c"># Required by wifi-menu</span>
+</code></pre></div></div>
+
+<h4 id="umount-and-reboot">[Umount and Reboot]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">exit</span>			<span class="c"># Exit from chroot environment</span>
+<span class="nv">$ </span>umount <span class="nt">-R</span> /mnt
+<span class="nv">$ </span>reboot
+</code></pre></div></div>
+
+<h4 id="create-new-user">[Create New User]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> wheel <span class="nt">-s</span> /bin/bash daniel
+<span class="nv">$ </span>passwd daniel
+<span class="nv">$ </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> audio,network,power,scanner,storage,systemd-journal,video daniel
+</code></pre></div></div>
+
+<p>The above creates a new user with home directory, change password and add user
+to additional groups.</p>
+
+<h4 id="sudo">[Sudo]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span>
+</code></pre></div></div>
+
+<p>Run visudo, edit it to restrict sudo to specific group or user.</p>
+
+<h4 id="gnome">[Gnome]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gnome
+</code></pre></div></div>
+
+<p>For Nvidia GPU, choose nvidia-libgl when prompted. After that install the nvidia
+package as well.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> nvidia
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>gdm
+</code></pre></div></div>
+
+<p>Updated:</p>
+
+<p>Since Gnome 3.14 update, I’ve replaced  Nvidia proprietary driver with Nouveau open source driver for NVIDIA graphic cards instead due to compatibility issues.</p>
+
+<p>Boot up Arch ISO then chroot to carry out the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-Rdds</span> nvidia nvidia-utils nvidia-libgl libvdpau libcl
+<span class="nv">$ </span><span class="nb">rm</span> /etc/X11/xorg.conf
+<span class="nv">$ </span>pacman <span class="nt">-Rdds</span> xf86-input-evdev
+<span class="nv">$ </span>pacman <span class="nt">-S</span> xorg-server mesa
+<span class="nv">$ </span>pacman <span class="nt">-S</span> xf86-video-nouveau
+<span class="nv">$ </span>pacman <span class="nt">-S</span> mesa-libgl
+</code></pre></div></div>
+
+<h4 id="touchpad">[Touchpad]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xf86-input-synaptics
+</code></pre></div></div>
+
+<p>Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:&lt;/br&gt;
+Set scroll-method to edge-scrolling.</p>
+
+<h4 id="wireless-network">[Wireless Network]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> wireless_tools
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> networkmanager
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> network-manager-applet
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>NetworkManager.service        <span class="c"># Enable Network Manager</span>
+</code></pre></div></div>
+
+<p>Disable dhcpcd since Network Manager will be handling the dhcpcd instead.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl disable dhcpcd.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl disable dhcpcd@.service
+</code></pre></div></div>
+
+<p>Alternatively, <code class="highlighter-rouge">ip address</code> to get the interface name and do <code class="highlighter-rouge">dhcpcd &lt;name&gt;</code> to 
+enable it manually or <code class="highlighter-rouge">sudo systemctl enable dhcpcd.service</code> to enable it as a
+service. Especially in case of using ethernet during installation or not
+using/installing Network Manager.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>wpa_supplicant.service
+</code></pre></div></div>
+
+<h4 id="aur-and-yaourt">[AUR and Yaourt]</h4>
+
+<p>These are required to install AUR and Yaourt packages.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> <span class="nt">--needed</span> base-devel
+</code></pre></div></div>
+
+<p>To install <a href="https://aur.archlinux.org/">AUR</a> packages, extract tarball, 
+run makepkg -s followed by pacman -U against the generated .pkg.tar.xz 
+package to install it.</p>
+
+<p>Yaourt Prerequisite:<br />
+<a href="https://aur.archlinux.org/packages/package-query/">package-query</a> 
+from AUR.</p>
+
+<p>Install Yaourt:<br />
+<a href="https://aur.archlinux.org/packages/yaourt/">yaourt</a> from AUR.</p>
+
+<h4 id="fonts">[Fonts]</h4>
+
+<p>Add this to <code class="highlighter-rouge">~/.config/fontconfig/fonts.conf</code> for better font rendering.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;match target="font"&gt;
+  &lt;edit mode="assign" name="autohint"&gt;&lt;bool&gt;true&lt;/bool&gt;&lt;/edit&gt;
+  &lt;edit mode="assign" name="hinting"&gt;&lt;bool&gt;true&lt;/bool&gt;&lt;/edit&gt;
+  &lt;edit mode="assign" name="hintstyle"&gt;&lt;const&gt;hintslight&lt;/const&gt;&lt;/edit&gt;
+&lt;/match&gt;
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gsfonts
+<span class="nv">$ </span>yaourt <span class="nt">-S</span> ttf-dejavu ttf-droid ttf-bitstream-vera ttf-cheapskate <span class="se">\</span>
+<span class="o">&gt;</span> ttf-freefont ttf-inconsolata ttf-indic-otf ttf-junicode ttf-liberation <span class="se">\</span>
+<span class="o">&gt;</span> ttf-linux-libertine
+</code></pre></div></div>
+
+<p>From AUR:<br />
+<a href="https://aur.archlinux.org/packages/ttf-ms-fonts/">ttf-ms-fonts</a></p>
+
+<h4 id="audio">[Audio]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> alsa-utils
+<span class="nv">$ </span>amixer sset Master unmute        <span class="c"># ALSA comes muted by default.</span>
+</code></pre></div></div>
+
+<h4 id="multimedia">[Multimedia]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gst-libav gst-plugins-ugly
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-Sy</span> <span class="nt">--needed</span> totem <span class="se">\</span>
+<span class="o">&gt;</span> gstreamer0.10-<span class="o">{{</span>bad,good,ugly,base<span class="o">}{</span>,-plugins<span class="o">}</span>,ffmpeg<span class="o">}</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> x264
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> ffmpeg
+</code></pre></div></div>
+
+<h4 id="additional-install-1">[Additional Install]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> brasero
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> chromium
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> file-roller
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gedit
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gimp
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> git 
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gnome-tweak-tool
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gparted
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gvfs-mtp
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gvfs-smb
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> irssi
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> handbrake
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> libreoffice
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> mutt
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> msmtp
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> net-tools
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> networkmanager-openconnect openconnect        <span class="c"># VPN</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> offlineimap
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> openssh
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> pulseaudio-alsa
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> seahorse
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> rhythmbox
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> vim
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> vlc
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xorg-xrandr                                   <span class="c"># Optional</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xorg-server-utils                             <span class="c"># Optional</span>
+</code></pre></div></div>
+
+<p>Updated:</p>
+
+<p>xorg-server-utils has been replaced by xorg-apps</p>
+
+<p>From AUR:<br />
+<a href="http://goo.gl/9bi8Gr">chromium-pepper-flash</a><br />
+<del><a href="https://aur.archlinux.org/packages/chromium-libpdf/">chromium-libpdf</a><br /></del>
+<a href="https://aur.archlinux.org/packages/etherwake/">etherwake</a><br />
+<del><a href="https://aur.archlinux.org/packages/realvnc-viewer/">realvnc-viewer</a></del></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>sshd.service
+</code></pre></div></div>
+<p><br /></p>
+<h3 id="mon-apr-21-2014">Mon, Apr 21, 2014</h3>
+
+<h3 id="035659-utc-arch-customisation">03:56:59 UTC: ARCH CUSTOMISATION</h3>
+
+<h4 id="numix-theme">[Numix Theme]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> numix-themes
+</code></pre></div></div>
+
+<p>From AUR:<br />
+<a href="http://goo.gl/alI4VE">numix-icon-theme-git</a><br />
+<a href="http://goo.gl/QIqWh2">numix-circle-icon-theme-git</a></p>
+
+<h4 id="gnome-dash-to-dock">[Gnome Dash to Dock]</h4>
+
+<p>From AUR:<br />
+<a href="http://goo.gl/YRSDX6">gnome-shell-extension-dash-to-dock</a></p>
+
+<h4 id="gnome-tweak-tool">[Gnome Tweak Tool]</h4>
+
+<p>Appearance-&gt;Theme:<br />
+Set Window and GTK+ to Numix<br />
+Set Icons to Numix-Circle</p>
+
+<p>Extensions:<br />
+Enable Dash to Dock</p>
+
+<p>Windows-&gt;Titlebar Buttons:<br />
+Enable Maximize and Minimize</p>
+
+<h4 id="gnome-terminal">[Gnome Terminal]</h4>
+
+<p>Clone default profile.</p>
+
+<p>Customise General:<br />
+Deselect “Use the system fixed width font” and change the default 
+monospace 12 to 10.<br />
+Decrease default terminal size from 80x24 to 80x20.</p>
+
+<p>Customise Colors:<br />
+Deselect “Use colors from system theme”.<br />
+Use Green on Black scheme.<br />
+<br /></p>
+<h3 id="fri-apr-25-2014">Fri, Apr 25, 2014</h3>
+
+<h3 id="001520-utc-dotfiles">00:15:20 UTC: DOTFILES</h3>
+
+<h4 id="linux">[Linux]</h4>
+
+<p><em>~/.bashrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS1='\u@\h:\w\$ '
+
+HISTSIZE=8000
+HISTFILESIZE=8000
+
+PATH=$PATH:$HOME/Documents/bin
+
+source "$HOME/.rvm/scripts/rvm"
+</code></pre></div></div>
+
+<p><em>~/.vimrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>filetype plugin indent on
+
+set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+set textwidth=80
+set formatoptions+=t
+
+syntax on
+
+set spelllang=en_nz
+set ruler laststatus=2 number title hlsearch
+</code></pre></div></div>
+
+<h4 id="mac">[Mac]</h4>
+
+<p><em>~/.bashrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HISTSIZE=8000
+HISTFILESIZE=8000
+
+PATH=$PATH:$HOME/Documents/bin
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export PS1='\u@\h:\w\$ '
+
+export PROMPT_COMMAND='echo -ne "\033]0;$PWD\007"'
+</code></pre></div></div>
+
+<p>The RVM line is actually auto added as part of Octopress install
+but included here for completeness.</p>
+
+<p><em>~/.bash_profile</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.bashrc
+</code></pre></div></div>
+
+<p><em>~/.vimrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>filetype plugin indent on
+
+set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+set textwidth=80
+set formatoptions+=t
+
+syntax on
+
+set spelllang=en_nz
+set ruler laststatus=2 number title hlsearch
+ 
+set background=dark
+colorscheme solarized
+
+let &amp;titleold=getcwd()
+</code></pre></div></div>
+
+<p><em>~/.vim/ftplugin/html.vim</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setlocal shiftwidth=2
+</code></pre></div></div>
+
+<h4 id="solarized-theme">[Solarized Theme]</h4>
+
+<p>Download <a href="http://ethanschoonover.com/solarized/files/solarized.zip">theme</a>
+and copy vim’s colors folder to ~/.vim<br />
+<br /></p>
+<h3 id="092727-utc-email-setup">09:27:27 UTC: EMAIL SETUP</h3>
+
+<h4 id="msmtp">[msmtp]</h4>
+
+<p><em>~/.msmtprc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>account First
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from email-address
+user email-address
+password password
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account Second
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from email-address
+user email-address
+password password
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account default : First
+</code></pre></div></div>
+
+<h4 id="offlineimap">[Offlineimap]</h4>
+
+<p><em>~/.offlineimaprc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[general]
+ui = ttyui
+accounts = First, Second
+
+[Account First]
+localrepository = First-Local
+remoterepository = First-Remote
+
+[Repository First-Local]
+type = Maildir
+localfolders = ~/Mail/First
+
+[Repository First-Remote]
+type = Gmail
+remoteuser = email-address
+remotepass = password
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Account Second]
+localrepository = Second-Local
+remoterepository = Second-Remote
+
+[Repository Second-Local]
+type = Maildir
+localfolders = ~/Mail/Second
+
+[Repository Second-Remote]
+type = Gmail
+remoteuser = email-address
+remotepass = password
+realdelete = no
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+</code></pre></div></div>
+
+<p>Mac:<br />
+For both <code class="highlighter-rouge">~/.msmtprc</code> and <code class="highlighter-rouge">~/.offlineimaprc</code>, change certificate path to
+<code class="highlighter-rouge">/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt</code> instead.</p>
+
+<h4 id="mutt">[Mutt]</h4>
+
+<p><em>~/.muttrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.mutt/accounts/First
+
+folder-hook First/* source ~/.mutt/accounts/First
+folder-hook Second/* source ~/.mutt/accounts/Second
+
+macro index \e1  "&lt;change-folder&gt; =First/INBOX&lt;enter&gt;"
+macro index \e2  "&lt;change-folder&gt; =Second/INBOX&lt;enter&gt;"
+
+set editor='vim'
+</code></pre></div></div>
+
+<p><em>~/.mutt/accounts/First</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set sendmail="msmtp-enqueue.sh -a First"
+set envelope_from=yes
+set from="name &lt;email-address&gt;"
+set use_from=yes
+set edit_headers=yes
+
+set mbox_type=Maildir
+set folder=~/Mail
+set spoolfile="+First/INBOX"
+set mbox="+First/[Gmail].All Mail"
+set postponed="+First/[Gmail].Drafts"
+unset record
+mailboxes +First/INBOX
+
+macro index D \
+    "&lt;save-message&gt;+First/[Gmail].Bin&lt;enter&gt;" \
+    "move message to the trash"
+
+macro index S \
+    "&lt;save-message&gt;+First/[Gmail].Spam&lt;enter&gt;" \
+    "mark message as spam"
+
+set sort=threads
+set sort_aux=last-date-received
+
+source ~/.mutt/colour/mutt-scheme.muttrc
+</code></pre></div></div>
+
+<p><em>~/.mutt/accounts/Second</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set sendmail="msmtp-enqueue.sh -a Second"
+set envelope_from=yes
+set from="name &lt;email-address&gt;"
+set use_from=yes
+set edit_headers=yes
+
+set mbox_type=Maildir
+set folder=~/Mail
+set spoolfile="+Second/INBOX"
+set mbox="+Second/[Gmail].All Mail"
+set postponed="+Second/[Gmail].Drafts"
+unset record
+mailboxes +Second/INBOX
+
+macro index D \
+    "&lt;save-message&gt;+Second/[Gmail].Bin&lt;enter&gt;" \
+    "move message to the trash"
+
+macro index S \
+    "&lt;save-message&gt;+Second/[Gmail].Spam&lt;enter&gt;" \
+    "mark message as spam"
+
+set sort=threads
+set sort_aux=last-date-received
+
+source ~/.mutt/colour/mutt-scheme.muttrc
+</code></pre></div></div>
+
+<p><em>~/.mutt/colour/mutt-scheme.muttrc</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># header
+color header cyan black "^from:"
+color header cyan black "^to:"
+color header cyan black "^cc:"
+color header cyan black "^date:"
+color header cyan black "^reply-to:"
+color header cyan black "^subject:"
+color header cyan black "^x-mailer:"
+
+# Default color definitions
+color signature brightmagenta black
+color indicator black cyan
+color attachment yellow black
+color error red black
+color message white black
+color search brightwhite magenta
+color status brightgreen blue
+color tree red black
+color normal white black
+color tilde green black
+color bold brightyellow black
+color markers red black
+</code></pre></div></div>
+
+<h4 id="msmtpqueue">[msmtpqueue]</h4>
+
+<p>Download and extract
+<a href="http://sourceforge.net/projects/msmtp/files/msmtpqueue/">msmtpqueue</a> to
+~/bin<br />
+<br /></p>
+<h3 id="wed-apr-30-2014">Wed, Apr 30, 2014</h3>
+
+<h3 id="021703-utc-server-installation">02:17:03 UTC: SERVER INSTALLATION</h3>
+
+<h4 id="media-1">[Media]</h4>
+
+<p>ISO available via Ubuntu Server 
+<a href="http://www.ubuntu.com/download/server">download</a> page.</p>
+
+<h4 id="installation">[Installation]</h4>
+
+<p>Select language.<br />
+Select location.</p>
+
+<p>Configure keyboard:<br />
+Detect keyboard: No<br />
+Select origin and layout.</p>
+
+<p>Enter hostname.<br />
+Enter full name and username for new user.<br />
+Enter password.<br />
+Choose whether to encrypt home directory.<br />
+Set time zone.<br />
+Partition disks.<br />
+Enter proxy if relevant, else leave blank and continue.<br />
+Choose how to manage updates.</p>
+
+<p>Software Selection:<br />
+Basic Ubuntu server<br />
+OpenSSH server<br />
+Samba file server</p>
+
+<p>Install boot loader.<br />
+Reboot.</p>
+
+<h4 id="static-ip-address">[Static IP Address]</h4>
+
+<p>Ethernet:</p>
+
+<p><em>/etc/network/interfaces</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>auto eth0
+iface eth0 inet static
+        address &lt;ip-address&gt;
+        netmask &lt;netmask&gt;
+        network &lt;network&gt;
+        broadcast &lt;broadcast&gt;
+        gateway &lt;gateway&gt;
+        dns-nameservers &lt;dns-nameservers&gt;
+</code></pre></div></div>
+
+<p>Wireless:</p>
+
+<p><em>/etc/network/interfaces</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>auto wlan0
+iface wlan0 inet static
+        address &lt;ip-address&gt;
+        netmask &lt;netmask&gt;
+        network &lt;network&gt;
+        broadcast &lt;broadcast&gt;
+        gateway &lt;gateway&gt;
+        dns-nameservers &lt;dns-nameservers&gt;
+        wpa-ssid &lt;ssid&gt;
+        wpa-psk &lt;passphrase&gt;
+</code></pre></div></div>
+
+<p>Optional:<br />
+Comment out interfaces if not required.</p>
+
+<h4 id="update">[Update]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get upgrades
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get aptitude        <span class="c"># Useful if not already installed</span>
+</code></pre></div></div>
+<p><br /></p>
+<h3 id="041254-utc-samba-setup">04:12:54 UTC: SAMBA SETUP</h3>
+
+<h4 id="directory-structure">[Directory Structure]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /shares/data          <span class="c"># data directory</span>
+<span class="nv">$ </span><span class="nb">cd</span> /shares/data
+<span class="nv">$ </span><span class="nb">sudo mkdir </span>daniel                   <span class="c"># home directory</span>
+<span class="nv">$ </span><span class="nb">sudo </span>groupadd data
+<span class="nv">$ </span><span class="nb">sudo chown </span>daniel:data daniel
+<span class="nv">$ </span><span class="nb">chmod </span>o-rx daniel
+</code></pre></div></div>
+
+<h4 id="sysadmin">[sysadmin]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> data <span class="nt">-s</span> /bin/bash sysadmin
+<span class="nv">$ </span><span class="nb">sudo </span>passwd sysadmin
+</code></pre></div></div>
+
+<h3 id="config">Config</h3>
+
+<p><em>/etc/samba/smb.conf</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>workgroup = &lt;workgroup-name&gt;
+wins support = yes
+name resolve order = lmhosts host wins bcast
+security = user
+
+[Data]
+comment = Data
+path = /shares/data
+browseable = yes
+read only = yes
+valid users = sysadmin
+
+[Daniel]
+comment = Daniel
+path = /shares/data/daniel
+browseable = yes
+read only = no
+valid users = daniel
+</code></pre></div></div>
+
+<p>Sets Samba password. I think smbpasswd ties in with passwd but needed in this
+case since password was set prior to Samba installation.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>smbpasswd <span class="nt">-a</span> daniel
+</code></pre></div></div>
+<p><br /></p>
+<h3 id="203817-utc-dlna">20:38:17 UTC: DLNA</h3>
+
+<h4 id="ps3-media-server">[PS3 Media Server]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>python-software-properties
+<span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository ppa:happy-neko/ps3mediaserver
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get update 
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>ps3mediaserver
+</code></pre></div></div>
+
+<h4 id="directory-structure-1">[Directory Structure]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /shares/stream        <span class="c"># stream directory</span>
+<span class="nv">$ </span><span class="nb">cd</span> /shares
+<span class="nv">$ </span><span class="nb">sudo </span>groupadd stream
+<span class="nv">$ </span><span class="nb">sudo chgrp </span>stream stream
+<span class="nv">$ </span><span class="nb">sudo chmod </span>g+w,o-rx stream
+<span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> stream daniel
+</code></pre></div></div>
+
+<h4 id="ps3">[ps3]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> stream <span class="nt">-s</span> /bin/bash ps3
+<span class="nv">$ </span><span class="nb">sudo </span>passwd ps3
+</code></pre></div></div>
+
+<h4 id="daemon">[Daemon]</h4>
+
+<p><em>/etc/default/ps3mediaserver</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PMS_START="yes"
+PMS_USER="ps3"
+PMS_PROFILE="/home/$PMS_USER/.config/ps3mediaserver"
+</code></pre></div></div>
+
+<h4 id="config-1">[Config]</h4>
+
+<p><em>/etc/samba/smb.conf</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Stream]
+comment = Stream
+path = /shares/stream
+browseable = yes
+read only = no
+valid users = daniel
+</code></pre></div></div>
+
+<p><em>/home/ps3/.config/ps3mediaserver/PMS.conf</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usecache = false
+hide_empty_folders = true
+folders = /shares/stream
+</code></pre></div></div>
+
+<p>Remove <code class="highlighter-rouge">/home/ps3/.config/ps3mediaserver/WEB.conf</code></p>
+
+<p>Reboot</p>
+
+<p>Needed sometimes if media not playing, especially newly added.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service ps3mediaserver restart
+</code></pre></div></div>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+  
+  <div class="wrapper">
+
+
+    <div class="footer-col-wrapper">
+      
+      <div class="footer-col footer-col-1">
+	Copyright &copy; 2018 - Daniel Ngu's Log
+      </div>
+    
+    </div>
+
+</footer>
+
+
+  </body>
+
+</html>

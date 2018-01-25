@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-25T14:45:16+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-25T19:01:52+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
 
 &lt;h3 id=&quot;234720-utc-arch-installation--encrypted-setup&quot;&gt;23:47:20 UTC: ARCH INSTALLATION / ENCRYPTED SETUP&lt;/h3&gt;
 
@@ -158,7 +158,7 @@ LABEL archfallback
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# Substitute profile-name as obtained above&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;additional-install&quot;&gt;[Additional Install]&lt;/h4&gt;

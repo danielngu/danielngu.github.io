@@ -141,24 +141,24 @@ list.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacstrap /mnt base
 </code></pre></div></div>
 
-<h4 id="configure-the-system">[Configure the System]</h4>
+<h4 id="configure-system">[Configure System]</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>genfstab <span class="nt">-p</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab	<span class="c"># Generate fstab</span>
 <span class="nv">$ </span>arch-chroot /mnt			<span class="c"># chroot</span>
 </code></pre></div></div>
 
-<p>Add hostname to /etc/hostname and /etc/hosts. For /etc/hosts, append it to the 
+<p>Add hostname to <code class="highlighter-rouge">/etc/hostname</code> and <code class="highlighter-rouge">/etc/hosts</code>. For <code class="highlighter-rouge">/etc/hosts</code>, append it to the 
 127.0.0.1 line.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
 </code></pre></div></div>
 
-<p>Uncomment the locale in /etc/locale.gen</p>
+<p>Uncomment the locale in <code class="highlighter-rouge">/etc/locale.gen</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>locale-gen				<span class="c"># Generate locale </span>
 </code></pre></div></div>
 
-<p>Set locale preference by adding <code class="highlighter-rouge">LANG="en_NZ.UTF-8"</code> to /etc/locale.conf</p>
+<p>Set locale preference by adding <code class="highlighter-rouge">LANG="en_NZ.UTF-8"</code> to <code class="highlighter-rouge">/etc/locale.conf</code></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkinitcpio <span class="nt">-p</span> linux			<span class="c"># Create RAM disk</span>
 <span class="nv">$ </span>passwd				<span class="c"># Set root password</span>
@@ -244,7 +244,7 @@ package as well.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> xf86-input-synaptics
 </code></pre></div></div>
 
-<p>Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:&lt;/br&gt;
+<p>Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:<br />
 Set scroll-method to edge-scrolling.</p>
 
 <h4 id="wireless-network">[Wireless Network]</h4>

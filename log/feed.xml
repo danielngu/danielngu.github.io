@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-23T00:01:14+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;h3 id=&quot;fri-feb-02-2017&quot;&gt;Fri, Feb 02, 2017&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-25T14:45:16+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
+
+&lt;h3 id=&quot;234720-utc-arch-installation--encrypted-setup&quot;&gt;23:47:20 UTC: ARCH INSTALLATION / ENCRYPTED SETUP&lt;/h3&gt;
+
+&lt;p&gt;This is &lt;a href=&quot;https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS&quot;&gt;LVM on LUKS&lt;/a&gt; setup based on Arch’s wiki documentation.&lt;/p&gt;
+
+&lt;h4 id=&quot;keyboard&quot;&gt;[Keyboard]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys us
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;partition&quot;&gt;[Partition]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk				&lt;span class=&quot;c&quot;&gt;# List block devices&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdisk /dev/sda		&lt;span class=&quot;c&quot;&gt;# To partition /dev/sda&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o				&lt;span class=&quot;c&quot;&gt;# Either new or start over&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+512M				&lt;span class=&quot;c&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8300				&lt;span class=&quot;c&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8E00				&lt;span class=&quot;c&quot;&gt;# Set partition type to LVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w				&lt;span class=&quot;c&quot;&gt;# Write change&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup luksFormat &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; luks2 /dev/sda2	&lt;span class=&quot;c&quot;&gt;# Create encrypted container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup open /dev/sda2 cryptolvm		&lt;span class=&quot;c&quot;&gt;# Open container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pvcreate /dev/mapper/cryptolvm		&lt;span class=&quot;c&quot;&gt;# Create physical volume&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vgcreate MyVol /dev/mapper/cryptolvm		&lt;span class=&quot;c&quot;&gt;# Create MyVol volume group&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 60G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; home			&lt;span class=&quot;c&quot;&gt;# Allocated 1/5 space for home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 8G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; swap			&lt;span class=&quot;c&quot;&gt;# Allocated 2xRAM for swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 100%FREE MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; root		&lt;span class=&quot;c&quot;&gt;# Allocated remaining for root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-home		&lt;span class=&quot;c&quot;&gt;# Format home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkswap /dev/mapper/MyVol-swap			&lt;span class=&quot;c&quot;&gt;# Format swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-root		&lt;span class=&quot;c&quot;&gt;# Format root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swapon /dev/mapper/MyVol-swap			&lt;span class=&quot;c&quot;&gt;# Mount swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-root /mnt		&lt;span class=&quot;c&quot;&gt;# Mount root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pv&lt;/span&gt; /mnt/home				&lt;span class=&quot;c&quot;&gt;# Create home directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-home /mnt/home	&lt;span class=&quot;c&quot;&gt;# Mount home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext2 /dev/sda1				&lt;span class=&quot;c&quot;&gt;# Create Ext2&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt;	/mnt/boot				&lt;span class=&quot;c&quot;&gt;# Create boot directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sda1 /mnt/boot			&lt;span class=&quot;c&quot;&gt;# Mount boot&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-base-system&quot;&gt;[Install Base System]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;configure-system&quot;&gt;[Configure System]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add hostname to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hostname&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;127.0.0.1	localhost
+127.0.0.1	hostname.subdomain.domain	hostname
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set time zone:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Uncomment the locale in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/locale.gen&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set locale preference by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;LANG=&quot;en_NZ.UTF-8&quot;&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/locale.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;configure-mkinitcpio&quot;&gt;[Configure mkinitcpio]&lt;/h4&gt;
+
+&lt;p&gt;Add &lt;em&gt;keyboard, encrypt&lt;/em&gt; and &lt;em&gt;lvm2&lt;/em&gt; hooks to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/mkinitcpio.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HOOKS=(... keyboard encrypt lvm2 fsck)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;mkinitcpio and set root password:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;install-boot-loader&quot;&gt;[Install Boot Loader]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gdisk			&lt;span class=&quot;c&quot;&gt;# Prerequisite&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; syslinux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;syslinux-install_update &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;/boot/syslinux/syslinux.cfg&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;LABEL arch
+    MENU LABEL Arch Linux
+    LINUX ../vmlinuz-linux
+    APPEND root=/dev/mapper/MyVol-root cryptdevice=/dev/sda2:cryptolvm rw
+    INITRD ../initramfs-linux.img
+
+LABEL archfallback
+    MENU LABEL Arch Linux Fallback
+    LINUX ../vmlinuz-linux
+    APPEND root=/dev/mapper/MyVol-root cryptdevice=/dev/sda2:cryptolvm rw
+    INITRD ../initramfs-linux-fallback.img
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/crypttab&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Append line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cryptolvm	/dev/sda2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create &lt;em&gt;crypttab.initramfs&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /etc/crypttab /etc/crypttab.initramfs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;umount-and-reboot&quot;&gt;[Umount and Reboot]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;create-new-user&quot;&gt;[Create New User]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above creates a new user with home directory, change password and add user to additional groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;sudo&quot;&gt;[Sudo]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless-1&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# Substitute profile-name as obtained above&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;additional-install&quot;&gt;[Additional Install]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; openssh
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;sshd.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--needed&lt;/span&gt; base-devel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xzvf cower.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;cower
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;makepkg &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; cower-&amp;lt;version&amp;gt;.pkg.tar.xz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xzvf pacaur.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;pacaur
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;makepkg &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; pacaur-&amp;lt;version&amp;gt;.pkg.tar.xz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;audio&quot;&gt;[Audio]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; alsa-utils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;amixer sset Master unmute		&lt;span class=&quot;c&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;restore&quot;&gt;[Restore]&lt;/h4&gt;
+
+&lt;p&gt;Restore home from backup.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; - &amp;lt; pkglist.txt	&lt;span class=&quot;c&quot;&gt;# Install all packages from backup list&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Do the same for AUR with pacaur.&lt;/p&gt;</content><author><name></name></author><summary type="html">Wed, Jan 24, 2018</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;h3 id=&quot;fri-feb-02-2017&quot;&gt;Fri, Feb 02, 2017&lt;/h3&gt;
 
 &lt;h3 id=&quot;035324-utc-raspberry-pi&quot;&gt;03:53:24 UTC: RASPBERRY PI&lt;/h3&gt;
 
@@ -464,24 +657,24 @@ list.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;configure-the-system&quot;&gt;[Configure the System]&lt;/h4&gt;
+&lt;h4 id=&quot;configure-system&quot;&gt;[Configure System]&lt;/h4&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Add hostname to /etc/hostname and /etc/hosts. For /etc/hosts, append it to the 
+&lt;p&gt;Add hostname to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hostname&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;. For &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;, append it to the 
 127.0.0.1 line.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Uncomment the locale in /etc/locale.gen&lt;/p&gt;
+&lt;p&gt;Uncomment the locale in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/locale.gen&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Set locale preference by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;LANG=&quot;en_NZ.UTF-8&quot;&lt;/code&gt; to /etc/locale.conf&lt;/p&gt;
+&lt;p&gt;Set locale preference by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;LANG=&quot;en_NZ.UTF-8&quot;&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/locale.conf&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux			&lt;span class=&quot;c&quot;&gt;# Create RAM disk&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd				&lt;span class=&quot;c&quot;&gt;# Set root password&lt;/span&gt;
@@ -567,7 +760,7 @@ package as well.&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xf86-input-synaptics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:&amp;lt;/br&amp;gt;
+&lt;p&gt;Launch dconf editor, edit org.gnome.settings-daemon.peripherals.touchpad:&lt;br /&gt;
 Set scroll-method to edge-scrolling.&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless-network&quot;&gt;[Wireless Network]&lt;/h4&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-25T19:01:52+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-26T18:35:56+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
 
 &lt;h3 id=&quot;234720-utc-arch-installation--encrypted-setup&quot;&gt;23:47:20 UTC: ARCH INSTALLATION / ENCRYPTED SETUP&lt;/h3&gt;
 
@@ -191,7 +191,38 @@ LABEL archfallback
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; - &amp;lt; pkglist.txt	&lt;span class=&quot;c&quot;&gt;# Install all packages from backup list&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Do the same for AUR with pacaur.&lt;/p&gt;</content><author><name></name></author><summary type="html">Wed, Jan 24, 2018</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;h3 id=&quot;fri-feb-02-2017&quot;&gt;Fri, Feb 02, 2017&lt;/h3&gt;
+&lt;p&gt;Do the same for AUR with pacaur.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;fri-jan-26-2018&quot;&gt;Fri, Jan 26, 2018&lt;/h3&gt;
+
+&lt;h3 id=&quot;052127-utc-fat32&quot;&gt;05:21:27 UTC: FAT32&lt;/h3&gt;
+
+&lt;p&gt;gparted or via command line.&lt;/p&gt;
+
+&lt;p&gt;Either way, install dosfstools.&lt;br /&gt;
+I’m using FAT32 (LBA), which is also the factory default for USB stick.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk /dev/sdb
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;t
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;c
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkfs.vfat /dev/sdb1 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; DN-U-001
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;storage,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;113,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;002 /dev/sdb1 /mnt/usbstick
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;umount /mnt/usbstick
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p /&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.dewassoc.com/kbase/hard_drives/lba.htm&quot;&gt;LBA&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Wed, Jan 24, 2018</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;h3 id=&quot;fri-feb-02-2017&quot;&gt;Fri, Feb 02, 2017&lt;/h3&gt;
 
 &lt;h3 id=&quot;035324-utc-raspberry-pi&quot;&gt;03:53:24 UTC: RASPBERRY PI&lt;/h3&gt;
 

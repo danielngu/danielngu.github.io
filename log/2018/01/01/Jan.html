@@ -263,7 +263,38 @@ LABEL archfallback
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> - &lt; pkglist.txt	<span class="c"># Install all packages from backup list</span>
 </code></pre></div></div>
 
-<p>Do the same for AUR with pacaur.</p>
+<p>Do the same for AUR with pacaur.<br />
+<br /></p>
+<h3 id="fri-jan-26-2018">Fri, Jan 26, 2018</h3>
+
+<h3 id="052127-utc-fat32">05:21:27 UTC: FAT32</h3>
+
+<p>gparted or via command line.</p>
+
+<p>Either way, install dosfstools.<br />
+I’m using FAT32 (LBA), which is also the factory default for USB stick.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>lsblk
+<span class="nv">$ </span><span class="nb">sudo </span>fdisk /dev/sdb
+<span class="nv">$ </span>o
+<span class="nv">$ </span>n
+<span class="nv">$ </span>p
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>t
+<span class="nv">$ </span>c
+<span class="nv">$ </span>w
+<span class="nv">$ </span><span class="nb">sudo </span>mkfs.vfat /dev/sdb1 <span class="nt">-n</span> DN-U-001
+<span class="nv">$ </span><span class="nb">sudo </span>mount <span class="nt">-o</span> <span class="nv">gid</span><span class="o">=</span>storage,fmask<span class="o">=</span>113,dmask<span class="o">=</span>002 /dev/sdb1 /mnt/usbstick
+<span class="nv">$ </span><span class="nb">sudo </span>umount /mnt/usbstick
+</code></pre></div></div>
+
+<p>References:</p>
+<p />
+
+<p><a href="http://www.dewassoc.com/kbase/hard_drives/lba.htm">LBA</a><br />
+<a href="https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory">Mounting USB stick with write access</a></p>
 
   </div>
 

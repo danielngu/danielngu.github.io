@@ -1,4 +1,165 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-01-26T18:35:56+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-02-09T14:56:29+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;h3 id=&quot;thu-feb-8-2018&quot;&gt;Thu, Feb 8, 2018&lt;/h3&gt;
+
+&lt;h3 id=&quot;234807-utc-gogs-icewind-dale-enhanced-edition&quot;&gt;23:48:07 UTC: GOG’S ICEWIND DALE ENHANCED EDITION&lt;/h3&gt;
+
+&lt;h4 id=&quot;media&quot;&gt;[Media]&lt;/h4&gt;
+
+&lt;p&gt;Native Linux version on 
+&lt;a href=&quot;https://www.gog.com/game/icewind_dale_enhanced_edition&quot;&gt;GOG&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;dependencies&quot;&gt;[Dependencies]&lt;/h4&gt;
+
+&lt;p&gt;It’s a straight install but to run, it needs the following dependencies as 
+listed on their site.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;libc6:i386
+libasound2:i386
+libasound2-data:i386
+libasound2-plugins:i386
+libjson-c2:i386
+libopenal1:i386
+libstdc++6:i386
+libssl1.0.0:i386
+libexpat1:i386
+libx11-6:i386
+libxau6:i386
+libxcb1:i386
+libxcursor1:i386
+libxdmcp6:i386
+libxext6:i386
+libxfixes3:i386
+libxinerama1:i386
+libxrandr2:i386
+libxrender1:i386
+libjson0:i386
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To install Arch’s 32-bit equivalent, start off by uncommenting the
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Multilib&quot;&gt;multilib&lt;/a&gt; section in 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/pacman.conf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[multilib]
+Include = /etc/pacman.d/mirrorlist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;pacman -Sl multilib&lt;/code&gt; to list all packages in the multilib repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pacman -Sl multilib | grep&lt;/code&gt; to find the packages required.&lt;/p&gt;
+
+&lt;p&gt;Installed files are located under &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/lib32/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The packages I’ve ended with are as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-alsa-lib&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;Dependencies:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lib32-glibc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-json-glib&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;Dependencies:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lib32-gcc-libs
+ lib32-pcre
+ lib32-libffi
+ lib32-util-linux
+ lib32-zlib
+ lib32-glib2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Link:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; cd /usr/lib32
+ sudo ln -s libjson-glib-1.0.so.0.400.2 libjson.so.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-openal&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-mesa&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;Dependencies:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lib32-libpciaccess
+ lib32-libdrm
+ lib32-libxdmcp
+ lib32-libxau
+ lib32-libxcb
+ lib32-libx11
+ lib32-libxext
+ lib32-libxxf86vm
+ lib32-libxfixes
+ lib32-libxdamage
+ lib32-libxshmfence
+ lib32-lm_sensors
+ lib32-bzip2
+ lib32-libelf
+ lib32-ncurses
+ lib32-llvm-libs
+ lib32-expat
+ lib32-readline
+ lib32-icu
+ lib32-libxml2
+ lib32-wayland
+ lib32-libglvnd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-openssl-1.0&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-sdl2&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;Dependencies:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lib32-libxrender
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libpulse&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;Dependencies:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; lib32-attr
+ lib32-libcap
+ lib32-libgpg-error
+ lib32-libgcrypt
+ lib32-xz
+ lib32-systemd
+ lib32-dbus
+ lib32-libasyncns
+ lib32-libxi
+ lib32-libxtst
+ lib32-libice
+ lib32-libsm
+ lib32-libogg
+ lib32-flac
+ lib32-libvorbis
+ lib32-libsndfile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libxrandr&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libxinerama&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libxfixes&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libxcursor&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lib32-libstdc++5&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">Thu, Feb 8, 2018</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
 
 &lt;h3 id=&quot;234720-utc-arch-installation--encrypted-setup&quot;&gt;23:47:20 UTC: ARCH INSTALLATION / ENCRYPTED SETUP&lt;/h3&gt;
 

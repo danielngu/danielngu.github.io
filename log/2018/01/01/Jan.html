@@ -202,6 +202,11 @@ LABEL archfallback
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp</span> /etc/crypttab /etc/crypttab.initramfs
 </code></pre></div></div>
 
+<h4 id="wireless-1">[Wireless]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant
+</code></pre></div></div>
+
 <h4 id="umount-and-reboot">[Umount and Reboot]</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">exit</span>			<span class="c"># Exit from chroot environment</span>
@@ -218,20 +223,19 @@ LABEL archfallback
 
 <p>The above creates a new user with home directory, change password and add user to additional groups.</p>
 
+<h4 id="wireless-2">[Wireless]</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wifi-menu
+<span class="nv">$ </span><span class="nb">ls</span> /etc/netctl/			<span class="c"># Find the wifi profile</span>
+<span class="nv">$ </span>netctl <span class="nb">enable </span>profile-name		<span class="c"># profile-name as obtained above</span>
+</code></pre></div></div>
+
 <h4 id="sudo">[Sudo]</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span>
 </code></pre></div></div>
 
 <p>Run visudo, edit it to restrict sudo to specific group or user.</p>
-
-<h4 id="wireless-1">[Wireless]</h4>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant
-<span class="nv">$ </span>wifi-menu
-<span class="nv">$ </span><span class="nb">ls</span> /etc/netctl/			<span class="c"># Find the wifi profile</span>
-<span class="nv">$ </span>netctl <span class="nb">enable </span>profile-name		<span class="c"># profile-name as obtained above</span>
-</code></pre></div></div>
 
 <h4 id="additional-install">[Additional Install]</h4>
 

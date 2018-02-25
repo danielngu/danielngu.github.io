@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-02-09T14:56:29+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;h3 id=&quot;thu-feb-8-2018&quot;&gt;Thu, Feb 8, 2018&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2018-02-25T14:04:36+13:00</updated><id>http://localhost:4000/log/</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;h3 id=&quot;thu-feb-8-2018&quot;&gt;Thu, Feb 8, 2018&lt;/h3&gt;
 
 &lt;h3 id=&quot;234807-utc-gogs-icewind-dale-enhanced-edition&quot;&gt;23:48:07 UTC: GOG’S ICEWIND DALE ENHANCED EDITION&lt;/h3&gt;
 
@@ -291,6 +291,11 @@ LABEL archfallback
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /etc/crypttab /etc/crypttab.initramfs
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;wireless-1&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h4 id=&quot;umount-and-reboot&quot;&gt;[Umount and Reboot]&lt;/h4&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
@@ -307,20 +312,19 @@ LABEL archfallback
 
 &lt;p&gt;The above creates a new user with home directory, change password and add user to additional groups.&lt;/p&gt;
 
+&lt;h4 id=&quot;wireless-2&quot;&gt;[Wireless]&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h4 id=&quot;sudo&quot;&gt;[Sudo]&lt;/h4&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
-
-&lt;h4 id=&quot;wireless-1&quot;&gt;[Wireless]&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;additional-install&quot;&gt;[Additional Install]&lt;/h4&gt;
 

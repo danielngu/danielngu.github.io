@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>May</title>
-  <meta name="description" content="Sun, May 18, 2014">
+  <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
   <link rel="canonical" href="http://localhost:4000/log/2014/05/01/May.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
+
 </head>
 
 
@@ -52,6 +53,11 @@
           
             
             
+            <a class="page-link" href="/log/tags/">Tags</a>
+            
+          
+            
+            
           
         </div>
       </nav>
@@ -70,54 +76,68 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="sun-may-18-2014">Sun, May 18, 2014</h3>
+	  
+	  
+	  <nobr>( <a href="/log/tags/#linux">linux</a> )</nobr>
+	  
+	  
+	  <nobr>( <a href="/log/tags/#mac">mac</a> )</nobr>
+	  
 
-<h3 id="103513-utc-external-monitor">10:35:13 UTC: EXTERNAL MONITOR</h3>
+	  <p>
+	  <br/>
+    <p><strong>Contents</strong></p>
 
-<h4 id="resolution">[Resolution]</h4>
+<ol>
+  <li><a href="#external-1">External Monitor</a></li>
+  <li><a href="#osx-1">OS X Installation</a></li>
+</ol>
+
+<h3 id="sun-may-18-2014">Sun, May 18, 2014</h3>
+
+<h3 id="external-monitor"><a name="external-1"></a>EXTERNAL MONITOR</h3>
+
+<h4 id="resolution">Resolution</h4>
 
 <p>Workaround for undetected resolutions:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nvidia-xconfig                <span class="c"># Create xorg.conf based on detected hardware</span>
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/X11/xorg.conf
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ nvidia-xconfig                <span class="c1"># Create xorg.conf based on detected hardware</span>
+$ sudo vim /etc/X11/xorg.conf</code></pre></figure>
 
 <p>Amend Monitor section of xorg.conf with the correct specifications. In my case,
-the <code class="highlighter-rouge">HorizSync</code> and <code class="highlighter-rouge">VertRefresh</code> values were incorrect.</p>
+the <code>HorizSync</code> and <code>VertRefresh</code> values were incorrect.</p>
 
 <p>Reboot, then check display for native resolution.</p>
 
 <p>If it’s not listed, run the following to get its modeline details.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cvt 1680 1050
-<span class="c"># 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz</span>
-Modeline <span class="s2">"1680x1050_60.00"</span>  146.25  1680 1784 1960 2240  1050 1053 1059 1089
-<span class="nt">-hsync</span> +vsync
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ cvt <span class="m">1680</span> <span class="m">1050</span>
+<span class="c1"># 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz</span>
+Modeline <span class="s2">&quot;1680x1050_60.00&quot;</span>  <span class="m">146</span>.25  <span class="m">1680</span> <span class="m">1784</span> <span class="m">1960</span> <span class="m">2240</span>  <span class="m">1050</span> <span class="m">1053</span> <span class="m">1059</span> <span class="m">1089</span>
+-hsync +vsync</code></pre></figure>
 
 <p>Add the modeline values to xorg.conf</p>
 
 <p><em>/etc/X11/xorg.conf</em></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Section "Monitor"
-    Identifier     "Monitor0"
-    VendorName     "Samsung"
-    ModelName      "SyncMaster 2253BW"
-    HorizSync       30.0 - 81.0
-    VertRefresh     56.0 - 75.0
-    Option         "DPMS"
-    Modeline       "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053
-                    1059 1089 -hsync +vsync
-EndSection
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>Section <span class="s2">&quot;Monitor&quot;</span>
+    Identifier     <span class="s2">&quot;Monitor0&quot;</span>
+    VendorName     <span class="s2">&quot;Samsung&quot;</span>
+    ModelName      <span class="s2">&quot;SyncMaster 2253BW&quot;</span>
+    HorizSync       <span class="m">30</span>.<span class="m">0</span> <span class="p">-</span> <span class="m">81</span>.<span class="m">0</span>
+    VertRefresh     <span class="m">56</span>.<span class="m">0</span> <span class="p">-</span> <span class="m">75</span>.<span class="m">0</span>
+    Option         <span class="s2">&quot;DPMS&quot;</span>
+    Modeline       <span class="s2">&quot;1680x1050_60.00&quot;</span>  <span class="m">146</span>.<span class="m">25</span>  <span class="m">1680</span> <span class="m">1784</span> <span class="m">1960</span> <span class="m">2240</span>  <span class="m">1050</span> <span class="m">1053</span>
+                    <span class="m">1059</span> <span class="m">1089</span> <span class="p">-</span>hsync <span class="p">+</span>vsync
+EndSection</code></pre></figure>
 
 <p>Reboot, the native resolution should now be listed.<br />
 <br /></p>
 <h3 id="mon-may-19-2014">Mon, May 19, 2014</h3>
 
-<h3 id="010920-utc-os-x-installation">01:09:20 UTC: OS X INSTALLATION</h3>
+<h3 id="os-x-installation"><a name="osx-1"></a>OS X INSTALLATION</h3>
 
-<h4 id="media">[Media]</h4>
+<h4 id="media">Media</h4>
 
 <p>Obtainable from Applications prior to installation when downloaded from App
 Store.</p>
@@ -127,12 +147,11 @@ Open Disk Utility, select the drive.&lt;/br&gt;
 Choose Partition tab, select 1 Partition from Partition Layout.&lt;/br&gt;
 Click Options, choose GUID Partition Table, then OK and Apply.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app/Contents/Resources/createinstallmedia <span class="se">\</span>
-<span class="nt">--volume</span> /Volumes/untitled <span class="nt">--applicationpath</span> Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app <span class="se">\</span>
-<span class="nt">--nointeraction</span>
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app/Contents/Resources/createinstallmedia <span class="se">\</span>
+--volume /Volumes/untitled --applicationpath Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app <span class="se">\</span>
+--nointeraction</code></pre></figure>
 
-<h4 id="installation">[Installation]</h4>
+<h4 id="installation">Installation</h4>
 
 <p>Reboot while holding down the option key.&lt;/br&gt;
 Select the USB flash drive.&lt;/br&gt;
@@ -155,7 +174,7 @@ After that, select Reinstall OS X.</p>
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2018 - Daniel Ngu
+	      Copyright &copy; 2019 - Daniel Ngu
       </div>
     
     </div>

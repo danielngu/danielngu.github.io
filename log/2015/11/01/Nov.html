@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Nov</title>
-  <meta name="description" content="Mon, Nov 02, 2015">
+  <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
   <link rel="canonical" href="http://localhost:4000/log/2015/11/01/Nov.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
+
 </head>
 
 
@@ -52,6 +53,11 @@
           
             
             
+            <a class="page-link" href="/log/tags/">Tags</a>
+            
+          
+            
+            
           
         </div>
       </nav>
@@ -70,44 +76,54 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="mon-nov-02-2015">Mon, Nov 02, 2015</h3>
+	  
+	  
+	  <nobr>( <a href="/log/tags/#linux">linux</a> )</nobr>
+	  
 
-<h3 id="021337-utc-octopress">02:13:37 UTC: OCTOPRESS</h3>
+	  <p>
+	  <br/>
+    <p><strong>Contents</strong></p>
+
+<ol>
+  <li><a href="#octopress-1">Octopress</a></li>
+  <li><a href="#i3-1">i3</a></li>
+</ol>
+
+<h3 id="mon-nov-02-2015">Mon, Nov 02, 2015</h3>
+
+<h3 id="octopress"><a name="octopress-1"></a>OCTOPRESS</h3>
 
 <p>General maintenance related tasks:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rvm get stable                 <span class="c"># RVM</span>
-<span class="nv">$ </span>rvm <span class="nb">install </span>2.2.3              <span class="c"># Ruby</span>
-<span class="nv">$ </span>rvm <span class="nt">--default</span> use 2.2.3        <span class="c"># Set default version</span>
-<span class="nv">$ </span>rvm rubygems latest            <span class="c"># RubyGems</span>
-<span class="nv">$ </span>gem <span class="nb">install </span>bundler            <span class="c"># Dependencies</span>
-<span class="nv">$ </span>bundle <span class="nb">install</span>                 <span class="c"># Run within blog directory</span>
-<span class="nv">$ </span>rvm <span class="nt">-v</span>                         <span class="c"># Check versions</span>
-<span class="nv">$ </span>ruby <span class="nt">-v</span>
-<span class="nv">$ </span>which ruby
-<span class="nv">$ </span>gem <span class="nt">-v</span>
-<span class="nv">$ </span>which gem
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ rvm get stable                 <span class="c1"># RVM</span>
+$ rvm install <span class="m">2</span>.2.3              <span class="c1"># Ruby</span>
+$ rvm --default use <span class="m">2</span>.2.3        <span class="c1"># Set default version</span>
+$ rvm rubygems latest            <span class="c1"># RubyGems</span>
+$ gem install bundler            <span class="c1"># Dependencies</span>
+$ bundle install                 <span class="c1"># Run within blog directory</span>
+$ rvm -v                         <span class="c1"># Check versions</span>
+$ ruby -v
+$ which ruby
+$ gem -v
+$ which gem</code></pre></figure>
 
 <p>Arch uses Python version 3, whereas Octopress requires verions 2. Edit the 
 first line of mentos.py to the following instead:</p>
 
 <p><em>~/.rvm/gems/ruby-2.2.3/gems/pygments.rb-0.3.4/lib/pygments/mentos.py</em></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python2</span>
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>#<span class="p">!</span><span class="sr">/usr/</span><span class="nb">bin</span>/env python2</code></pre></figure>
 
 <p>Migrating to another computer:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-L</span> https://get.rvm.io | bash <span class="nt">-s</span> stable <span class="nt">--ruby</span>
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ curl -L https://get.rvm.io <span class="p">|</span> bash -s stable --ruby</code></pre></figure>
 
 <p>Then do the upgrades as listed above.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone <span class="nt">-b</span> <span class="nb">source </span>git@github.com:username/username.github.io.git
-<span class="nv">$ </span><span class="nb">cd </span>username.github.io.git
-<span class="nv">$ </span>git clone git@github.com:username/username.github.io.git _deploy 
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git clone -b <span class="nb">source</span> git@github.com:username/username.github.io.git
+$ <span class="nb">cd</span> username.github.io.git
+$ git clone git@github.com:username/username.github.io.git _deploy</code></pre></figure>
 
 <p>Install the dependencies as listed above.</p>
 
@@ -115,60 +131,57 @@ first line of mentos.py to the following instead:</p>
 
 <p>Push on one:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rake generate
-<span class="nv">$ </span>rake deploy
-<span class="nv">$ </span>git add <span class="nb">.</span>
-<span class="nv">$ </span>git commit <span class="nt">-a</span>
-<span class="nv">$ </span>git push origin <span class="nb">source</span>
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ rake generate
+$ rake deploy
+$ git add .
+$ git commit -a
+$ git push origin <span class="nb">source</span></code></pre></figure>
 
 <p>Pull on the other:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git pull origin <span class="nb">source</span>
-<span class="nv">$ </span><span class="nb">cd</span> ./_deploy
-<span class="nv">$ </span>git pull origin master
-</code></pre></div></div>
-<p><br /></p>
-<h3 id="073800-utc-i3">07:38:00 UTC: I3</h3>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git pull origin <span class="nb">source</span>
+$ <span class="nb">cd</span> ./_deploy
+$ git pull origin master</code></pre></figure>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> i3
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> dmenu
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> feh                     <span class="c"># for wallpaper</span>
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> scrot                   <span class="c"># for screenshot</span>
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> mplayer
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> archey3
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> cmus
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gpicview
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> firefox                 <span class="c"># optional</span>
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> dnsutils
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> whois
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> imagemagick
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> easytag
-<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> rdesktop freerdp        <span class="c"># optional</span>
-</code></pre></div></div>
+<p><br /></p>
+<h3 id="i3"><a name="i3-1"></a>I3</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S i3
+$ sudo pacman -S dmenu
+$ sudo pacman -S feh                     <span class="c1"># for wallpaper</span>
+$ sudo pacman -S scrot                   <span class="c1"># for screenshot</span>
+$ sudo pacman -S mplayer
+$ sudo pacman -S archey3
+$ sudo pacman -S cmus
+$ sudo pacman -S gpicview
+$ sudo pacman -S firefox                 <span class="c1"># optional</span>
+$ sudo pacman -S dnsutils
+$ sudo pacman -S whois
+$ sudo pacman -S imagemagick
+$ sudo pacman -S easytag
+$ sudo pacman -S rdesktop freerdp        <span class="c1"># optional</span></code></pre></figure>
 
 <p><em>~/.config/i3/config</em></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle #mute sound
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span># Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>volume <span class="m">0</span> <span class="p">+</span><span class="m">5</span>% #increase sound volume
+bindsym XF86AudioLowerVolume exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>volume <span class="m">0</span> <span class="m">-5</span>% #decrease sound volume
+bindsym XF86AudioMute exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>mute <span class="m">0</span> toggle #mute sound
 
-# pause / play / next / previous
-bindsym XF86AudioPlay exec cmus-remote -C "player-pause"
-bindsym XF86AudioNext exec cmus-remote -n
-bindsym XF86AudioPrev exec cmus-remote -r
+# pause <span class="sr">/ play /</span> next / <span class="k">previous</span>
+bindsym XF86AudioPlay exec cmus<span class="p">-</span>remote <span class="p">-</span>C <span class="s2">&quot;player-pause&quot;</span>
+bindsym XF86AudioNext exec cmus<span class="p">-</span>remote <span class="p">-</span><span class="k">n</span>
+bindsym XF86AudioPrev exec cmus<span class="p">-</span>remote <span class="p">-</span><span class="k">r</span>
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 #increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 #decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight <span class="p">-</span><span class="nb">inc</span> <span class="m">20</span> #increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight <span class="p">-</span>dec <span class="m">20</span> #decrease screen brightness
 
-exec --no-startup-id feh --recursive --randomize --bg-center ~/Pictures/wallpaper
-</code></pre></div></div>
+exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id feh <span class="p">--</span>recursive <span class="p">--</span>randomize <span class="p">--</span><span class="nb">bg</span><span class="p">-</span><span class="k">center</span> <span class="p">~</span><span class="sr">/Pictures/</span>wallpaper</code></pre></figure>
 
 <p>Optional: <a href="https://aur.archlinux.org/packages/jre7/">JRE</a></p>
 
-<p>Run <code class="highlighter-rouge">/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel</code> to configure.</p>
+<p>Run <em>/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel</em> to configure.</p>
 
 
   </div>
@@ -187,7 +200,7 @@ exec --no-startup-id feh --recursive --randomize --bg-center ~/Pictures/wallpape
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2018 - Daniel Ngu
+	      Copyright &copy; 2019 - Daniel Ngu
       </div>
     
     </div>

@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Mar</title>
-  <meta name="description" content="Sat, May 14, 2016">
+  <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
   <link rel="canonical" href="http://localhost:4000/log/2016/05/01/May.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
+
 </head>
 
 
@@ -52,6 +53,11 @@
           
             
             
+            <a class="page-link" href="/log/tags/">Tags</a>
+            
+          
+            
+            
           
         </div>
       </nav>
@@ -70,54 +76,62 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="sat-may-14-2016">Sat, May 14, 2016</h3>
+	  
+	  
+	  <nobr>( <a href="/log/tags/#linux">linux</a> )</nobr>
+	  
 
-<h3 id="005335-utc-plex">00:53:35 UTC: PLEX</h3>
+	  <p>
+	  <br/>
+    <p><strong>Contents</strong></p>
 
-<h4 id="plex-media-server">[Plex Media Server]</h4>
+<ol>
+  <li><a href="#plex-1">Plex</a></li>
+</ol>
+
+<h3 id="sat-may-14-2016">Sat, May 14, 2016</h3>
+
+<h3 id="plex"><a name="plex-1"></a>PLEX</h3>
+
+<h4 id="plex-media-server">Plex Media Server</h4>
 
 <p><a href="https://aur.archlinux.org/packages/prelink/">prelink</a> from AUR.<br />
 <a href="https://aur.archlinux.org/packages/plex-media-server/">plex-media-server</a>
 from AUR.</p>
 
-<h4 id="configuration">[Configuration]</h4>
+<h4 id="configuration">Configuration</h4>
 
 <p>Set a maximum amount of memory:</p>
 
 <p><em>/usr/lib/systemd/system/plexmediaserver.service</em></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MemoryLimit=2G
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>MemoryLimit<span class="p">=</span><span class="m">2</span>G</code></pre></figure>
 
-<p>iptables:</p>
+<p><em>iptables</em></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">-m</span> multiport <span class="nt">--dports</span> 32400,32469 <span class="nt">-j</span> ACCEPT
-<span class="nv">$ </span>iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> udp <span class="nt">-m</span> multiport <span class="nt">--dports</span> <span class="se">\</span>
-<span class="o">&gt;</span> 1900,32410,32412,32413,32414 <span class="nt">-j</span> ACCEPT
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>plexmediaserver.service
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ iptables -A INPUT -p tcp -m multiport --dports <span class="m">32400</span>,32469 -j ACCEPT
+$ iptables -A INPUT -p udp -m multiport --dports <span class="se">\</span>
+&gt; <span class="m">1900</span>,32410,32412,32413,32414 -j ACCEPT
+$ sudo systemctl <span class="nb">enable</span> plexmediaserver.service</code></pre></figure>
 
-<h4 id="storage">[Storage]</h4>
+<h4 id="storage">Storage</h4>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> /shares
-<span class="nv">$ </span><span class="nb">df</span> <span class="nt">-h</span>
-<span class="nv">$ </span><span class="nb">sudo </span>blkid /dev/sdb1
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo mkdir /shares
+$ df -h
+$ sudo blkid /dev/sdb1</code></pre></figure>
 
 <p><em>/etc/fstab</em></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># UUID=1f22599a-6b0f-4b90-81b0-4c471f761f47
-/dev/sdb1    /shares    ext4    rw,relatime,data=ordered    0 3
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span># UUID<span class="p">=</span><span class="m">1</span>f<span class="m">22599</span>a<span class="m">-6</span>b<span class="m">0</span>f<span class="m">-4</span>b<span class="m">90-81</span>b<span class="m">0-4</span>c<span class="m">471</span>f<span class="m">761</span>f<span class="m">47</span>
+<span class="sr">/dev/</span>sdb1    /shares    ext4    rw<span class="p">,</span>relatime<span class="p">,</span>data<span class="p">=</span>ordered    <span class="m">0</span> <span class="m">3</span></code></pre></figure>
 
 <p>Reboot</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /shares
-<span class="nv">$ </span><span class="nb">mkdir </span>plex
-<span class="nv">$ </span><span class="nb">sudo chgrp </span>plex plex
-<span class="nv">$ </span><span class="nb">sudo chmod </span>g+w,o-rx plex
-<span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> plex daniel
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ <span class="nb">cd</span> /shares
+$ mkdir plex
+$ sudo chgrp plex plex
+$ sudo chmod g+w,o-rx plex
+$ sudo usermod -a -G plex daniel</code></pre></figure>
 
 <p>Reference: <a href="https://wiki.archlinux.org/index.php/Plex">Plex</a></p>
 
@@ -138,7 +152,7 @@ from AUR.</p>
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2018 - Daniel Ngu
+	      Copyright &copy; 2019 - Daniel Ngu
       </div>
     
     </div>

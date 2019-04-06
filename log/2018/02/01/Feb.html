@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Feb</title>
-  <meta name="description" content="Thu, Feb 8, 2018">
+  <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
   <link rel="canonical" href="http://localhost:4000/log/2018/02/01/Feb.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
+
 </head>
 
 
@@ -52,6 +53,11 @@
           
             
             
+            <a class="page-link" href="/log/tags/">Tags</a>
+            
+          
+            
+            
           
         </div>
       </nav>
@@ -70,30 +76,43 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="thu-feb-8-2018">Thu, Feb 8, 2018</h3>
+	  
+	  
+	  <nobr>( <a href="/log/tags/#linux">linux</a> )</nobr>
+	  
 
-<h3 id="234807-utc-gogs-icewind-dale-enhanced-edition">23:48:07 UTC: GOG’S ICEWIND DALE ENHANCED EDITION</h3>
+	  <p>
+	  <br/>
+    <p><strong>Contents</strong></p>
 
-<h4 id="media">[Media]</h4>
+<ol>
+  <li><a href="#icewind-1">Icewind Dale Enhanced Edition</a></li>
+</ol>
+
+<h3 id="thu-feb-8-2018">Thu, Feb 8, 2018</h3>
+
+<h3 id="gogs-icewind-dale-enhanced-edition"><a name="icewind-1"></a>GOG’S ICEWIND DALE ENHANCED EDITION</h3>
+
+<h4 id="media">Media</h4>
 
 <p>Native Linux version on 
 <a href="https://www.gog.com/game/icewind_dale_enhanced_edition">GOG</a>.</p>
 
-<h4 id="dependencies">[Dependencies]</h4>
+<h4 id="dependencies">Dependencies</h4>
 
 <p>It’s a straight install but to run, it needs the following dependencies as 
 listed on their site.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>libc6:i386
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>libc6:i386
 libasound2:i386
-libasound2-data:i386
-libasound2-plugins:i386
-libjson-c2:i386
+libasound2<span class="p">-</span>data:i386
+libasound2<span class="p">-</span>plugins:i386
+libjson<span class="p">-</span>c2:i386
 libopenal1:i386
-libstdc++6:i386
-libssl1.0.0:i386
+libstdc<span class="p">++</span><span class="m">6</span>:i386
+libssl1.<span class="m">0</span>.<span class="m">0</span>:i386
 libexpat1:i386
-libx11-6:i386
+libx11<span class="m">-6</span>:i386
 libxau6:i386
 libxcb1:i386
 libxcursor1:i386
@@ -103,135 +122,112 @@ libxfixes3:i386
 libxinerama1:i386
 libxrandr2:i386
 libxrender1:i386
-libjson0:i386
-</code></pre></div></div>
+libjson0:i386</code></pre></figure>
 
 <p>To install Arch’s 32-bit equivalent, start off by uncommenting the
 <a href="https://wiki.archlinux.org/index.php/Multilib">multilib</a> section in 
-<code class="highlighter-rouge">/etc/pacman.conf</code>.</p>
+<em>/etc/pacman.conf</em>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[multilib]
-Include = /etc/pacman.d/mirrorlist
-</code></pre></div></div>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>[multilib]
+Include <span class="p">=</span> <span class="sr">/etc/</span>pacman.<span class="k">d</span>/mirrorlist</code></pre></figure>
 
-<p>Run <code class="highlighter-rouge">pacman -Sl multilib</code> to list all packages in the multilib repository.</p>
+<p><em>pacman -Sl multilib</em> to list all packages in the multilib repository.</p>
 
-<p><code class="highlighter-rouge">pacman -Sl multilib | grep</code> to find the packages required.</p>
+<p><em>pacman -Sl multilib | grep</em> to find the packages required.</p>
 
-<p>Installed files are located under <code class="highlighter-rouge">/usr/lib32/</code>.</p>
+<p>Installed files are located under <em>/usr/lib32/</em>.</p>
 
 <p>The packages I’ve ended with are as follows:</p>
 
-<ol>
-  <li>
-    <p><code class="highlighter-rouge">lib32-alsa-lib</code></p>
+<p><em>lib32-alsa-lib</em></p>
 
-    <p>Dependencies:</p>
+<p>Dependencies:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lib32-glibc
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-json-glib</code></p>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>glibc</code></pre></figure>
 
-    <p>Dependencies:</p>
+<p><em>lib32-json-glib</em></p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lib32-gcc-libs
- lib32-pcre
- lib32-libffi
- lib32-util-linux
- lib32-zlib
- lib32-glib2
-</code></pre></div>    </div>
+<p>Dependencies:</p>
 
-    <p>Link:</p>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>gcc<span class="p">-</span>libs
+lib32<span class="p">-</span>pcre
+lib32<span class="p">-</span>libffi
+lib32<span class="p">-</span>util<span class="p">-</span>linux
+lib32<span class="p">-</span>zlib
+lib32<span class="p">-</span>glib2</code></pre></figure>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cd /usr/lib32
- sudo ln -s libjson-glib-1.0.so.0.400.2 libjson.so.0
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-openal</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-mesa</code></p>
+<p>Link:</p>
 
-    <p>Dependencies:</p>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">cd</span> <span class="sr">/usr/</span>lib32
+sudo ln <span class="p">-</span>s libjson<span class="p">-</span>glib<span class="m">-1</span>.<span class="m">0</span>.<span class="k">so</span>.<span class="m">0</span>.<span class="m">400</span>.<span class="m">2</span> libjson.<span class="k">so</span>.<span class="m">0</span></code></pre></figure>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lib32-libpciaccess
- lib32-libdrm
- lib32-libxdmcp
- lib32-libxau
- lib32-libxcb
- lib32-libx11
- lib32-libxext
- lib32-libxxf86vm
- lib32-libxfixes
- lib32-libxdamage
- lib32-libxshmfence
- lib32-lm_sensors
- lib32-bzip2
- lib32-libelf
- lib32-ncurses
- lib32-llvm-libs
- lib32-expat
- lib32-readline
- lib32-icu
- lib32-libxml2
- lib32-wayland
- lib32-libglvnd
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-openssl-1.0</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-sdl2</code></p>
+<p><em>lib32-openal</em></p>
 
-    <p>Dependencies:</p>
+<p><em>lib32-mesa</em></p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lib32-libxrender
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libpulse</code></p>
+<p>Dependencies:</p>
 
-    <p>Dependencies:</p>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>libpciaccess
+lib32<span class="p">-</span>libdrm
+lib32<span class="p">-</span>libxdmcp
+lib32<span class="p">-</span>libxau
+lib32<span class="p">-</span>libxcb
+lib32<span class="p">-</span>libx11
+lib32<span class="p">-</span>libxext
+lib32<span class="p">-</span>libxxf86vm
+lib32<span class="p">-</span>libxfixes
+lib32<span class="p">-</span>libxdamage
+lib32<span class="p">-</span>libxshmfence
+lib32<span class="p">-</span>lm_sensors
+lib32<span class="p">-</span>bzip2
+lib32<span class="p">-</span>libelf
+lib32<span class="p">-</span>ncurses
+lib32<span class="p">-</span>llvm<span class="p">-</span>libs
+lib32<span class="p">-</span>expat
+lib32<span class="p">-</span>readline
+lib32<span class="p">-</span>icu
+lib32<span class="p">-</span>libxml2
+lib32<span class="p">-</span>wayland
+lib32<span class="p">-</span>libglvnd</code></pre></figure>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lib32-attr
- lib32-libcap
- lib32-libgpg-error
- lib32-libgcrypt
- lib32-xz
- lib32-systemd
- lib32-dbus
- lib32-libasyncns
- lib32-libxi
- lib32-libxtst
- lib32-libice
- lib32-libsm
- lib32-libogg
- lib32-flac
- lib32-libvorbis
- lib32-libsndfile
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libxrandr</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libxinerama</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libxfixes</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libxcursor</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">lib32-libstdc++5</code></p>
-  </li>
-</ol>
+<p><em>lib32-openssl-1.0</em></p>
+
+<p><em>lib32-sdl2</em></p>
+
+<p>Dependencies:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>libxrender</code></pre></figure>
+
+<p><em>lib32-libpulse</em></p>
+
+<p>Dependencies:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>attr
+lib32<span class="p">-</span>libcap
+lib32<span class="p">-</span>libgpg<span class="p">-</span>error
+lib32<span class="p">-</span>libgcrypt
+lib32<span class="p">-</span>xz
+lib32<span class="p">-</span>systemd
+lib32<span class="p">-</span>dbus
+lib32<span class="p">-</span>libasyncns
+lib32<span class="p">-</span>libxi
+lib32<span class="p">-</span>libxtst
+lib32<span class="p">-</span>libice
+lib32<span class="p">-</span>libsm
+lib32<span class="p">-</span>libogg
+lib32<span class="p">-</span>flac
+lib32<span class="p">-</span>libvorbis
+lib32<span class="p">-</span>libsndfile</code></pre></figure>
+
+<p><em>lib32-libxrandr</em></p>
+
+<p><em>lib32-libxinerama</em></p>
+
+<p><em>lib32-libxfixes</em></p>
+
+<p><em>lib32-libxcursor</em></p>
+
+<p><em>lib32-libstdc++5</em></p>
 
   </div>
 
@@ -249,7 +245,7 @@ Include = /etc/pacman.d/mirrorlist
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2018 - Daniel Ngu
+	      Copyright &copy; 2019 - Daniel Ngu
       </div>
     
     </div>

@@ -149,7 +149,7 @@ $ mount /dev/sda1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre><
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ genfstab -p /mnt &gt;&gt; /mnt/etc/fstab	<span class="c1"># Generate fstab</span>
 $ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
 
-<p>Add hostname to <code>/etc/hostname</code> and <code>/etc/hosts</code>.</p>
+<p>Add hostname to <em>/etc/hostname</em> and <em>/etc/hosts</em></p>
 
 <p><em>/etc/hosts</em></p>
 
@@ -160,15 +160,15 @@ $ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime</code></pre></figure>
 
-<p>Uncomment the locale in <code>/etc/locale.gen</code></p>
+<p>Uncomment the locale in <em>/etc/locale.gen</em></p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ locale-gen				<span class="c1"># Generate locale </span></code></pre></figure>
 
-<p>Set locale preference by adding <code>LANG="en_NZ.UTF-8"</code> to <code>/etc/locale.conf</code></p>
+<p>Set locale preference by adding <em>LANG=”en_NZ.UTF-8”</em> to <em>/etc/locale.conf</em></p>
 
 <h4 id="configure-mkinitcpio">Configure mkinitcpio</h4>
 
-<p>Add <em>keyboard, encrypt</em> and <em>lvm2</em> hooks to <code>/etc/mkinitcpio.conf</code></p>
+<p>Add <em>keyboard, encrypt</em> and <em>lvm2</em> hooks to <em>/etc/mkinitcpio.conf</em></p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>HOOKS<span class="p">=(</span>... keyboard encrypt lvm2 fsck<span class="p">)</span></code></pre></figure>
 

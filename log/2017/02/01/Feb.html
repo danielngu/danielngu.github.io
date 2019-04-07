@@ -141,14 +141,15 @@ $ sync
 $ mv root/boot/* boot    <span class="c1"># Move boot files to the first partition</span>
 $ umount boot root       <span class="c1"># Unmount the two partitions</span></code></pre></figure>
 
-<p>Default:<br />
-user: alarm<br />
-password: alarm<br />
-<br />
-user: root<br />
-password: root<br />
-<br />
-Reference: <a href="https://goo.gl/63Gkry">ARMv7 Installation</a></p>
+<h4 id="default">Default</h4>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>user: alarm
+password: alarm
+
+user: root
+password: root</code></pre></figure>
+
+<p>Reference: <a href="https://goo.gl/63Gkry">ARMv7 Installation</a></p>
 
 <h4 id="wireless">Wireless</h4>
 
@@ -184,7 +185,7 @@ $ sudo pacman -S xorg-server xorg-server-utils xorg-xinit
 $ sudo pacman -S xf86-video-fbdev
 $ startxfce4                    <span class="c1"># NOTE: To manually start Xfce</span></code></pre></figure>
 
-<p>Updated:</p>
+<p><strong>Updated</strong></p>
 
 <p>xorg-server-utils has been replaced by xorg-apps</p>
 

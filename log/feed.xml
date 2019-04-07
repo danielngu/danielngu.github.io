@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-04-07T10:50:27+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2019/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2019-04-01T13:00:00+13:00</published><updated>2019-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2019/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2019/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-04-08T00:06:03+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2019/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2019-04-01T13:00:00+13:00</published><updated>2019-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2019/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2019/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#ondaatje-1&quot;&gt;Ondaatje, Michael: The English Patient&lt;/a&gt;&lt;/li&gt;
@@ -254,7 +254,7 @@ $ mount /dev/sda1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot&lt;/
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ genfstab -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab	&lt;span class=&quot;c1&quot;&gt;# Generate fstab&lt;/span&gt;
 $ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Add hostname to &lt;code&gt;/etc/hostname&lt;/code&gt; and &lt;code&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Add hostname to &lt;em&gt;/etc/hostname&lt;/em&gt; and &lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
@@ -265,15 +265,15 @@ $ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Uncomment the locale in &lt;code&gt;/etc/locale.gen&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Uncomment the locale in &lt;em&gt;/etc/locale.gen&lt;/em&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ locale-gen				&lt;span class=&quot;c1&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Set locale preference by adding &lt;code&gt;LANG=&quot;en_NZ.UTF-8&quot;&lt;/code&gt; to &lt;code&gt;/etc/locale.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Set locale preference by adding &lt;em&gt;LANG=”en_NZ.UTF-8”&lt;/em&gt; to &lt;em&gt;/etc/locale.conf&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;configure-mkinitcpio&quot;&gt;Configure mkinitcpio&lt;/h4&gt;
 
-&lt;p&gt;Add &lt;em&gt;keyboard, encrypt&lt;/em&gt; and &lt;em&gt;lvm2&lt;/em&gt; hooks to &lt;code&gt;/etc/mkinitcpio.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Add &lt;em&gt;keyboard, encrypt&lt;/em&gt; and &lt;em&gt;lvm2&lt;/em&gt; hooks to &lt;em&gt;/etc/mkinitcpio.conf&lt;/em&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;... keyboard encrypt lvm2 fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -458,14 +458,15 @@ $ sync
 $ mv root/boot/* boot    &lt;span class=&quot;c1&quot;&gt;# Move boot files to the first partition&lt;/span&gt;
 $ umount boot root       &lt;span class=&quot;c1&quot;&gt;# Unmount the two partitions&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Default:&lt;br /&gt;
-user: alarm&lt;br /&gt;
-password: alarm&lt;br /&gt;
-&lt;br /&gt;
-user: root&lt;br /&gt;
-password: root&lt;br /&gt;
-&lt;br /&gt;
-Reference: &lt;a href=&quot;https://goo.gl/63Gkry&quot;&gt;ARMv7 Installation&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;default&quot;&gt;Default&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;user: alarm
+password: alarm
+
+user: root
+password: root&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Reference: &lt;a href=&quot;https://goo.gl/63Gkry&quot;&gt;ARMv7 Installation&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
 
@@ -501,7 +502,7 @@ $ sudo pacman -S xorg-server xorg-server-utils xorg-xinit
 $ sudo pacman -S xf86-video-fbdev
 $ startxfce4                    &lt;span class=&quot;c1&quot;&gt;# NOTE: To manually start Xfce&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Updated:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;xorg-server-utils has been replaced by xorg-apps&lt;/p&gt;
 
@@ -558,7 +559,7 @@ Port: 5901&lt;/p&gt;
 &lt;h4 id=&quot;sshfs&quot;&gt;sshfs&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brew cask install osxfuse
-$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="Mar" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#plex-1&quot;&gt;Plex&lt;/a&gt;&lt;/li&gt;
@@ -746,7 +747,7 @@ commands off Arch
 $ sudo vim /etc/X11/xorg.conf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Amend Monitor section of xorg.conf with the correct specifications. In my case,
-the &lt;code&gt;HorizSync&lt;/code&gt; and &lt;code&gt;VertRefresh&lt;/code&gt; values were incorrect.&lt;/p&gt;
+the &lt;em&gt;HorizSync&lt;/em&gt; and &lt;em&gt;VertRefresh&lt;/em&gt; values were incorrect.&lt;/p&gt;
 
 &lt;p&gt;Reboot, then check display for native resolution.&lt;/p&gt;
 

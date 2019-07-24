@@ -1,4 +1,209 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-20T13:08:08+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-24T14:14:11+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
+
+&lt;h3 id=&quot;arch-installation--encrypted-setup--systemd-boot&quot;&gt;&lt;a name=&quot;arch-1&quot;&gt;&lt;/a&gt;ARCH INSTALLATION / ENCRYPTED SETUP / systemd-boot&lt;/h3&gt;
+
+&lt;p&gt;This is &lt;a href=&quot;https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS&quot;&gt;LVM on LUKS&lt;/a&gt; setup based on Arch’s wiki documentation.&lt;/p&gt;
+
+&lt;h4 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;partition&quot;&gt;Partition&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ lsblk				&lt;span class=&quot;c1&quot;&gt;# List block devices&lt;/span&gt;
+$ gdisk /dev/nvme0n1		&lt;span class=&quot;c1&quot;&gt;# To partition /dev/nvme0n1&lt;/span&gt;
+$ o				&lt;span class=&quot;c1&quot;&gt;# Either new or start over&lt;/span&gt;
+$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
+$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
+$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
+$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
+$ +512M				&lt;span class=&quot;c1&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
+$ &lt;span class=&quot;m&quot;&gt;8300&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
+$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
+$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
+$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default last sector&lt;/span&gt;
+$ EF00				&lt;span class=&quot;c1&quot;&gt;# Set partition type to LVM&lt;/span&gt;
+$ w				&lt;span class=&quot;c1&quot;&gt;# Write change&lt;/span&gt;
+$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
+$ cryptsetup luksFormat --type luks2 /dev/nvme0n1p2	&lt;span class=&quot;c1&quot;&gt;# Create encrypted container&lt;/span&gt;
+$ cryptsetup open /dev/nvme0n1p2 cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Open container&lt;/span&gt;
+$ pvcreate /dev/mapper/cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Create physical volume&lt;/span&gt;
+$ vgcreate MyVol /dev/mapper/cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Create MyVol volume group&lt;/span&gt;
+$ lvcreate -L 2G MyVol -n swap				&lt;span class=&quot;c1&quot;&gt;# Allocated 2GB for swap&lt;/span&gt;
+$ lvcreate -l &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;%FREE MyVol -n root			&lt;span class=&quot;c1&quot;&gt;# Allocated remaining for root&lt;/span&gt;
+$ mkswap /dev/mapper/MyVol-swap				&lt;span class=&quot;c1&quot;&gt;# Format swap&lt;/span&gt;
+$ mkfs.ext4 /dev/mapper/MyVol-root			&lt;span class=&quot;c1&quot;&gt;# Format root&lt;/span&gt;
+$ swapon /dev/mapper/MyVol-swap				&lt;span class=&quot;c1&quot;&gt;# Mount swap&lt;/span&gt;
+$ mount /dev/mapper/MyVol-root /mnt			&lt;span class=&quot;c1&quot;&gt;# Mount root&lt;/span&gt;
+$ mkfs.vfat -F32 /dev/nvme0n1p1				&lt;span class=&quot;c1&quot;&gt;# Format boot&lt;/span&gt;
+$ mkdir	/mnt/boot					&lt;span class=&quot;c1&quot;&gt;# Create boot directory&lt;/span&gt;
+$ mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;configure-system&quot;&gt;Configure System&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ genfstab -pU /mnt &amp;gt;&amp;gt; /mnt/etc/fstab	&lt;span class=&quot;c1&quot;&gt;# Generate fstab&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/mnt/etc/fstab&lt;/em&gt; and change &lt;em&gt;relatime&lt;/em&gt; to &lt;em&gt;noatime&lt;/em&gt; for non-boot partitions.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Add hostname to &lt;em&gt;/etc/hostname&lt;/em&gt; and &lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
+&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	hostname.subdomain.domain	hostname&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Set time zone:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Uncomment the locale in &lt;em&gt;/etc/locale.gen&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ locale-gen				&lt;span class=&quot;c1&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Set locale preference by adding &lt;em&gt;LANG=”en_NZ.UTF-8”&lt;/em&gt; to &lt;em&gt;/etc/locale.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;configure-mkinitcpio&quot;&gt;Configure mkinitcpio&lt;/h4&gt;
+
+&lt;p&gt;Add &lt;em&gt;ext4&lt;/em&gt; to MODULES&lt;/p&gt;
+
+&lt;p&gt;Add &lt;em&gt;encrypt lvm2 resume&lt;/em&gt; hooks to &lt;em&gt;/etc/mkinitcpio.conf&lt;/em&gt; before &lt;em&gt;filesystems&lt;/em&gt;
+and after &lt;em&gt;udev&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;mkinitcpio and set root password:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ mkinitcpio -p linux
+$ passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;install-boot-loader&quot;&gt;Install Boot Loader&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ bootctl --path&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/boot install&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/boot/loader/loader.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;default arch
+&lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
+editor &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/boot/loader/entries/arch.conf&lt;/em&gt;&lt;br /&gt;
+Use &lt;em&gt;blkid&lt;/em&gt; to find the UUID for &lt;em&gt;/dev/nvme0n1p2&lt;/em&gt; and replace the &amp;lt;UUID&amp;gt; below
+without the bracket.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;title&lt;/span&gt; Arch Linux
+linux /vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
+initrd /initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux.img
+&lt;span class=&quot;k&quot;&gt;options&lt;/span&gt; cryptdevice&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:MyVol root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root resume=/&lt;/span&gt;dev&lt;span class=&quot;sr&quot;&gt;/mapper/&lt;/span&gt;MyVol&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;swap&lt;/span&gt; rw&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;wireless-1&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;umount-and-reboot&quot;&gt;Umount and Reboot&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+$ umount -R /mnt
+$ reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;create-new-user&quot;&gt;Create New User&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ useradd -m -G wheel -s /bin/bash daniel
+$ passwd daniel
+$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The above creates a new user with home directory, change password and add user
+to additional groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless-2&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu
+$ ls /etc/netctl/			&lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
+$ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name		&lt;span class=&quot;c1&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S sudo&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
+
+&lt;h4 id=&quot;additional-install&quot;&gt;Additional Install&lt;/h4&gt;
+
+&lt;p&gt;Install &lt;em&gt;yay&lt;/em&gt; from AUR.&lt;/p&gt;
+
+&lt;h4 id=&quot;audio&quot;&gt;Audio&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S alsa-utils
+$ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;restore&quot;&gt;Restore&lt;/h4&gt;
+
+&lt;p&gt;Restore home from backup.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S - &amp;lt; pkglist.txt	&lt;span class=&quot;c1&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Do the same for AUR with &lt;em&gt;yay&lt;/em&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;extra-configuration&quot;&gt;Extra Configuration&lt;/h3&gt;
+
+&lt;h4 id=&quot;bluetooth&quot;&gt;Bluetooth&lt;/h4&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/bluetooth/main.conf&lt;/em&gt; and add the following line.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;AutoEnable&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;true&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; bluetooth.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Enable bluetooth service then pair devices.&lt;/p&gt;
+
+&lt;h4 id=&quot;pulseaudio&quot;&gt;PulseAudio&lt;/h4&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/pulse/system.pa&lt;/em&gt; and add the following lines.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;policy
+&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;discover&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/pulse/default.pa&lt;/em&gt; and add the following line.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;switch&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;connect&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run &lt;em&gt;sudo usermod -a -G lp daniel&lt;/em&gt; to add to lp group.&lt;/p&gt;
+
+&lt;p&gt;If cookie not found then &lt;em&gt;cp ~/.pulse-cookie ~/.config/pulse/cookie&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;cups&quot;&gt;CUPS&lt;/h4&gt;
+
+&lt;p&gt;Enable CUPS&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.socket
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run &lt;em&gt;sudo usermod -a -G cups daniel&lt;/em&gt; to add to &lt;em&gt;cups&lt;/em&gt; group.&lt;/p&gt;
+
+&lt;h4 id=&quot;ios&quot;&gt;iOS&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ usbmuxd -f -v
+$ idevice_id -l
+$ ideviceinfo
+$ ideviceinstaller -l
+$ ifuse ~/iPhone
+$ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -145,13 +350,13 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libsndfile&lt;/code&gt;&lt;/p
 &lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / Syslinux&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#fat32-1&quot;&gt;FAT32&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;wed-jan-24-2018&quot;&gt;Wed, Jan 24, 2018&lt;/h3&gt;
 
-&lt;h3 id=&quot;arch-installation--encrypted-setup&quot;&gt;&lt;a name=&quot;arch-1&quot;&gt;&lt;/a&gt;ARCH INSTALLATION / ENCRYPTED SETUP&lt;/h3&gt;
+&lt;h3 id=&quot;arch-installation--encrypted-setup--syslinux&quot;&gt;&lt;a name=&quot;arch-1&quot;&gt;&lt;/a&gt;ARCH INSTALLATION / ENCRYPTED SETUP / Syslinux&lt;/h3&gt;
 
 &lt;p&gt;This is &lt;a href=&quot;https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS&quot;&gt;LVM on LUKS&lt;/a&gt; setup based on Arch’s wiki documentation.&lt;/p&gt;
 

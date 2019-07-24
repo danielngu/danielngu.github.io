@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Jan</title>
+  <title>Jul</title>
   <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/log/2018/01/01/Jan.html">
+  <link rel="canonical" href="http://localhost:4000/log/2019/07/01/Jul.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
@@ -86,13 +86,12 @@
     <p><strong>Contents</strong></p>
 
 <ol>
-  <li><a href="#arch-1">Arch Installation / Encrypted Setup / Syslinux</a></li>
-  <li><a href="#fat32-1">FAT32</a></li>
+  <li><a href="#arch-1">Arch Installation / Encrypted Setup / systemd-boot</a></li>
 </ol>
 
 <h3 id="wed-jan-24-2018">Wed, Jan 24, 2018</h3>
 
-<h3 id="arch-installation--encrypted-setup--syslinux"><a name="arch-1"></a>ARCH INSTALLATION / ENCRYPTED SETUP / Syslinux</h3>
+<h3 id="arch-installation--encrypted-setup--systemd-boot"><a name="arch-1"></a>ARCH INSTALLATION / ENCRYPTED SETUP / systemd-boot</h3>
 
 <p>This is <a href="https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS">LVM on LUKS</a> setup based on Arch’s wiki documentation.</p>
 
@@ -103,7 +102,7 @@
 <h4 id="partition">Partition</h4>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ lsblk				<span class="c1"># List block devices</span>
-$ gdisk /dev/sda		<span class="c1"># To partition /dev/sda</span>
+$ gdisk /dev/nvme0n1		<span class="c1"># To partition /dev/nvme0n1</span>
 $ o				<span class="c1"># Either new or start over</span>
 $ y				<span class="c1"># Accept</span>
 $ n				<span class="c1"># Create new partition</span>
@@ -115,26 +114,22 @@ $ n				<span class="c1"># Create new partition</span>
 $ Enter				<span class="c1"># Accept default partition number</span>
 $ Enter				<span class="c1"># Accept default first sector</span>
 $ Enter				<span class="c1"># Accept default last sector</span>
-$ 8E00				<span class="c1"># Set partition type to LVM</span>
+$ EF00				<span class="c1"># Set partition type to LVM</span>
 $ w				<span class="c1"># Write change</span>
 $ y				<span class="c1"># Accept</span>
-$ cryptsetup luksFormat --type luks2 /dev/sda2	<span class="c1"># Create encrypted container</span>
-$ cryptsetup open /dev/sda2 cryptolvm		<span class="c1"># Open container</span>
-$ pvcreate /dev/mapper/cryptolvm		<span class="c1"># Create physical volume</span>
-$ vgcreate MyVol /dev/mapper/cryptolvm		<span class="c1"># Create MyVol volume group</span>
-$ lvcreate -L 60G MyVol -n home			<span class="c1"># Allocated 1/5 space for home</span>
-$ lvcreate -L 8G MyVol -n swap			<span class="c1"># Allocated 2xRAM for swap</span>
-$ lvcreate -l <span class="m">100</span>%FREE MyVol -n root		<span class="c1"># Allocated remaining for root</span>
-$ mkfs.ext4 /dev/mapper/MyVol-home		<span class="c1"># Format home</span>
-$ mkswap /dev/mapper/MyVol-swap			<span class="c1"># Format swap</span>
-$ mkfs.ext4 /dev/mapper/MyVol-root		<span class="c1"># Format root</span>
-$ swapon /dev/mapper/MyVol-swap			<span class="c1"># Mount swap</span>
-$ mount /dev/mapper/MyVol-root /mnt		<span class="c1"># Mount root</span>
-$ mkdir -pv /mnt/home				<span class="c1"># Create home directory</span>
-$ mount /dev/mapper/MyVol-home /mnt/home	<span class="c1"># Mount home</span>
-$ mkfs.ext2 /dev/sda1				<span class="c1"># Create Ext2</span>
-$ mkdir	/mnt/boot				<span class="c1"># Create boot directory</span>
-$ mount /dev/sda1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre></figure>
+$ cryptsetup luksFormat --type luks2 /dev/nvme0n1p2	<span class="c1"># Create encrypted container</span>
+$ cryptsetup open /dev/nvme0n1p2 cryptolvm			<span class="c1"># Open container</span>
+$ pvcreate /dev/mapper/cryptolvm			<span class="c1"># Create physical volume</span>
+$ vgcreate MyVol /dev/mapper/cryptolvm			<span class="c1"># Create MyVol volume group</span>
+$ lvcreate -L 2G MyVol -n swap				<span class="c1"># Allocated 2GB for swap</span>
+$ lvcreate -l <span class="m">100</span>%FREE MyVol -n root			<span class="c1"># Allocated remaining for root</span>
+$ mkswap /dev/mapper/MyVol-swap				<span class="c1"># Format swap</span>
+$ mkfs.ext4 /dev/mapper/MyVol-root			<span class="c1"># Format root</span>
+$ swapon /dev/mapper/MyVol-swap				<span class="c1"># Mount swap</span>
+$ mount /dev/mapper/MyVol-root /mnt			<span class="c1"># Mount root</span>
+$ mkfs.vfat -F32 /dev/nvme0n1p1				<span class="c1"># Format boot</span>
+$ mkdir	/mnt/boot					<span class="c1"># Create boot directory</span>
+$ mount /dev/nvme0n1p1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre></figure>
 
 <h4 id="wireless">Wireless</h4>
 
@@ -142,12 +137,15 @@ $ mount /dev/sda1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre><
 
 <h4 id="install-base-system">Install Base System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base base-devel</code></pre></figure>
 
 <h4 id="configure-system">Configure System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ genfstab -p /mnt &gt;&gt; /mnt/etc/fstab	<span class="c1"># Generate fstab</span>
-$ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ genfstab -pU /mnt &gt;&gt; /mnt/etc/fstab	<span class="c1"># Generate fstab</span></code></pre></figure>
+
+<p>Edit <em>/mnt/etc/fstab</em> and change <em>relatime</em> to <em>noatime</em> for non-boot partitions.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
 
 <p>Add hostname to <em>/etc/hostname</em> and <em>/etc/hosts</em></p>
 
@@ -168,9 +166,12 @@ $ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
 
 <h4 id="configure-mkinitcpio">Configure mkinitcpio</h4>
 
-<p>Add <em>keyboard, encrypt</em> and <em>lvm2</em> hooks to <em>/etc/mkinitcpio.conf</em></p>
+<p>Add <em>ext4</em> to MODULES</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>HOOKS<span class="p">=(</span>... keyboard encrypt lvm2 fsck<span class="p">)</span></code></pre></figure>
+<p>Add <em>encrypt lvm2 resume</em> hooks to <em>/etc/mkinitcpio.conf</em> before <em>filesystems</em>
+and after <em>udev</em></p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>HOOKS<span class="p">=(</span>base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck<span class="p">)</span></code></pre></figure>
 
 <p>mkinitcpio and set root password:</p>
 
@@ -179,33 +180,22 @@ $ passwd</code></pre></figure>
 
 <h4 id="install-boot-loader">Install Boot Loader</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S gdisk			<span class="c1"># Prerequisite</span>
-$ pacman -S syslinux
-$ syslinux-install_update -i -a -m</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ bootctl --path<span class="o">=</span>/boot install</code></pre></figure>
 
-<p><em>/boot/syslinux/syslinux.cfg</em></p>
+<p>Edit <em>/boot/loader/loader.conf</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>LABEL arch
-    MENU LABEL Arch Linux
-    LINUX ../vmlinuz<span class="p">-</span>linux
-    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2:cryptolvm rw
-    INITRD ../initramfs<span class="p">-</span>linux.img
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>default arch
+<span class="nb">timeout</span> <span class="m">5</span>
+editor <span class="m">0</span></code></pre></figure>
 
-LABEL archfallback
-    MENU LABEL Arch Linux Fallback
-    LINUX ../vmlinuz<span class="p">-</span>linux
-    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2:cryptolvm rw
-    INITRD ../initramfs<span class="p">-</span>linux<span class="p">-</span>fallback.img</code></pre></figure>
+<p>Edit <em>/boot/loader/entries/arch.conf</em><br />
+Use <em>blkid</em> to find the UUID for <em>/dev/nvme0n1p2</em> and replace the &lt;UUID&gt; below
+without the bracket.</p>
 
-<p><em>/etc/crypttab</em></p>
-
-<p>Append line:</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>cryptolvm	<span class="sr">/dev/</span>sda2</code></pre></figure>
-
-<p>Create <em>crypttab.initramfs</em></p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ cp /etc/crypttab /etc/crypttab.initramfs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="nb">title</span> Arch Linux
+linux /vmlinuz<span class="p">-</span>linux
+initrd /initramfs<span class="p">-</span>linux.img
+<span class="k">options</span> cryptdevice<span class="p">=</span>UUID<span class="p">=&lt;</span>UUID<span class="p">&gt;</span>:MyVol root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root resume=/</span>dev<span class="sr">/mapper/</span>MyVol<span class="p">-</span><span class="k">swap</span> rw</code></pre></figure>
 
 <h4 id="wireless-1">Wireless</h4>
 
@@ -240,19 +230,7 @@ $ netctl <span class="nb">enable</span> profile-name		<span class="c1"># profile
 
 <h4 id="additional-install">Additional Install</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S openssh
-$ sudo systemctl <span class="nb">enable</span> sshd.service
-$ sudo pacman -S --needed base-devel
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
-$ tar xzvf cower.tar.gz
-$ <span class="nb">cd</span> cower
-$ makepkg -s
-$ sudo pacman -U cower-&lt;version&gt;.pkg.tar.xz
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
-$ tar xzvf pacaur.tar.gz
-$ <span class="nb">cd</span> pacaur
-$ makepkg -s
-$ sudo pacman -U pacaur-&lt;version&gt;.pkg.tar.xz</code></pre></figure>
+<p>Install <em>yay</em> from AUR.</p>
 
 <h4 id="audio">Audio</h4>
 
@@ -265,37 +243,53 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S - &lt; pkglist.txt	<span class="c1"># Install all packages from backup list</span></code></pre></figure>
 
-<p>Do the same for AUR with pacaur.<br />
-<br /></p>
-<h3 id="fri-jan-26-2018">Fri, Jan 26, 2018</h3>
+<p>Do the same for AUR with <em>yay</em>.<br /></p>
 
-<h3 id="fat32"><a name="fat32-1"></a>FAT32</h3>
+<h3 id="extra-configuration">Extra Configuration</h3>
 
-<p>gparted or via command line.</p>
+<h4 id="bluetooth">Bluetooth</h4>
 
-<p>Either way, install dosfstools.<br />
-I’m using FAT32 (LBA), which is also the factory default for USB stick.</p>
+<p>Edit <em>/etc/bluetooth/main.conf</em> and add the following line.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ lsblk
-$ sudo fdisk /dev/sdb
-$ o
-$ n
-$ p
-$ Enter
-$ Enter
-$ Enter
-$ t
-$ c
-$ w
-$ sudo mkfs.vfat /dev/sdb1 -n DN-U-001
-$ sudo mount -o <span class="nv">gid</span><span class="o">=</span>storage,fmask<span class="o">=</span><span class="m">113</span>,dmask<span class="o">=</span><span class="m">002</span> /dev/sdb1 /mnt/usbstick
-$ sudo umount /mnt/usbstick</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>AutoEnable<span class="p">=</span>true</code></pre></figure>
 
-<p>References:</p>
-<p />
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> bluetooth.service</code></pre></figure>
 
-<p><a href="http://www.dewassoc.com/kbase/hard_drives/lba.htm">LBA</a><br />
-<a href="https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory">Mounting USB stick with write access</a></p>
+<p>Enable bluetooth service then pair devices.</p>
+
+<h4 id="pulseaudio">PulseAudio</h4>
+
+<p>Edit <em>/etc/pulse/system.pa</em> and add the following lines.</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>policy
+<span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>discover</code></pre></figure>
+
+<p>Edit <em>/etc/pulse/default.pa</em> and add the following line.</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>switch<span class="p">-</span><span class="k">on</span><span class="p">-</span>connect</code></pre></figure>
+
+<p>Run <em>sudo usermod -a -G lp daniel</em> to add to lp group.</p>
+
+<p>If cookie not found then <em>cp ~/.pulse-cookie ~/.config/pulse/cookie</em></p>
+
+<h4 id="cups">CUPS</h4>
+
+<p>Enable CUPS</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.socket
+$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.service</code></pre></figure>
+
+<p>Run <em>sudo usermod -a -G cups daniel</em> to add to <em>cups</em> group.</p>
+
+<h4 id="ios">iOS</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ usbmuxd -f -v
+$ idevice_id -l
+$ ideviceinfo
+$ ideviceinstaller -l
+$ ifuse ~/iPhone
+$ umount ~/iPhone</code></pre></figure>
+
 
   </div>
 

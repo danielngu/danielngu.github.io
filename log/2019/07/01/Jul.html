@@ -109,12 +109,12 @@ $ n				<span class="c1"># Create new partition</span>
 $ Enter				<span class="c1"># Accept default partition number</span>
 $ Enter				<span class="c1"># Accept default first sector</span>
 $ +512M				<span class="c1"># Allocated 512MB for boot partition</span>
-$ <span class="m">8300</span>				<span class="c1"># Set type of partition or L to list</span>
+$ EF00				<span class="c1"># Set type of partition or L to list</span>
 $ n				<span class="c1"># Create new partition</span>
 $ Enter				<span class="c1"># Accept default partition number</span>
 $ Enter				<span class="c1"># Accept default first sector</span>
 $ Enter				<span class="c1"># Accept default last sector</span>
-$ EF00				<span class="c1"># Set partition type to LVM</span>
+$ <span class="m">8300</span>				<span class="c1"># Set partition type to LVM</span>
 $ w				<span class="c1"># Write change</span>
 $ y				<span class="c1"># Accept</span>
 $ cryptsetup luksFormat --type luks2 /dev/nvme0n1p2	<span class="c1"># Create encrypted container</span>

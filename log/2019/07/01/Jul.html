@@ -10,7 +10,7 @@
   <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
-  <link rel="canonical" href="/log/2019/07/01/Jul.html">
+  <link rel="canonical" href="http://localhost:4000/log/2019/07/01/Jul.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
@@ -274,12 +274,51 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 
 <h4 id="cups">CUPS</h4>
 
-<p>Enable CUPS</p>
+<p>Install, enable and start CUPS</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.socket
-$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S cups
+$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.service
+$ sudo systemctl start org.cups.cupsd.service</code></pre></figure>
 
 <p>Run <em>sudo usermod -a -G cups daniel</em> to add to <em>cups</em> group.</p>
+
+<p>Append <em>wheel</em> to <em>SystemGroup sys root</em> in <em>/etc/cups/cups-files.conf</em></p>
+
+<p>At this point, re-logon for the permission to be effective.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S brother-mfc-l2713dw
+$ yay -S brscan4</code></pre></figure>
+
+<p>Install printer and scanner drivers.</p>
+
+<p>Browse to <em>http://localhost:631</em>, go to <em>Administration -&gt; Add Printer</em><br />
+Select <em>LPD/LPR Host or Printer</em><br />
+Enter <em>lpd://(Your printer’s IP address)/binary_p1</em><br />
+Select <em>Brother</em><br />
+Select the printer driver, which should already be automatically selected. It’s
+the CUPS version.<br />
+Name the printer.<br /></p>
+
+<p>Then go to <em>Printers</em>, select the printer, drop down <em>Administration</em> and select <em>Set
+Default Options</em>, set <em>A4</em>, <em>Plain Paper</em>, <em>600dpi</em>, <em>Tray1</em>, <em>DuplexNoTumble</em>, <em>Toner Save
+to Off</em>. And again drop down <em>Administration</em> and select <em>Set As Server Default</em>.</p>
+
+<p>For scanning:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ brsaneconfig4 -a <span class="nv">name</span><span class="o">=(</span>name your device<span class="o">)</span> <span class="nv">model</span><span class="o">=(</span>model name<span class="o">)</span> <span class="nv">ip</span><span class="o">=</span>xx.xx.xx.xx</code></pre></figure>
+
+<p>Use gscan2pdf:</p>
+
+<p>Untick <em>OCR scanned pages</em><br />
+Select <em>All</em> pages<br />
+Leave <em>Mode</em> as default<br />
+Change <em>Geometry</em> from <em>Manual</em> to <em>A4</em><br /></p>
+
+<p>gscan2pdf will need <em>yay -S pdftk-bin</em></p>
+
+<p>Even though <em>org.cups.cupsd.service</em> has been enabled, it won’t auto start on
+boot.<br />
+Just do a test print, that will activate the auto start on boot.</p>
 
 <h4 id="ios">iOS</h4>
 

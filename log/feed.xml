@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2019-07-25T14:32:34+12:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>/log/2019/07/01/Jul</id><content type="html" xml:base="/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-25T17:25:19+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -189,12 +189,51 @@ $ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted
 
 &lt;h4 id=&quot;cups&quot;&gt;CUPS&lt;/h4&gt;
 
-&lt;p&gt;Enable CUPS&lt;/p&gt;
+&lt;p&gt;Install, enable and start CUPS&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.socket
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S cups
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.service
+$ sudo systemctl start org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run &lt;em&gt;sudo usermod -a -G cups daniel&lt;/em&gt; to add to &lt;em&gt;cups&lt;/em&gt; group.&lt;/p&gt;
+
+&lt;p&gt;Append &lt;em&gt;wheel&lt;/em&gt; to &lt;em&gt;SystemGroup sys root&lt;/em&gt; in &lt;em&gt;/etc/cups/cups-files.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, re-logon for the permission to be effective.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S brother-mfc-l2713dw
+$ yay -S brscan4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Install printer and scanner drivers.&lt;/p&gt;
+
+&lt;p&gt;Browse to &lt;em&gt;http://localhost:631&lt;/em&gt;, go to &lt;em&gt;Administration -&amp;gt; Add Printer&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;LPD/LPR Host or Printer&lt;/em&gt;&lt;br /&gt;
+Enter &lt;em&gt;lpd://(Your printer’s IP address)/binary_p1&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;Brother&lt;/em&gt;&lt;br /&gt;
+Select the printer driver, which should already be automatically selected. It’s
+the CUPS version.&lt;br /&gt;
+Name the printer.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then go to &lt;em&gt;Printers&lt;/em&gt;, select the printer, drop down &lt;em&gt;Administration&lt;/em&gt; and select &lt;em&gt;Set
+Default Options&lt;/em&gt;, set &lt;em&gt;A4&lt;/em&gt;, &lt;em&gt;Plain Paper&lt;/em&gt;, &lt;em&gt;600dpi&lt;/em&gt;, &lt;em&gt;Tray1&lt;/em&gt;, &lt;em&gt;DuplexNoTumble&lt;/em&gt;, &lt;em&gt;Toner Save
+to Off&lt;/em&gt;. And again drop down &lt;em&gt;Administration&lt;/em&gt; and select &lt;em&gt;Set As Server Default&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;For scanning:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brsaneconfig4 -a &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;name your device&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;model name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xx.xx.xx.xx&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Use gscan2pdf:&lt;/p&gt;
+
+&lt;p&gt;Untick &lt;em&gt;OCR scanned pages&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;All&lt;/em&gt; pages&lt;br /&gt;
+Leave &lt;em&gt;Mode&lt;/em&gt; as default&lt;br /&gt;
+Change &lt;em&gt;Geometry&lt;/em&gt; from &lt;em&gt;Manual&lt;/em&gt; to &lt;em&gt;A4&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;gscan2pdf will need &lt;em&gt;yay -S pdftk-bin&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Even though &lt;em&gt;org.cups.cupsd.service&lt;/em&gt; has been enabled, it won’t auto start on
+boot.&lt;br /&gt;
+Just do a test print, that will activate the auto start on boot.&lt;/p&gt;
 
 &lt;h4 id=&quot;ios&quot;&gt;iOS&lt;/h4&gt;
 
@@ -215,7 +254,7 @@ $ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 $ powertop --calibrate
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo systemctl mbpfan.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>/log/2018/02/01/Feb</id><content type="html" xml:base="/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ sudo systemctl mbpfan.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -359,7 +398,7 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libsndfile&lt;/code&gt;&lt;/p
 
 &lt;p&gt;&lt;em&gt;lib32-libxcursor&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>/log/2018/01/01/Jan</id><content type="html" xml:base="/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / Syslinux&lt;/a&gt;&lt;/li&gt;
@@ -571,7 +610,7 @@ $ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p /&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.dewassoc.com/kbase/hard_drives/lba.htm&quot;&gt;LBA&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>/log/2017/02/01/Feb</id><content type="html" xml:base="/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#raspberry-1&quot;&gt;Raspberry Pi&lt;/a&gt;&lt;/li&gt;
@@ -730,7 +769,7 @@ Port: 5901&lt;/p&gt;
 &lt;h4 id=&quot;sshfs&quot;&gt;sshfs&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brew cask install osxfuse
-$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>/log/2016/05/01/May</id><content type="html" xml:base="/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#plex-1&quot;&gt;Plex&lt;/a&gt;&lt;/li&gt;
@@ -780,7 +819,7 @@ $ sudo chgrp plex plex
 $ sudo chmod g+w,o-rx plex
 $ sudo usermod -a -G plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>/log/2015/11/01/Nov</id><content type="html" xml:base="/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="http://localhost:4000/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/11/01/Nov</id><content type="html" xml:base="http://localhost:4000/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#octopress-1&quot;&gt;Octopress&lt;/a&gt;&lt;/li&gt;
@@ -878,7 +917,7 @@ exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quo
 
 &lt;p&gt;Optional: &lt;a href=&quot;https://aur.archlinux.org/packages/jre7/&quot;&gt;JRE&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>/log/2015/03/01/Mar</id><content type="html" xml:base="/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/03/01/Mar</id><content type="html" xml:base="http://localhost:4000/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#backup-1&quot;&gt;Backup and Restore&lt;/a&gt;&lt;/li&gt;
@@ -899,7 +938,7 @@ commands off Arch
 &lt;p&gt;Alternatively, a better option is to clone the entire drive 
 (&lt;a href=&quot;http://goo.gl/L5pgF9&quot;&gt;save disk image&lt;/a&gt;) for backup. Then restore it with 
 &lt;a href=&quot;http://goo.gl/bRLzfJ&quot;&gt;“restore disk image”&lt;/a&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>/log/2014/05/01/May</id><content type="html" xml:base="/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2014/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#external-1&quot;&gt;External Monitor&lt;/a&gt;&lt;/li&gt;
@@ -969,7 +1008,7 @@ Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
 &lt;p&gt;Reboot while holding down the option key.&amp;lt;/br&amp;gt;
 Select the USB flash drive.&amp;lt;/br&amp;gt;
 For clean install, select Disk Utility. Erase the / partition.&amp;lt;/br&amp;gt;
-After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>/log/2014/04/01/Apr</id><content type="html" xml:base="/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation&lt;/a&gt;&lt;/li&gt;
@@ -1725,7 +1764,7 @@ folders &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&q
 
 &lt;p&gt;Needed sometimes if media not playing, especially newly added.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>/log/2014/01/01/Jan</id><content type="html" xml:base="/log/2014/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2014/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#laneway-1&quot;&gt;Laneway Festival&lt;/a&gt;&lt;/li&gt;

@@ -290,6 +290,18 @@ $ ideviceinstaller -l
 $ ifuse ~/iPhone
 $ umount ~/iPhone</code></pre></figure>
 
+<h4 id="ntp">NTP</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> ntpd.service</code></pre></figure>
+
+<h3 id="additional-install--configuration-for-macbook--laptop-only">Additional Install / Configuration for MacBook / Laptop Only</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop thermald cpupower mbpfan-git
+$ powertop --calibrate
+$ sudo systemctl <span class="nb">enable</span> powertop.service
+$ sudo systemctl <span class="nb">enable</span> thermald.service
+$ sudo systemctl mbpfan.service</code></pre></figure>
+
 
   </div>
 

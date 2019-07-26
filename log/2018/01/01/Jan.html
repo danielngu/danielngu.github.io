@@ -291,6 +291,10 @@ $ sudo mkfs.vfat /dev/sdb1 -n DN-U-001
 $ sudo mount -o <span class="nv">gid</span><span class="o">=</span>storage,fmask<span class="o">=</span><span class="m">113</span>,dmask<span class="o">=</span><span class="m">002</span> /dev/sdb1 /mnt/usbstick
 $ sudo umount /mnt/usbstick</code></pre></figure>
 
+<p>Alternatively:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo mount -o <span class="nv">uid</span><span class="o">=</span>daniel /dev/sdb1 /mnt/usbstick</code></pre></figure>
+
 <p>References:</p>
 <p />
 

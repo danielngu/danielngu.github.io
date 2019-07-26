@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-25T17:25:19+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-26T15:05:01+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -254,7 +254,15 @@ $ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 $ powertop --calibrate
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo systemctl mbpfan.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ sudo systemctl mbpfan.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
+&lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
+
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;p /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Broadcom_wireless&quot;&gt;Broadcom wireless&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -605,6 +613,10 @@ $ w
 $ sudo mkfs.vfat /dev/sdb1 -n DN-U-001
 $ sudo mount -o &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;storage,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;113&lt;/span&gt;,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;002&lt;/span&gt; /dev/sdb1 /mnt/usbstick
 $ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Alternatively:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo mount -o &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;daniel /dev/sdb1 /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;References:&lt;/p&gt;
 &lt;p /&gt;

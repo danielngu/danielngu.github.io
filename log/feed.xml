@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-08-02T00:46:59+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-08-02T00:52:14+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -137,7 +137,7 @@ to additional groups.&lt;/p&gt;
 $ ls /etc/netctl/			&lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
 $ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name		&lt;span class=&quot;c1&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Alternatively, a better approach is as follows:&lt;/p&gt;
+&lt;p&gt;Alternatively, a better approach is as follows rather than enabling profile:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S ifplugd					&lt;span class=&quot;c1&quot;&gt;# Wired&lt;/span&gt;
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-ifplugd@interface.service	&lt;span class=&quot;c1&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;

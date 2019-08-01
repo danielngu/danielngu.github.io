@@ -222,7 +222,7 @@ to additional groups.</p>
 $ ls /etc/netctl/			<span class="c1"># Find the wifi profile</span>
 $ netctl <span class="nb">enable</span> profile-name		<span class="c1"># profile-name as obtained above</span></code></pre></figure>
 
-<p>Alternatively, a better approach is as follows:</p>
+<p>Alternatively, a better approach is as follows rather than enabling profile:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S ifplugd					<span class="c1"># Wired</span>
 $ sudo systemctl <span class="nb">enable</span> netctl-ifplugd@interface.service	<span class="c1"># substitute interface with the value obtained from ip a</span>

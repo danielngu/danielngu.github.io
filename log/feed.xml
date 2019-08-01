@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-07-29T08:31:59+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2019-08-02T00:46:59+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -137,6 +137,18 @@ to additional groups.&lt;/p&gt;
 $ ls /etc/netctl/			&lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
 $ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name		&lt;span class=&quot;c1&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;Alternatively, a better approach is as follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S ifplugd					&lt;span class=&quot;c1&quot;&gt;# Wired&lt;/span&gt;
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-ifplugd@interface.service	&lt;span class=&quot;c1&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-auto@interface.service		&lt;span class=&quot;c1&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/netctl#Enabling_a_profile&quot;&gt;netctl: Enabling a profile&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/netctl#Special_systemd_units&quot;&gt;netctl: Special systemd units: wired / wireless&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S sudo&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -250,19 +262,26 @@ $ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3 id=&quot;additional-install--configuration-for-macbook--laptop-only&quot;&gt;Additional Install / Configuration for MacBook / Laptop Only&lt;/h3&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop thermald cpupower mbpfan-git
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop thermald cpupower mbpfan-git tlp
 $ powertop --calibrate
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo systemctl mbpfan.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+$ sudo systemctl mbpfan.service
+$ sudo systemctl tlp.service
+$ sudo systemctl tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
 &lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
 
-&lt;p&gt;Reference:&lt;/p&gt;
+&lt;p&gt;Suspend works out of the box.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
 &lt;p /&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Broadcom_wireless&quot;&gt;Broadcom wireless&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Broadcom_wireless&quot;&gt;Broadcom wireless&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#WiFi&quot;&gt;WiFi&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Suspend_and_Hibernate&quot;&gt;Suspend&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2&quot;&gt;Mid 2013&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;

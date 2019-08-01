@@ -222,6 +222,18 @@ to additional groups.</p>
 $ ls /etc/netctl/			<span class="c1"># Find the wifi profile</span>
 $ netctl <span class="nb">enable</span> profile-name		<span class="c1"># profile-name as obtained above</span></code></pre></figure>
 
+<p>Alternatively, a better approach is as follows:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S ifplugd					<span class="c1"># Wired</span>
+$ sudo systemctl <span class="nb">enable</span> netctl-ifplugd@interface.service	<span class="c1"># substitute interface with the value obtained from ip a</span>
+$ sudo systemctl <span class="nb">enable</span> netctl-auto@interface.service		<span class="c1"># substitute interface with the value obtained from ip a</span></code></pre></figure>
+
+<p>References:</p>
+<p />
+
+<p><a href="https://wiki.archlinux.org/index.php/netctl#Enabling_a_profile">netctl: Enabling a profile</a><br />
+<a href="https://wiki.archlinux.org/index.php/netctl#Special_systemd_units">netctl: Special systemd units: wired / wireless</a></p>
+
 <h4 id="sudo">Sudo</h4>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S sudo</code></pre></figure>
@@ -335,19 +347,26 @@ $ umount ~/iPhone</code></pre></figure>
 
 <h3 id="additional-install--configuration-for-macbook--laptop-only">Additional Install / Configuration for MacBook / Laptop Only</h3>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop thermald cpupower mbpfan-git
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop thermald cpupower mbpfan-git tlp
 $ powertop --calibrate
 $ sudo systemctl <span class="nb">enable</span> powertop.service
 $ sudo systemctl <span class="nb">enable</span> thermald.service
-$ sudo systemctl mbpfan.service</code></pre></figure>
+$ sudo systemctl mbpfan.service
+$ sudo systemctl tlp.service
+$ sudo systemctl tlp-sleep.service</code></pre></figure>
 
 <p>For BCM4360 wireless network adapter, install <em>broadcom-wl-dkms</em> and
 <em>linux-headers</em>. Then reboot before trying wifi-menu.</p>
 
-<p>Reference:</p>
+<p>Suspend works out of the box.</p>
+
+<p>References:</p>
 <p />
 
-<p><a href="https://wiki.archlinux.org/index.php/Broadcom_wireless">Broadcom wireless</a></p>
+<p><a href="https://wiki.archlinux.org/index.php/Broadcom_wireless">Broadcom wireless</a><br />
+<a href="https://wiki.archlinux.org/index.php/Mac#WiFi">WiFi</a><br />
+<a href="https://wiki.archlinux.org/index.php/Mac#Suspend_and_Hibernate">Suspend</a><br />
+<a href="https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2">Mid 2013</a></p>
 
   </div>
 

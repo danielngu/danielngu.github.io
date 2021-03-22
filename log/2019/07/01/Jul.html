@@ -10,7 +10,7 @@
   <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/log/2019/07/01/Jul.html">
+  <link rel="canonical" href="/log/2019/07/01/Jul.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
   
   
@@ -131,13 +131,19 @@ $ mkfs.vfat -F32 /dev/nvme0n1p1				<span class="c1"># Format boot</span>
 $ mkdir	/mnt/boot					<span class="c1"># Create boot directory</span>
 $ mount /dev/nvme0n1p1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre></figure>
 
+<p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_1">[1]</a></p>
+
 <h4 id="wireless">Wireless</h4>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ wifi-menu</code></pre></figure>
 
+<p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_2">[2]</a></p>
+
 <h4 id="install-base-system">Install Base System</h4>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base base-devel</code></pre></figure>
+
+<p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_3">[3]</a></p>
 
 <h4 id="configure-system">Configure System</h4>
 
@@ -351,9 +357,10 @@ $ umount ~/iPhone</code></pre></figure>
 $ powertop --calibrate
 $ sudo systemctl <span class="nb">enable</span> powertop.service
 $ sudo systemctl <span class="nb">enable</span> thermald.service
-$ sudo systemctl mbpfan.service
-$ sudo systemctl tlp.service
-$ sudo systemctl tlp-sleep.service</code></pre></figure>
+$ sudo systemctl <span class="nb">enable</span> cpupower.service
+$ sudo systemctl <span class="nb">enable</span> mbpfan.service
+$ sudo systemctl <span class="nb">enable</span> tlp.service
+$ sudo systemctl <span class="nb">enable</span> tlp-sleep.service</code></pre></figure>
 
 <p>For BCM4360 wireless network adapter, install <em>broadcom-wl-dkms</em> and
 <em>linux-headers</em>. Then reboot before trying wifi-menu.</p>
@@ -367,6 +374,88 @@ $ sudo systemctl tlp-sleep.service</code></pre></figure>
 <a href="https://wiki.archlinux.org/index.php/Mac#WiFi">WiFi</a><br />
 <a href="https://wiki.archlinux.org/index.php/Mac#Suspend_and_Hibernate">Suspend</a><br />
 <a href="https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2">Mid 2013</a></p>
+
+<p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_4">[4]</a></p>
+
+<h3 id="addendum">Addendum</h3>
+
+<h4 id="2021-03-22"><a name="2021-03-22"></a>2021-03-22</h4>
+
+<h4 id="1-partition"><a name="2021-03-22_1"></a>[1] Partition</h4>
+
+<p>For dual boot, in my case, tested working with Macbook Air.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>sda1 EFI /boot <span class="c1"># This is Mac&#39;s EFI, sharing it with Linux)</span>
+sad2 MAC
+sda3 EFI       <span class="c1"># Left blank</span>
+sda4 LUKS
+<span class="p">|</span>-MyVol
+  <span class="p">|</span>- MyVol-swap <span class="o">[</span>SWAP<span class="o">]</span>
+  <span class="p">|</span>- MyVol-root /</code></pre></figure>
+
+<h4 id="2-wireless"><a name="2021-03-22_2"></a>[2] Wireless</h4>
+
+<p>netctl is no longer included by default.
+Use ethernet or install netctl package.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S netctl</code></pre></figure>
+
+<h4 id="3-install-base-system"><a name="2021-03-22_3"></a>[3] Install Base System</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl</code></pre></figure>
+
+<p>linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
+default so have to install them explicitly.</p>
+
+<h4 id="4-additional-install--configuration-for-macbook--laptop-only"><a name="2021-03-22_3"></a>[4] Additional Install / Configuration for MacBook / Laptop Only</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop laptop-mode-tools cpupower thermald mbpfan-git
+$ sudo pacman -S acpi acpid
+$ powertop --calibrate
+$ sudo vim /etc/systemd/system/powertop.service
+
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Powertop tunings
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>oneshot
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/powertop --auto-tune
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+
+$ sudo systemctl <span class="nb">enable</span> powertop.service
+$ sudo vim /etc/laptop-mode/laptop-mode.conf
+
+<span class="nv">ENABLE_LAPTOP_MODE_ON_AC</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED</span><span class="o">=</span><span class="m">1</span>
+
+$ sudo vim /etc/laptop-mode/conf.d/cpufreq.conf
+
+<span class="nv">CONTROL_CPU_FREQUENCY</span><span class="o">=</span><span class="m">0</span>
+
+$ sudo vim /etc/laptop-mode/conf.d/intel_pstate.conf
+
+<span class="nv">CONTROL_INTEL_PSTATE</span><span class="o">=</span><span class="m">0</span>
+
+$ sudo systemctl <span class="nb">enable</span> laptop-mode.service
+$ sudo systemctl <span class="nb">enable</span> acpid.service
+$ sudo vim /etc/default/cpupower
+
+<span class="nv">governor</span><span class="o">=</span><span class="s1">&#39;powersave&#39;</span>
+<span class="nv">max_freq</span><span class="o">=</span><span class="s2">&quot;1.3GHz&quot;</span>
+
+$ sudo systemctl <span class="nb">enable</span> cpupower.service
+$ sudo systemctl <span class="nb">enable</span> thermald.service
+$ sudo vim /usr/lib/systemd/system/mbpfan.service
+
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/mbpfan -f
+
+$ sudo systemctl <span class="nb">enable</span> mbpfan.service
+$ sudo pacman -S broadcom-wl-dkms linux-headers <span class="c1"># linux-headers package is not required but installed it anyway</span>
+$ sudo rmmod b43 ssb bcma wl                    <span class="c1"># Either this or reboot</span>
+$ sudo modprobe wl</code></pre></figure>
+
 
   </div>
 
@@ -384,7 +473,7 @@ $ sudo systemctl tlp-sleep.service</code></pre></figure>
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2020 - Daniel Ngu
+	      Copyright &copy; 2021 - Daniel Ngu
       </div>
     
     </div>

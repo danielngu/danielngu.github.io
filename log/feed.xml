@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2020-07-20T13:35:29+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-03-22T15:05:21+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>/log/2019/07/01/Jul</id><content type="html" xml:base="/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -46,13 +46,19 @@ $ mkfs.vfat -F32 /dev/nvme0n1p1				&lt;span class=&quot;c1&quot;&gt;# Format boo
 $ mkdir	/mnt/boot					&lt;span class=&quot;c1&quot;&gt;# Create boot directory&lt;/span&gt;
 $ mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_1&quot;&gt;[1]&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_2&quot;&gt;[2]&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_3&quot;&gt;[3]&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;configure-system&quot;&gt;Configure System&lt;/h4&gt;
 
@@ -266,9 +272,10 @@ $ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 $ powertop --calibrate
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo systemctl mbpfan.service
-$ sudo systemctl tlp.service
-$ sudo systemctl tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; cpupower.service
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; mbpfan.service
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; tlp.service
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
 &lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
@@ -281,7 +288,88 @@ $ sudo systemctl tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Broadcom_wireless&quot;&gt;Broadcom wireless&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#WiFi&quot;&gt;WiFi&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Suspend_and_Hibernate&quot;&gt;Suspend&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2&quot;&gt;Mid 2013&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2&quot;&gt;Mid 2013&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_4&quot;&gt;[4]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;addendum&quot;&gt;Addendum&lt;/h3&gt;
+
+&lt;h4 id=&quot;2021-03-22&quot;&gt;&lt;a name=&quot;2021-03-22&quot;&gt;&lt;/a&gt;2021-03-22&lt;/h4&gt;
+
+&lt;h4 id=&quot;1-partition&quot;&gt;&lt;a name=&quot;2021-03-22_1&quot;&gt;&lt;/a&gt;[1] Partition&lt;/h4&gt;
+
+&lt;p&gt;For dual boot, in my case, tested working with Macbook Air.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;sda1 EFI /boot &lt;span class=&quot;c1&quot;&gt;# This is Mac&amp;#39;s EFI, sharing it with Linux)&lt;/span&gt;
+sad2 MAC
+sda3 EFI       &lt;span class=&quot;c1&quot;&gt;# Left blank&lt;/span&gt;
+sda4 LUKS
+&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;-MyVol
+  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;- MyVol-swap &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;SWAP&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;- MyVol-root /&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;2-wireless&quot;&gt;&lt;a name=&quot;2021-03-22_2&quot;&gt;&lt;/a&gt;[2] Wireless&lt;/h4&gt;
+
+&lt;p&gt;netctl is no longer included by default.
+Use ethernet or install netctl package.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;3-install-base-system&quot;&gt;&lt;a name=&quot;2021-03-22_3&quot;&gt;&lt;/a&gt;[3] Install Base System&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
+default so have to install them explicitly.&lt;/p&gt;
+
+&lt;h4 id=&quot;4-additional-install--configuration-for-macbook--laptop-only&quot;&gt;&lt;a name=&quot;2021-03-22_3&quot;&gt;&lt;/a&gt;[4] Additional Install / Configuration for MacBook / Laptop Only&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop laptop-mode-tools cpupower thermald mbpfan-git
+$ sudo pacman -S acpi acpid
+$ powertop --calibrate
+$ sudo vim /etc/systemd/system/powertop.service
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Powertop tunings
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;oneshot
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/powertop --auto-tune
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;WantedBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;multi-user.target
+
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
+$ sudo vim /etc/laptop-mode/laptop-mode.conf
+
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_ON_AC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+
+$ sudo vim /etc/laptop-mode/conf.d/cpufreq.conf
+
+&lt;span class=&quot;nv&quot;&gt;CONTROL_CPU_FREQUENCY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+$ sudo vim /etc/laptop-mode/conf.d/intel_pstate.conf
+
+&lt;span class=&quot;nv&quot;&gt;CONTROL_INTEL_PSTATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; laptop-mode.service
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; acpid.service
+$ sudo vim /etc/default/cpupower
+
+&lt;span class=&quot;nv&quot;&gt;governor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;powersave&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;max_freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;1.3GHz&amp;quot;&lt;/span&gt;
+
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; cpupower.service
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
+$ sudo vim /usr/lib/systemd/system/mbpfan.service
+
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/sbin/mbpfan -f
+
+$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; mbpfan.service
+$ sudo pacman -S broadcom-wl-dkms linux-headers &lt;span class=&quot;c1&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
+$ sudo rmmod b43 ssb bcma wl                    &lt;span class=&quot;c1&quot;&gt;# Either this or reboot&lt;/span&gt;
+$ sudo modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>/log/2018/02/01/Feb</id><content type="html" xml:base="/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -425,7 +513,7 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libsndfile&lt;/code&gt;&lt;/p
 
 &lt;p&gt;&lt;em&gt;lib32-libxcursor&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>/log/2018/01/01/Jan</id><content type="html" xml:base="/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / Syslinux&lt;/a&gt;&lt;/li&gt;
@@ -641,7 +729,7 @@ $ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p /&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.dewassoc.com/kbase/hard_drives/lba.htm&quot;&gt;LBA&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>/log/2017/02/01/Feb</id><content type="html" xml:base="/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#raspberry-1&quot;&gt;Raspberry Pi&lt;/a&gt;&lt;/li&gt;
@@ -800,7 +888,7 @@ Port: 5901&lt;/p&gt;
 &lt;h4 id=&quot;sshfs&quot;&gt;sshfs&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brew cask install osxfuse
-$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>/log/2016/05/01/May</id><content type="html" xml:base="/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#plex-1&quot;&gt;Plex&lt;/a&gt;&lt;/li&gt;
@@ -850,7 +938,7 @@ $ sudo chgrp plex plex
 $ sudo chmod g+w,o-rx plex
 $ sudo usermod -a -G plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="http://localhost:4000/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/11/01/Nov</id><content type="html" xml:base="http://localhost:4000/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>/log/2015/11/01/Nov</id><content type="html" xml:base="/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#octopress-1&quot;&gt;Octopress&lt;/a&gt;&lt;/li&gt;
@@ -948,7 +1036,7 @@ exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quo
 
 &lt;p&gt;Optional: &lt;a href=&quot;https://aur.archlinux.org/packages/jre7/&quot;&gt;JRE&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/03/01/Mar</id><content type="html" xml:base="http://localhost:4000/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>/log/2015/03/01/Mar</id><content type="html" xml:base="/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#backup-1&quot;&gt;Backup and Restore&lt;/a&gt;&lt;/li&gt;
@@ -969,7 +1057,7 @@ commands off Arch
 &lt;p&gt;Alternatively, a better option is to clone the entire drive 
 (&lt;a href=&quot;http://goo.gl/L5pgF9&quot;&gt;save disk image&lt;/a&gt;) for backup. Then restore it with 
 &lt;a href=&quot;http://goo.gl/bRLzfJ&quot;&gt;“restore disk image”&lt;/a&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2014/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>/log/2014/05/01/May</id><content type="html" xml:base="/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#external-1&quot;&gt;External Monitor&lt;/a&gt;&lt;/li&gt;
@@ -1039,7 +1127,7 @@ Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
 &lt;p&gt;Reboot while holding down the option key.&amp;lt;/br&amp;gt;
 Select the USB flash drive.&amp;lt;/br&amp;gt;
 For clean install, select Disk Utility. Erase the / partition.&amp;lt;/br&amp;gt;
-After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>/log/2014/04/01/Apr</id><content type="html" xml:base="/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation&lt;/a&gt;&lt;/li&gt;
@@ -1795,7 +1883,7 @@ folders &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&q
 
 &lt;p&gt;Needed sometimes if media not playing, especially newly added.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2014/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>/log/2014/01/01/Jan</id><content type="html" xml:base="/log/2014/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#laneway-1&quot;&gt;Laneway Festival&lt;/a&gt;&lt;/li&gt;

@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-03-22T15:05:21+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Jul</title><link href="/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>/log/2019/07/01/Jul</id><content type="html" xml:base="/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2021-08-28T18:48:56+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Aug</title><link href="http://localhost:4000/log/2021/08/01/Aug.html" rel="alternate" type="text/html" title="Aug" /><published>2021-08-01T12:00:00+12:00</published><updated>2021-08-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2021/08/01/Aug</id><content type="html" xml:base="http://localhost:4000/log/2021/08/01/Aug.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#zk-1&quot;&gt;Zettelkasten&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;sat-aug-28-2021&quot;&gt;Sat, Aug 28, 2021&lt;/h3&gt;
+
+&lt;h3 id=&quot;zettelkasten&quot;&gt;&lt;a name=&quot;zk-1&quot;&gt;&lt;/a&gt;ZETTELKASTEN&lt;/h3&gt;
+
+&lt;h4 id=&quot;stages&quot;&gt;Stages&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Storage Repository (Evernote)&lt;/li&gt;
+  &lt;li&gt;Zettelkasten (Roam)&lt;/li&gt;
+  &lt;li&gt;Synthesising New Ideas&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;steps&quot;&gt;Steps&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Storage Repository&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Kindle: &lt;strong&gt;Readwise&lt;/strong&gt; to &lt;strong&gt;Evernote&lt;/strong&gt; (auto)&lt;/li&gt;
+  &lt;li&gt;Web: Share to &lt;strong&gt;Instapaper&lt;/strong&gt; (reading, highlighting &amp;amp; notes) and only share to &lt;strong&gt;Evernote&lt;/strong&gt; (storage) if I made any highlights or kept any notes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Zettelkasten&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Highlights and Notes (From Storage Repository)&lt;/li&gt;
+  &lt;li&gt;Reference Notes (Blue)&lt;/li&gt;
+  &lt;li&gt;Literature Notes (Yellow)&lt;/li&gt;
+  &lt;li&gt;Permanent Notes (Green)&lt;/li&gt;
+  &lt;li&gt;Projects/Publications (From Synthesising New Ideas)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Zettelkasten Steps In Details&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Reference Notes: Highlights and bibliography details.&lt;/p&gt;
+
+&lt;p&gt;Template:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tags: #referencenote&lt;/li&gt;
+  &lt;li&gt;Source:&lt;/li&gt;
+  &lt;li&gt;Author:&lt;/li&gt;
+  &lt;li&gt;Summary:&lt;/li&gt;
+  &lt;li&gt;Highlights:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Literature Notes: Thoughts and Summary.&lt;/p&gt;
+
+&lt;p&gt;Template:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tags: #literaturenote&lt;/li&gt;
+  &lt;li&gt;Source:&lt;/li&gt;
+  &lt;li&gt;Notes:
+    &lt;ul&gt;
+      &lt;li&gt;Thoughts:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Literature (Summary) Notes:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Permanent Notes: Conclusions/lessons drawn/learnt.&lt;/p&gt;
+
+&lt;p&gt;Template:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tags: #permanentnote&lt;/li&gt;
+  &lt;li&gt;Related Permanent Notes:&lt;/li&gt;
+  &lt;li&gt;Sources:&lt;/li&gt;
+  &lt;li&gt;Notes:
+    &lt;ul&gt;
+      &lt;li&gt;Thoughts:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="note-taking" /><summary type="html">Contents</summary></entry><entry><title type="html">Jul</title><link href="http://localhost:4000/log/2019/07/01/Jul.html" rel="alternate" type="text/html" title="Jul" /><published>2019-07-01T12:00:00+12:00</published><updated>2019-07-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2019/07/01/Jul</id><content type="html" xml:base="http://localhost:4000/log/2019/07/01/Jul.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -322,7 +417,7 @@ Use ethernet or install netctl package.&lt;/p&gt;
 &lt;p&gt;linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
 default so have to install them explicitly.&lt;/p&gt;
 
-&lt;h4 id=&quot;4-additional-install--configuration-for-macbook--laptop-only&quot;&gt;&lt;a name=&quot;2021-03-22_3&quot;&gt;&lt;/a&gt;[4] Additional Install / Configuration for MacBook / Laptop Only&lt;/h4&gt;
+&lt;h4 id=&quot;4-additional-install--configuration-for-macbook--laptop-only&quot;&gt;&lt;a name=&quot;2021-03-22_4&quot;&gt;&lt;/a&gt;[4] Additional Install / Configuration for MacBook / Laptop Only&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop laptop-mode-tools cpupower thermald mbpfan-git
 $ sudo pacman -S acpi acpid
@@ -369,7 +464,7 @@ $ sudo vim /usr/lib/systemd/system/mbpfan.service
 $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; mbpfan.service
 $ sudo pacman -S broadcom-wl-dkms linux-headers &lt;span class=&quot;c1&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
 $ sudo rmmod b43 ssb bcma wl                    &lt;span class=&quot;c1&quot;&gt;# Either this or reboot&lt;/span&gt;
-$ sudo modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>/log/2018/02/01/Feb</id><content type="html" xml:base="/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ sudo modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -513,7 +608,7 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libsndfile&lt;/code&gt;&lt;/p
 
 &lt;p&gt;&lt;em&gt;lib32-libxcursor&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>/log/2018/01/01/Jan</id><content type="html" xml:base="/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;lib32-libstdc++5&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="http://localhost:4000/log/2018/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2018-01-01T13:00:00+13:00</published><updated>2018-01-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2018/01/01/Jan</id><content type="html" xml:base="http://localhost:4000/log/2018/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / Syslinux&lt;/a&gt;&lt;/li&gt;
@@ -729,7 +824,7 @@ $ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p /&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.dewassoc.com/kbase/hard_drives/lba.htm&quot;&gt;LBA&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>/log/2017/02/01/Feb</id><content type="html" xml:base="/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_storage_devices#Mounting_USB_memory&quot;&gt;Mounting USB stick with write access&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="http://localhost:4000/log/2017/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2017-02-01T13:00:00+13:00</published><updated>2017-02-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2017/02/01/Feb</id><content type="html" xml:base="http://localhost:4000/log/2017/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#raspberry-1&quot;&gt;Raspberry Pi&lt;/a&gt;&lt;/li&gt;
@@ -888,7 +983,7 @@ Port: 5901&lt;/p&gt;
 &lt;h4 id=&quot;sshfs&quot;&gt;sshfs&lt;/h4&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brew cask install osxfuse
-$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>/log/2016/05/01/May</id><content type="html" xml:base="/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2016/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#plex-1&quot;&gt;Plex&lt;/a&gt;&lt;/li&gt;
@@ -938,7 +1033,7 @@ $ sudo chgrp plex plex
 $ sudo chmod g+w,o-rx plex
 $ sudo usermod -a -G plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>/log/2015/11/01/Nov</id><content type="html" xml:base="/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="http://localhost:4000/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/11/01/Nov</id><content type="html" xml:base="http://localhost:4000/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#octopress-1&quot;&gt;Octopress&lt;/a&gt;&lt;/li&gt;
@@ -1036,7 +1131,7 @@ exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quo
 
 &lt;p&gt;Optional: &lt;a href=&quot;https://aur.archlinux.org/packages/jre7/&quot;&gt;JRE&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>/log/2015/03/01/Mar</id><content type="html" xml:base="/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Run &lt;em&gt;/usr/lib/jvm/java-7-jre/jre/bin/ControlPanel&lt;/em&gt; to configure.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Mar</title><link href="http://localhost:4000/log/2015/03/01/Mar.html" rel="alternate" type="text/html" title="Mar" /><published>2015-03-01T13:00:00+13:00</published><updated>2015-03-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2015/03/01/Mar</id><content type="html" xml:base="http://localhost:4000/log/2015/03/01/Mar.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#backup-1&quot;&gt;Backup and Restore&lt;/a&gt;&lt;/li&gt;
@@ -1057,7 +1152,7 @@ commands off Arch
 &lt;p&gt;Alternatively, a better option is to clone the entire drive 
 (&lt;a href=&quot;http://goo.gl/L5pgF9&quot;&gt;save disk image&lt;/a&gt;) for backup. Then restore it with 
 &lt;a href=&quot;http://goo.gl/bRLzfJ&quot;&gt;“restore disk image”&lt;/a&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>/log/2014/05/01/May</id><content type="html" xml:base="/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="http://localhost:4000/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2014/05/01/May</id><content type="html" xml:base="http://localhost:4000/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#external-1&quot;&gt;External Monitor&lt;/a&gt;&lt;/li&gt;
@@ -1127,7 +1222,7 @@ Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
 &lt;p&gt;Reboot while holding down the option key.&amp;lt;/br&amp;gt;
 Select the USB flash drive.&amp;lt;/br&amp;gt;
 For clean install, select Disk Utility. Erase the / partition.&amp;lt;/br&amp;gt;
-After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>/log/2014/04/01/Apr</id><content type="html" xml:base="/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry><entry><title type="html">Apr</title><link href="http://localhost:4000/log/2014/04/01/Apr.html" rel="alternate" type="text/html" title="Apr" /><published>2014-04-01T13:00:00+13:00</published><updated>2014-04-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2014/04/01/Apr</id><content type="html" xml:base="http://localhost:4000/log/2014/04/01/Apr.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation&lt;/a&gt;&lt;/li&gt;
@@ -1883,23 +1978,4 @@ folders &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&q
 
 &lt;p&gt;Needed sometimes if media not playing, especially newly added.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Jan</title><link href="/log/2014/01/01/Jan.html" rel="alternate" type="text/html" title="Jan" /><published>2014-01-01T13:00:00+13:00</published><updated>2014-01-01T13:00:00+13:00</updated><id>/log/2014/01/01/Jan</id><content type="html" xml:base="/log/2014/01/01/Jan.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;#laneway-1&quot;&gt;Laneway Festival&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;fri-jan-31-2014&quot;&gt;Fri, Jan 31, 2014&lt;/h3&gt;
-
-&lt;h3 id=&quot;laneway-festival&quot;&gt;&lt;a name=&quot;laneway-1&quot;&gt;&lt;/a&gt;LANEWAY FESTIVAL&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/log/media/2014/laneway-festival.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Laneway 2014, weather cleared, summery but windy. I was covered up pretty 
-well but sunburned from neck up despite my conscious effort to avoid it. 
-It is summer after all.&lt;/p&gt;
-
-&lt;p&gt;Highlight was Chvrches, they were the second last act on main stage. Daughter 
-was all right though sound level could had been better but glad to have finally 
-seen them live. Well worth getting there early. Cat Power was a let down, it’s 
-just not the same without her band.&lt;/p&gt;</content><author><name></name></author><category term="music" /><summary type="html">Contents</summary></entry></feed>
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo service ps3mediaserver restart&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry></feed>

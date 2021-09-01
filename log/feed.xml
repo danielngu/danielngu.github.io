@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-09-01T15:57:14+12:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-09-01T16:48:10+12:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#bujo-1&quot;&gt;Bullet Journal (with Roam)&lt;/a&gt;&lt;/li&gt;
@@ -9,6 +9,12 @@
 &lt;h3 id=&quot;bullet-journal-with-roam&quot;&gt;&lt;a name=&quot;bujo-1&quot;&gt;&lt;/a&gt;BULLET JOURNAL (WITH ROAM)&lt;/h3&gt;
 
 &lt;h4 id=&quot;my-method&quot;&gt;My Method&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Keys&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;+ journaled item&lt;br /&gt;
+date/time timestamped&lt;br /&gt;
+@ scheduled item&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
 
@@ -21,7 +27,7 @@ The three stages of a task:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Opened/Completed&lt;/li&gt;
-  &lt;li&gt;Migrated (By prefixing with -&amp;gt;. &amp;lt;- if migrated to Future Log instead.)&lt;/li&gt;
+  &lt;li&gt;Migrated (By prefixing with -&amp;gt; OR &amp;lt;- if migrated to Future Log instead.)&lt;/li&gt;
   &lt;li&gt;Crossed out if abandoned.&lt;/li&gt;
 &lt;/ol&gt;
 

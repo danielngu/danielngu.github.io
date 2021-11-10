@@ -9,10 +9,10 @@
   <title>Jan</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2018/01/01/Jan.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -98,71 +98,71 @@
 
 <h4 id="keyboard">Keyboard</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ loadkeys us</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>loadkeys us</code></pre></figure>
 
 <h4 id="partition">Partition</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ lsblk				<span class="c1"># List block devices</span>
-$ gdisk /dev/sda		<span class="c1"># To partition /dev/sda</span>
-$ o				<span class="c1"># Either new or start over</span>
-$ y				<span class="c1"># Accept</span>
-$ n				<span class="c1"># Create new partition</span>
-$ Enter				<span class="c1"># Accept default partition number</span>
-$ Enter				<span class="c1"># Accept default first sector</span>
-$ +512M				<span class="c1"># Allocated 512MB for boot partition</span>
-$ <span class="m">8300</span>				<span class="c1"># Set type of partition or L to list</span>
-$ n				<span class="c1"># Create new partition</span>
-$ Enter				<span class="c1"># Accept default partition number</span>
-$ Enter				<span class="c1"># Accept default first sector</span>
-$ Enter				<span class="c1"># Accept default last sector</span>
-$ 8E00				<span class="c1"># Set partition type to LVM</span>
-$ w				<span class="c1"># Write change</span>
-$ y				<span class="c1"># Accept</span>
-$ cryptsetup luksFormat --type luks2 /dev/sda2	<span class="c1"># Create encrypted container</span>
-$ cryptsetup open /dev/sda2 cryptolvm		<span class="c1"># Open container</span>
-$ pvcreate /dev/mapper/cryptolvm		<span class="c1"># Create physical volume</span>
-$ vgcreate MyVol /dev/mapper/cryptolvm		<span class="c1"># Create MyVol volume group</span>
-$ lvcreate -L 60G MyVol -n home			<span class="c1"># Allocated 1/5 space for home</span>
-$ lvcreate -L 8G MyVol -n swap			<span class="c1"># Allocated 2xRAM for swap</span>
-$ lvcreate -l <span class="m">100</span>%FREE MyVol -n root		<span class="c1"># Allocated remaining for root</span>
-$ mkfs.ext4 /dev/mapper/MyVol-home		<span class="c1"># Format home</span>
-$ mkswap /dev/mapper/MyVol-swap			<span class="c1"># Format swap</span>
-$ mkfs.ext4 /dev/mapper/MyVol-root		<span class="c1"># Format root</span>
-$ swapon /dev/mapper/MyVol-swap			<span class="c1"># Mount swap</span>
-$ mount /dev/mapper/MyVol-root /mnt		<span class="c1"># Mount root</span>
-$ mkdir -pv /mnt/home				<span class="c1"># Create home directory</span>
-$ mount /dev/mapper/MyVol-home /mnt/home	<span class="c1"># Mount home</span>
-$ mkfs.ext2 /dev/sda1				<span class="c1"># Create Ext2</span>
-$ mkdir	/mnt/boot				<span class="c1"># Create boot directory</span>
-$ mount /dev/sda1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>lsblk				<span class="c"># List block devices</span>
+<span class="nv">$ </span>gdisk /dev/sda		<span class="c"># To partition /dev/sda</span>
+<span class="nv">$ </span>o				<span class="c"># Either new or start over</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+<span class="nv">$ </span>n				<span class="c"># Create new partition</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default partition number</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>+512M				<span class="c"># Allocated 512MB for boot partition</span>
+<span class="nv">$ </span>8300				<span class="c"># Set type of partition or L to list</span>
+<span class="nv">$ </span>n				<span class="c"># Create new partition</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default partition number</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default last sector</span>
+<span class="nv">$ </span>8E00				<span class="c"># Set partition type to LVM</span>
+<span class="nv">$ </span>w				<span class="c"># Write change</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+<span class="nv">$ </span>cryptsetup luksFormat <span class="nt">--type</span> luks2 /dev/sda2	<span class="c"># Create encrypted container</span>
+<span class="nv">$ </span>cryptsetup open /dev/sda2 cryptolvm		<span class="c"># Open container</span>
+<span class="nv">$ </span>pvcreate /dev/mapper/cryptolvm		<span class="c"># Create physical volume</span>
+<span class="nv">$ </span>vgcreate MyVol /dev/mapper/cryptolvm		<span class="c"># Create MyVol volume group</span>
+<span class="nv">$ </span>lvcreate <span class="nt">-L</span> 60G MyVol <span class="nt">-n</span> home			<span class="c"># Allocated 1/5 space for home</span>
+<span class="nv">$ </span>lvcreate <span class="nt">-L</span> 8G MyVol <span class="nt">-n</span> swap			<span class="c"># Allocated 2xRAM for swap</span>
+<span class="nv">$ </span>lvcreate <span class="nt">-l</span> 100%FREE MyVol <span class="nt">-n</span> root		<span class="c"># Allocated remaining for root</span>
+<span class="nv">$ </span>mkfs.ext4 /dev/mapper/MyVol-home		<span class="c"># Format home</span>
+<span class="nv">$ </span>mkswap /dev/mapper/MyVol-swap			<span class="c"># Format swap</span>
+<span class="nv">$ </span>mkfs.ext4 /dev/mapper/MyVol-root		<span class="c"># Format root</span>
+<span class="nv">$ </span>swapon /dev/mapper/MyVol-swap			<span class="c"># Mount swap</span>
+<span class="nv">$ </span>mount /dev/mapper/MyVol-root /mnt		<span class="c"># Mount root</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-pv</span> /mnt/home				<span class="c"># Create home directory</span>
+<span class="nv">$ </span>mount /dev/mapper/MyVol-home /mnt/home	<span class="c"># Mount home</span>
+<span class="nv">$ </span>mkfs.ext2 /dev/sda1				<span class="c"># Create Ext2</span>
+<span class="nv">$ </span><span class="nb">mkdir</span>	/mnt/boot				<span class="c"># Create boot directory</span>
+<span class="nv">$ </span>mount /dev/sda1 /mnt/boot			<span class="c"># Mount boot</span></code></pre></figure>
 
 <h4 id="wireless">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ wifi-menu</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>wifi-menu</code></pre></figure>
 
 <h4 id="install-base-system">Install Base System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacstrap /mnt base</code></pre></figure>
 
 <h4 id="configure-system">Configure System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ genfstab -p /mnt &gt;&gt; /mnt/etc/fstab	<span class="c1"># Generate fstab</span>
-$ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>genfstab <span class="nt">-p</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab	<span class="c"># Generate fstab</span>
+<span class="nv">$ </span>arch-chroot /mnt			<span class="c"># chroot</span></code></pre></figure>
 
 <p>Add hostname to <em>/etc/hostname</em> and <em>/etc/hosts</em></p>
 
 <p><em>/etc/hosts</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>	localhost
-<span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>	hostname.subdomain.domain	hostname</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="m">127</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">1</span>	localhost
+<span class="m">127</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">1</span>	<span class="nb">hostname</span><span class="p">.</span>subdomain<span class="p">.</span>domain	<span class="nb">hostname</span></code></pre></figure>
 
 <p>Set time zone:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /usr/share/zoneinfo/Pacific/Auckland /etc/localtime</code></pre></figure>
 
 <p>Uncomment the locale in <em>/etc/locale.gen</em></p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ locale-gen				<span class="c1"># Generate locale </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>locale-gen				<span class="c"># Generate locale </span></code></pre></figure>
 
 <p>Set locale preference by adding <em>LANG=”en_NZ.UTF-8”</em> to <em>/etc/locale.conf</em></p>
 
@@ -170,100 +170,100 @@ $ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
 
 <p>Add <em>keyboard, encrypt</em> and <em>lvm2</em> hooks to <em>/etc/mkinitcpio.conf</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>HOOKS<span class="p">=(</span>... keyboard encrypt lvm2 fsck<span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">HOOKS<span class="p">=(...</span> keyboard encrypt lvm2 fsck<span class="p">)</span></code></pre></figure>
 
 <p>mkinitcpio and set root password:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ mkinitcpio -p linux
-$ passwd</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mkinitcpio <span class="nt">-p</span> linux
+<span class="nv">$ </span>passwd</code></pre></figure>
 
 <h4 id="install-boot-loader">Install Boot Loader</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S gdisk			<span class="c1"># Prerequisite</span>
-$ pacman -S syslinux
-$ syslinux-install_update -i -a -m</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> gdisk			<span class="c"># Prerequisite</span>
+<span class="nv">$ </span>pacman <span class="nt">-S</span> syslinux
+<span class="nv">$ </span>syslinux-install_update <span class="nt">-i</span> <span class="nt">-a</span> <span class="nt">-m</span></code></pre></figure>
 
 <p><em>/boot/syslinux/syslinux.cfg</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>LABEL arch
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">LABEL arch
     MENU LABEL Arch Linux
-    LINUX ../vmlinuz<span class="p">-</span>linux
-    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2:cryptolvm rw
-    INITRD ../initramfs<span class="p">-</span>linux.img
+    LINUX <span class="p">..</span>/vmlinuz<span class="p">-</span>linux
+    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2<span class="p">:</span>cryptolvm rw
+    INITRD <span class="p">..</span>/initramfs<span class="p">-</span>linux<span class="p">.</span>img
 
 LABEL archfallback
     MENU LABEL Arch Linux Fallback
-    LINUX ../vmlinuz<span class="p">-</span>linux
-    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2:cryptolvm rw
-    INITRD ../initramfs<span class="p">-</span>linux<span class="p">-</span>fallback.img</code></pre></figure>
+    LINUX <span class="p">..</span>/vmlinuz<span class="p">-</span>linux
+    APPEND root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root cryptdevice=/</span>dev/sda2<span class="p">:</span>cryptolvm rw
+    INITRD <span class="p">..</span>/initramfs<span class="p">-</span>linux<span class="p">-</span>fallback<span class="p">.</span>img</code></pre></figure>
 
 <p><em>/etc/crypttab</em></p>
 
 <p>Append line:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>cryptolvm	<span class="sr">/dev/</span>sda2</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">cryptolvm	<span class="sr">/dev/</span>sda2</code></pre></figure>
 
 <p>Create <em>crypttab.initramfs</em></p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ cp /etc/crypttab /etc/crypttab.initramfs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cp</span> /etc/crypttab /etc/crypttab.initramfs</code></pre></figure>
 
 <h4 id="wireless-1">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S dialog wpa_supplicant</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant</code></pre></figure>
 
 <h4 id="umount-and-reboot">Umount and Reboot</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ <span class="nb">exit</span>			<span class="c1"># Exit from chroot environment</span>
-$ umount -R /mnt
-$ reboot</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">exit</span>			<span class="c"># Exit from chroot environment</span>
+<span class="nv">$ </span>umount <span class="nt">-R</span> /mnt
+<span class="nv">$ </span>reboot</code></pre></figure>
 
 <h4 id="create-new-user">Create New User</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ useradd -m -G wheel -s /bin/bash daniel
-$ passwd daniel
-$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> wheel <span class="nt">-s</span> /bin/bash daniel
+<span class="nv">$ </span>passwd daniel
+<span class="nv">$ </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> audio,network,power,scanner,storage,systemd-journal,video daniel</code></pre></figure>
 
 <p>The above creates a new user with home directory, change password and add user
 to additional groups.</p>
 
 <h4 id="wireless-2">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ wifi-menu
-$ ls /etc/netctl/			<span class="c1"># Find the wifi profile</span>
-$ netctl <span class="nb">enable</span> profile-name		<span class="c1"># profile-name as obtained above</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>wifi-menu
+<span class="nv">$ </span><span class="nb">ls</span> /etc/netctl/			<span class="c"># Find the wifi profile</span>
+<span class="nv">$ </span>netctl <span class="nb">enable </span>profile-name		<span class="c"># profile-name as obtained above</span></code></pre></figure>
 
 <h4 id="sudo">Sudo</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S sudo</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span></code></pre></figure>
 
 <p>Run visudo, edit it to restrict sudo to specific group or user.</p>
 
 <h4 id="additional-install">Additional Install</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S openssh
-$ sudo systemctl <span class="nb">enable</span> sshd.service
-$ sudo pacman -S --needed base-devel
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
-$ tar xzvf cower.tar.gz
-$ <span class="nb">cd</span> cower
-$ makepkg -s
-$ sudo pacman -U cower-&lt;version&gt;.pkg.tar.xz
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
-$ tar xzvf pacaur.tar.gz
-$ <span class="nb">cd</span> pacaur
-$ makepkg -s
-$ sudo pacman -U pacaur-&lt;version&gt;.pkg.tar.xz</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> openssh
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>sshd.service
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> <span class="nt">--needed</span> base-devel
+<span class="nv">$ </span>wget <span class="nt">-c</span> https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
+<span class="nv">$ </span><span class="nb">tar </span>xzvf cower.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>cower
+<span class="nv">$ </span>makepkg <span class="nt">-s</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-U</span> cower-&lt;version&gt;.pkg.tar.xz
+<span class="nv">$ </span>wget <span class="nt">-c</span> https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
+<span class="nv">$ </span><span class="nb">tar </span>xzvf pacaur.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>pacaur
+<span class="nv">$ </span>makepkg <span class="nt">-s</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-U</span> pacaur-&lt;version&gt;.pkg.tar.xz</code></pre></figure>
 
 <h4 id="audio">Audio</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S alsa-utils
-$ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> alsa-utils
+<span class="nv">$ </span>amixer sset Master unmute		<span class="c"># ALSA comes muted by default.</span></code></pre></figure>
 
 <h4 id="restore">Restore</h4>
 
 <p>Restore home from backup.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S - &lt; pkglist.txt	<span class="c1"># Install all packages from backup list</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> - &lt; pkglist.txt	<span class="c"># Install all packages from backup list</span></code></pre></figure>
 
 <p>Do the same for AUR with pacaur.<br />
 <br /></p>
@@ -276,24 +276,24 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 <p>Either way, install dosfstools.<br />
 I’m using FAT32 (LBA), which is also the factory default for USB stick.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ lsblk
-$ sudo fdisk /dev/sdb
-$ o
-$ n
-$ p
-$ Enter
-$ Enter
-$ Enter
-$ t
-$ c
-$ w
-$ sudo mkfs.vfat /dev/sdb1 -n DN-U-001
-$ sudo mount -o <span class="nv">gid</span><span class="o">=</span>storage,fmask<span class="o">=</span><span class="m">113</span>,dmask<span class="o">=</span><span class="m">002</span> /dev/sdb1 /mnt/usbstick
-$ sudo umount /mnt/usbstick</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>lsblk
+<span class="nv">$ </span><span class="nb">sudo </span>fdisk /dev/sdb
+<span class="nv">$ </span>o
+<span class="nv">$ </span>n
+<span class="nv">$ </span>p
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>Enter
+<span class="nv">$ </span>t
+<span class="nv">$ </span>c
+<span class="nv">$ </span>w
+<span class="nv">$ </span><span class="nb">sudo </span>mkfs.vfat /dev/sdb1 <span class="nt">-n</span> DN-U-001
+<span class="nv">$ </span><span class="nb">sudo </span>mount <span class="nt">-o</span> <span class="nv">gid</span><span class="o">=</span>storage,fmask<span class="o">=</span>113,dmask<span class="o">=</span>002 /dev/sdb1 /mnt/usbstick
+<span class="nv">$ </span><span class="nb">sudo </span>umount /mnt/usbstick</code></pre></figure>
 
 <p>Alternatively:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo mount -o <span class="nv">uid</span><span class="o">=</span>daniel /dev/sdb1 /mnt/usbstick</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>mount <span class="nt">-o</span> <span class="nv">uid</span><span class="o">=</span>daniel /dev/sdb1 /mnt/usbstick</code></pre></figure>
 
 <p>References:</p>
 <p />

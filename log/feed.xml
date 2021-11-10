@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-09-29T16:06:32+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-11-10T19:40:58+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#bujo-1&quot;&gt;Bullet Journal (with Roam)&lt;/a&gt;&lt;/li&gt;
@@ -12,12 +12,12 @@
 
 &lt;p&gt;&lt;strong&gt;Keys&lt;/strong&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;\+		Journaled item
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\+		Journaled item
 date/time	Timestamped
 @		Scheduled item
 -&amp;gt;		Migrated
 &amp;lt;-		Future Logged
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
 
@@ -176,76 +176,76 @@ task.&lt;/p&gt;
 
 &lt;h4 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;partition&quot;&gt;Partition&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ lsblk				&lt;span class=&quot;c1&quot;&gt;# List block devices&lt;/span&gt;
-$ gdisk /dev/nvme0n1		&lt;span class=&quot;c1&quot;&gt;# To partition /dev/nvme0n1&lt;/span&gt;
-$ o				&lt;span class=&quot;c1&quot;&gt;# Either new or start over&lt;/span&gt;
-$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
-$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ +512M				&lt;span class=&quot;c1&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
-$ EF00				&lt;span class=&quot;c1&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
-$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default last sector&lt;/span&gt;
-$ &lt;span class=&quot;m&quot;&gt;8300&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;# Set partition type to LVM&lt;/span&gt;
-$ w				&lt;span class=&quot;c1&quot;&gt;# Write change&lt;/span&gt;
-$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
-$ cryptsetup luksFormat --type luks2 /dev/nvme0n1p2	&lt;span class=&quot;c1&quot;&gt;# Create encrypted container&lt;/span&gt;
-$ cryptsetup open /dev/nvme0n1p2 cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Open container&lt;/span&gt;
-$ pvcreate /dev/mapper/cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Create physical volume&lt;/span&gt;
-$ vgcreate MyVol /dev/mapper/cryptolvm			&lt;span class=&quot;c1&quot;&gt;# Create MyVol volume group&lt;/span&gt;
-$ lvcreate -L 2G MyVol -n swap				&lt;span class=&quot;c1&quot;&gt;# Allocated 2GB for swap&lt;/span&gt;
-$ lvcreate -l &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;%FREE MyVol -n root			&lt;span class=&quot;c1&quot;&gt;# Allocated remaining for root&lt;/span&gt;
-$ mkswap /dev/mapper/MyVol-swap				&lt;span class=&quot;c1&quot;&gt;# Format swap&lt;/span&gt;
-$ mkfs.ext4 /dev/mapper/MyVol-root			&lt;span class=&quot;c1&quot;&gt;# Format root&lt;/span&gt;
-$ swapon /dev/mapper/MyVol-swap				&lt;span class=&quot;c1&quot;&gt;# Mount swap&lt;/span&gt;
-$ mount /dev/mapper/MyVol-root /mnt			&lt;span class=&quot;c1&quot;&gt;# Mount root&lt;/span&gt;
-$ mkfs.vfat -F32 /dev/nvme0n1p1				&lt;span class=&quot;c1&quot;&gt;# Format boot&lt;/span&gt;
-$ mkdir	/mnt/boot					&lt;span class=&quot;c1&quot;&gt;# Create boot directory&lt;/span&gt;
-$ mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk				&lt;span class=&quot;c&quot;&gt;# List block devices&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdisk /dev/nvme0n1		&lt;span class=&quot;c&quot;&gt;# To partition /dev/nvme0n1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o				&lt;span class=&quot;c&quot;&gt;# Either new or start over&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+512M				&lt;span class=&quot;c&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;EF00				&lt;span class=&quot;c&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8300				&lt;span class=&quot;c&quot;&gt;# Set partition type to LVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w				&lt;span class=&quot;c&quot;&gt;# Write change&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup luksFormat &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; luks2 /dev/nvme0n1p2	&lt;span class=&quot;c&quot;&gt;# Create encrypted container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup open /dev/nvme0n1p2 cryptolvm			&lt;span class=&quot;c&quot;&gt;# Open container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pvcreate /dev/mapper/cryptolvm			&lt;span class=&quot;c&quot;&gt;# Create physical volume&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vgcreate MyVol /dev/mapper/cryptolvm			&lt;span class=&quot;c&quot;&gt;# Create MyVol volume group&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 2G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; swap				&lt;span class=&quot;c&quot;&gt;# Allocated 2GB for swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 100%FREE MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; root			&lt;span class=&quot;c&quot;&gt;# Allocated remaining for root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkswap /dev/mapper/MyVol-swap				&lt;span class=&quot;c&quot;&gt;# Format swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-root			&lt;span class=&quot;c&quot;&gt;# Format root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swapon /dev/mapper/MyVol-swap				&lt;span class=&quot;c&quot;&gt;# Mount swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-root /mnt			&lt;span class=&quot;c&quot;&gt;# Mount root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.vfat &lt;span class=&quot;nt&quot;&gt;-F32&lt;/span&gt; /dev/nvme0n1p1				&lt;span class=&quot;c&quot;&gt;# Format boot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt;	/mnt/boot					&lt;span class=&quot;c&quot;&gt;# Create boot directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_1&quot;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_2&quot;&gt;[2]&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;#2021-03-22&quot;&gt;2021-03-22&lt;/a&gt; &lt;a href=&quot;#2021-03-22_3&quot;&gt;[3]&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;configure-system&quot;&gt;Configure System&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ genfstab -pU /mnt &amp;gt;&amp;gt; /mnt/etc/fstab	&lt;span class=&quot;c1&quot;&gt;# Generate fstab&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-pU&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Edit &lt;em&gt;/mnt/etc/fstab&lt;/em&gt; and change &lt;em&gt;relatime&lt;/em&gt; to &lt;em&gt;noatime&lt;/em&gt; for non-boot partitions.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Add hostname to &lt;em&gt;/etc/hostname&lt;/em&gt; and &lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
-&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	hostname.subdomain.domain	hostname&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
+&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;subdomain&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;domain	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Set time zone:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Uncomment the locale in &lt;em&gt;/etc/locale.gen&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ locale-gen				&lt;span class=&quot;c1&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Set locale preference by adding &lt;em&gt;LANG=”en_NZ.UTF-8”&lt;/em&gt; to &lt;em&gt;/etc/locale.conf&lt;/em&gt;&lt;/p&gt;
 
@@ -256,20 +256,20 @@ $ mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot
 &lt;p&gt;Add &lt;em&gt;encrypt lvm2 resume&lt;/em&gt; hooks to &lt;em&gt;/etc/mkinitcpio.conf&lt;/em&gt; before &lt;em&gt;filesystems&lt;/em&gt;
 and after &lt;em&gt;udev&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;mkinitcpio and set root password:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ mkinitcpio -p linux
-$ passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;install-boot-loader&quot;&gt;Install Boot Loader&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ bootctl --path&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/boot install&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bootctl &lt;span class=&quot;nt&quot;&gt;--path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/boot &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Edit &lt;em&gt;/boot/loader/loader.conf&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;default arch
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;default arch
 &lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
 editor &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -277,41 +277,41 @@ editor &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&l
 Use &lt;em&gt;blkid&lt;/em&gt; to find the UUID for &lt;em&gt;/dev/nvme0n1p2&lt;/em&gt; and replace the &amp;lt;UUID&amp;gt; below
 without the bracket.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;title&lt;/span&gt; Arch Linux
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;nb&quot;&gt;title&lt;/span&gt; Arch Linux
 linux /vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
-initrd /initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux.img
-&lt;span class=&quot;k&quot;&gt;options&lt;/span&gt; cryptdevice&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:MyVol root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root resume=/&lt;/span&gt;dev&lt;span class=&quot;sr&quot;&gt;/mapper/&lt;/span&gt;MyVol&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;swap&lt;/span&gt; rw&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+initrd /initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;img
+&lt;span class=&quot;k&quot;&gt;options&lt;/span&gt; cryptdevice&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;MyVol root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root resume=/&lt;/span&gt;dev&lt;span class=&quot;sr&quot;&gt;/mapper/&lt;/span&gt;MyVol&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;swap rw&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;wireless-1&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;umount-and-reboot&quot;&gt;Umount and Reboot&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;# Exit from chroot environment&lt;/span&gt;
-$ umount -R /mnt
-$ reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;create-new-user&quot;&gt;Create New User&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ useradd -m -G wheel -s /bin/bash daniel
-$ passwd daniel
-$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The above creates a new user with home directory, change password and add user
 to additional groups.&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless-2&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu
-$ ls /etc/netctl/			&lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
-$ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name		&lt;span class=&quot;c1&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Alternatively, a better approach is as follows rather than enabling profile:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S ifplugd					&lt;span class=&quot;c1&quot;&gt;# Wired&lt;/span&gt;
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-ifplugd@interface.service	&lt;span class=&quot;c1&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-auto@interface.service		&lt;span class=&quot;c1&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; ifplugd					&lt;span class=&quot;c&quot;&gt;# Wired&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;netctl-ifplugd@interface.service	&lt;span class=&quot;c&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;netctl-auto@interface.service		&lt;span class=&quot;c&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;References:&lt;/p&gt;
 &lt;p /&gt;
@@ -321,7 +321,7 @@ $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-aut
 
 &lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S sudo&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
 
@@ -331,14 +331,14 @@ $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; netctl-aut
 
 &lt;h4 id=&quot;audio&quot;&gt;Audio&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S alsa-utils
-$ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; alsa-utils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;amixer sset Master unmute		&lt;span class=&quot;c&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;restore&quot;&gt;Restore&lt;/h4&gt;
 
 &lt;p&gt;Restore home from backup.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S - &amp;lt; pkglist.txt	&lt;span class=&quot;c1&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; - &amp;lt; pkglist.txt	&lt;span class=&quot;c&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Do the same for AUR with &lt;em&gt;yay&lt;/em&gt;.&lt;br /&gt;&lt;/p&gt;
 
@@ -348,9 +348,9 @@ $ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted
 
 &lt;p&gt;Edit &lt;em&gt;/etc/bluetooth/main.conf&lt;/em&gt; and add the following line.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;AutoEnable&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;true&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;AutoEnable&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;true&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; bluetooth.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;bluetooth.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Enable bluetooth service then pair devices.&lt;/p&gt;
 
@@ -358,12 +358,12 @@ $ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted
 
 &lt;p&gt;Edit &lt;em&gt;/etc/pulse/system.pa&lt;/em&gt; and add the following lines.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;policy
-&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;discover&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;policy
+load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;discover&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Edit &lt;em&gt;/etc/pulse/default.pa&lt;/em&gt; and add the following line.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;switch&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;connect&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;switch&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;connect&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run &lt;em&gt;sudo usermod -a -G lp daniel&lt;/em&gt; to add to lp group.&lt;/p&gt;
 
@@ -373,9 +373,9 @@ $ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted
 
 &lt;p&gt;Install, enable and start CUPS&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S cups
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; org.cups.cupsd.service
-$ sudo systemctl start org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; cups
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;org.cups.cupsd.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run &lt;em&gt;sudo usermod -a -G cups daniel&lt;/em&gt; to add to &lt;em&gt;cups&lt;/em&gt; group.&lt;/p&gt;
 
@@ -383,8 +383,8 @@ $ sudo systemctl start org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figur
 
 &lt;p&gt;At this point, re-logon for the permission to be effective.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S brother-mfc-l2713dw
-$ yay -S brscan4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; brother-mfc-l2713dw
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; brscan4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Install printer and scanner drivers.&lt;/p&gt;
 
@@ -402,7 +402,7 @@ to Off&lt;/em&gt;. And again drop down &lt;em&gt;Administration&lt;/em&gt; and s
 
 &lt;p&gt;For scanning:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brsaneconfig4 -a &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;name your device&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;model name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xx.xx.xx.xx&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brsaneconfig4 &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;name your device&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;model name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xx.xx.xx.xx&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Use gscan2pdf:&lt;/p&gt;
 
@@ -419,27 +419,27 @@ Just do a test print, that will activate the auto start on boot.&lt;/p&gt;
 
 &lt;h4 id=&quot;ios&quot;&gt;iOS&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ usbmuxd -f -v
-$ idevice_id -l
-$ ideviceinfo
-$ ideviceinstaller -l
-$ ifuse ~/iPhone
-$ umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usbmuxd &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;idevice_id &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ideviceinfo
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ideviceinstaller &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ifuse ~/iPhone
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;ntp&quot;&gt;NTP&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; ntpd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;ntpd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3 id=&quot;additional-install--configuration-for-macbook--laptop-only&quot;&gt;Additional Install / Configuration for MacBook / Laptop Only&lt;/h3&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop thermald cpupower mbpfan-git tlp
-$ powertop --calibrate
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; cpupower.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; mbpfan.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; tlp.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; powertop thermald cpupower mbpfan-git tlp
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;powertop &lt;span class=&quot;nt&quot;&gt;--calibrate&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;powertop.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;cpupower.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mbpfan.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
 &lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
@@ -464,76 +464,76 @@ $ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; tlp-sleep.
 
 &lt;p&gt;For dual boot, in my case, tested working with Macbook Air.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;sda1 EFI /boot &lt;span class=&quot;c1&quot;&gt;# This is Mac&amp;#39;s EFI, sharing it with Linux)&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sda1 EFI /boot &lt;span class=&quot;c&quot;&gt;# This is Mac's EFI, sharing it with Linux)&lt;/span&gt;
 sad2 MAC
-sda3 EFI       &lt;span class=&quot;c1&quot;&gt;# Left blank&lt;/span&gt;
+sda3 EFI       &lt;span class=&quot;c&quot;&gt;# Left blank&lt;/span&gt;
 sda4 LUKS
-&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;-MyVol
-  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;- MyVol-swap &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;SWAP&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;- MyVol-root /&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+|-MyVol
+  |- MyVol-swap &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;SWAP]
+  |- MyVol-root /&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;2-wireless&quot;&gt;&lt;a name=&quot;2021-03-22_2&quot;&gt;&lt;/a&gt;[2] Wireless&lt;/h4&gt;
 
 &lt;p&gt;netctl is no longer included by default.
 Use ethernet or install netctl package.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;3-install-base-system&quot;&gt;&lt;a name=&quot;2021-03-22_3&quot;&gt;&lt;/a&gt;[3] Install Base System&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
 default so have to install them explicitly.&lt;/p&gt;
 
 &lt;h4 id=&quot;4-additional-install--configuration-for-macbook--laptop-only&quot;&gt;&lt;a name=&quot;2021-03-22_4&quot;&gt;&lt;/a&gt;[4] Additional Install / Configuration for MacBook / Laptop Only&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ yay -S powertop laptop-mode-tools cpupower thermald mbpfan-git
-$ sudo pacman -S acpi acpid
-$ powertop --calibrate
-$ sudo vim /etc/systemd/system/powertop.service
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; powertop laptop-mode-tools cpupower thermald mbpfan-git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; acpi acpid
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;powertop &lt;span class=&quot;nt&quot;&gt;--calibrate&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/systemd/system/powertop.service
 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit]
 &lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Powertop tunings
 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service]
 &lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;oneshot
-&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/powertop --auto-tune
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/powertop &lt;span class=&quot;nt&quot;&gt;--auto-tune&lt;/span&gt;
 
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install]
 &lt;span class=&quot;nv&quot;&gt;WantedBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;multi-user.target
 
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; powertop.service
-$ sudo vim /etc/laptop-mode/laptop-mode.conf
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;powertop.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/laptop-mode.conf
 
-&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_ON_AC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_ON_AC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
 
-$ sudo vim /etc/laptop-mode/conf.d/cpufreq.conf
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/conf.d/cpufreq.conf
 
-&lt;span class=&quot;nv&quot;&gt;CONTROL_CPU_FREQUENCY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;CONTROL_CPU_FREQUENCY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
 
-$ sudo vim /etc/laptop-mode/conf.d/intel_pstate.conf
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/conf.d/intel_pstate.conf
 
-&lt;span class=&quot;nv&quot;&gt;CONTROL_INTEL_PSTATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;CONTROL_INTEL_PSTATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
 
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; laptop-mode.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; acpid.service
-$ sudo vim /etc/default/cpupower
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;laptop-mode.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;acpid.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/default/cpupower
 
-&lt;span class=&quot;nv&quot;&gt;governor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;powersave&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;max_freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;1.3GHz&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;governor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'powersave'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;max_freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.3GHz&quot;&lt;/span&gt;
 
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; cpupower.service
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; thermald.service
-$ sudo vim /usr/lib/systemd/system/mbpfan.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;cpupower.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /usr/lib/systemd/system/mbpfan.service
 
-&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/sbin/mbpfan -f
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/sbin/mbpfan &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
 
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; mbpfan.service
-$ sudo pacman -S broadcom-wl-dkms linux-headers &lt;span class=&quot;c1&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
-$ sudo rmmod b43 ssb bcma wl                    &lt;span class=&quot;c1&quot;&gt;# Either this or reboot&lt;/span&gt;
-$ sudo modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>/log/2018/02/01/Feb</id><content type="html" xml:base="/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mbpfan.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; broadcom-wl-dkms linux-headers &lt;span class=&quot;c&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;rmmod b43 ssb bcma wl                    &lt;span class=&quot;c&quot;&gt;# Either this or reboot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Feb</title><link href="/log/2018/02/01/Feb.html" rel="alternate" type="text/html" title="Feb" /><published>2018-02-01T13:00:00+13:00</published><updated>2018-02-01T13:00:00+13:00</updated><id>/log/2018/02/01/Feb</id><content type="html" xml:base="/log/2018/02/01/Feb.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#icewind-1&quot;&gt;Icewind Dale Enhanced Edition&lt;/a&gt;&lt;/li&gt;
@@ -553,33 +553,33 @@ $ sudo modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><nam
 &lt;p&gt;It’s a straight install but to run, it needs the following dependencies as 
 listed on their site.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;libc6:i386
-libasound2:i386
-libasound2&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;data:i386
-libasound2&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;plugins:i386
-libjson&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;c2:i386
-libopenal1:i386
-libstdc&lt;span class=&quot;p&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;:i386
-libssl1.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;:i386
-libexpat1:i386
-libx11&lt;span class=&quot;m&quot;&gt;-6&lt;/span&gt;:i386
-libxau6:i386
-libxcb1:i386
-libxcursor1:i386
-libxdmcp6:i386
-libxext6:i386
-libxfixes3:i386
-libxinerama1:i386
-libxrandr2:i386
-libxrender1:i386
-libjson0:i386&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;libc6&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libasound2&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libasound2&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;data&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libasound2&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;plugins&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libjson&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;c2&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libopenal1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libstdc&lt;span class=&quot;p&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libssl1&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libexpat1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libx11&lt;span class=&quot;m&quot;&gt;-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxau6&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxcb1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxcursor1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxdmcp6&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxext6&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxfixes3&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxinerama1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxrandr2&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libxrender1&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386
+libjson0&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;i386&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;To install Arch’s 32-bit equivalent, start off by uncommenting the
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Multilib&quot;&gt;multilib&lt;/a&gt; section in 
 &lt;em&gt;/etc/pacman.conf&lt;/em&gt;.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;[multilib]
-Include &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/etc/&lt;/span&gt;pacman.&lt;span class=&quot;k&quot;&gt;d&lt;/span&gt;/mirrorlist&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;multilib&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+Include &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/etc/&lt;/span&gt;pacman&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;d&lt;/span&gt;/mirrorlist&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;pacman -Sl multilib&lt;/em&gt; to list all packages in the multilib repository.&lt;/p&gt;
 
@@ -593,13 +593,13 @@ Include &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&q
 
 &lt;p&gt;Dependencies:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;glibc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;glibc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;lib32-json-glib&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Dependencies:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;gcc&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libs
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;gcc&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libs
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;pcre
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libffi
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;util&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
@@ -608,8 +608,8 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;glib2&lt;/code&gt;&lt;/pre&gt
 
 &lt;p&gt;Link:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;lib32
-sudo ln &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;s libjson&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;glib&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;so&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;400&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; libjson.&lt;span class=&quot;k&quot;&gt;so&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;lib32
+sudo ln &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;s libjson&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;glib&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; libjson&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;lib32-openal&lt;/em&gt;&lt;/p&gt;
 
@@ -617,7 +617,7 @@ sudo ln &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;s libjson&lt;span class=&q
 
 &lt;p&gt;Dependencies:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libpciaccess
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libpciaccess
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libdrm
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libxdmcp
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libxau
@@ -646,13 +646,13 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libglvnd&lt;/code&gt;&lt;/pre
 
 &lt;p&gt;Dependencies:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libxrender&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libxrender&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;lib32-libpulse&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Dependencies:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;attr
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;attr
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libcap
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libgpg&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;error
 lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libgcrypt
@@ -692,71 +692,71 @@ lib32&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;libsndfile&lt;/code&gt;&lt;/p
 
 &lt;h4 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;partition&quot;&gt;Partition&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ lsblk				&lt;span class=&quot;c1&quot;&gt;# List block devices&lt;/span&gt;
-$ gdisk /dev/sda		&lt;span class=&quot;c1&quot;&gt;# To partition /dev/sda&lt;/span&gt;
-$ o				&lt;span class=&quot;c1&quot;&gt;# Either new or start over&lt;/span&gt;
-$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
-$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ +512M				&lt;span class=&quot;c1&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
-$ &lt;span class=&quot;m&quot;&gt;8300&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
-$ n				&lt;span class=&quot;c1&quot;&gt;# Create new partition&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default partition number&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ Enter				&lt;span class=&quot;c1&quot;&gt;# Accept default last sector&lt;/span&gt;
-$ 8E00				&lt;span class=&quot;c1&quot;&gt;# Set partition type to LVM&lt;/span&gt;
-$ w				&lt;span class=&quot;c1&quot;&gt;# Write change&lt;/span&gt;
-$ y				&lt;span class=&quot;c1&quot;&gt;# Accept&lt;/span&gt;
-$ cryptsetup luksFormat --type luks2 /dev/sda2	&lt;span class=&quot;c1&quot;&gt;# Create encrypted container&lt;/span&gt;
-$ cryptsetup open /dev/sda2 cryptolvm		&lt;span class=&quot;c1&quot;&gt;# Open container&lt;/span&gt;
-$ pvcreate /dev/mapper/cryptolvm		&lt;span class=&quot;c1&quot;&gt;# Create physical volume&lt;/span&gt;
-$ vgcreate MyVol /dev/mapper/cryptolvm		&lt;span class=&quot;c1&quot;&gt;# Create MyVol volume group&lt;/span&gt;
-$ lvcreate -L 60G MyVol -n home			&lt;span class=&quot;c1&quot;&gt;# Allocated 1/5 space for home&lt;/span&gt;
-$ lvcreate -L 8G MyVol -n swap			&lt;span class=&quot;c1&quot;&gt;# Allocated 2xRAM for swap&lt;/span&gt;
-$ lvcreate -l &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;%FREE MyVol -n root		&lt;span class=&quot;c1&quot;&gt;# Allocated remaining for root&lt;/span&gt;
-$ mkfs.ext4 /dev/mapper/MyVol-home		&lt;span class=&quot;c1&quot;&gt;# Format home&lt;/span&gt;
-$ mkswap /dev/mapper/MyVol-swap			&lt;span class=&quot;c1&quot;&gt;# Format swap&lt;/span&gt;
-$ mkfs.ext4 /dev/mapper/MyVol-root		&lt;span class=&quot;c1&quot;&gt;# Format root&lt;/span&gt;
-$ swapon /dev/mapper/MyVol-swap			&lt;span class=&quot;c1&quot;&gt;# Mount swap&lt;/span&gt;
-$ mount /dev/mapper/MyVol-root /mnt		&lt;span class=&quot;c1&quot;&gt;# Mount root&lt;/span&gt;
-$ mkdir -pv /mnt/home				&lt;span class=&quot;c1&quot;&gt;# Create home directory&lt;/span&gt;
-$ mount /dev/mapper/MyVol-home /mnt/home	&lt;span class=&quot;c1&quot;&gt;# Mount home&lt;/span&gt;
-$ mkfs.ext2 /dev/sda1				&lt;span class=&quot;c1&quot;&gt;# Create Ext2&lt;/span&gt;
-$ mkdir	/mnt/boot				&lt;span class=&quot;c1&quot;&gt;# Create boot directory&lt;/span&gt;
-$ mount /dev/sda1 /mnt/boot			&lt;span class=&quot;c1&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk				&lt;span class=&quot;c&quot;&gt;# List block devices&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdisk /dev/sda		&lt;span class=&quot;c&quot;&gt;# To partition /dev/sda&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o				&lt;span class=&quot;c&quot;&gt;# Either new or start over&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+512M				&lt;span class=&quot;c&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8300				&lt;span class=&quot;c&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8E00				&lt;span class=&quot;c&quot;&gt;# Set partition type to LVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w				&lt;span class=&quot;c&quot;&gt;# Write change&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup luksFormat &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; luks2 /dev/sda2	&lt;span class=&quot;c&quot;&gt;# Create encrypted container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup open /dev/sda2 cryptolvm		&lt;span class=&quot;c&quot;&gt;# Open container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pvcreate /dev/mapper/cryptolvm		&lt;span class=&quot;c&quot;&gt;# Create physical volume&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vgcreate MyVol /dev/mapper/cryptolvm		&lt;span class=&quot;c&quot;&gt;# Create MyVol volume group&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 60G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; home			&lt;span class=&quot;c&quot;&gt;# Allocated 1/5 space for home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 8G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; swap			&lt;span class=&quot;c&quot;&gt;# Allocated 2xRAM for swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 100%FREE MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; root		&lt;span class=&quot;c&quot;&gt;# Allocated remaining for root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-home		&lt;span class=&quot;c&quot;&gt;# Format home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkswap /dev/mapper/MyVol-swap			&lt;span class=&quot;c&quot;&gt;# Format swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-root		&lt;span class=&quot;c&quot;&gt;# Format root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swapon /dev/mapper/MyVol-swap			&lt;span class=&quot;c&quot;&gt;# Mount swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-root /mnt		&lt;span class=&quot;c&quot;&gt;# Mount root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-pv&lt;/span&gt; /mnt/home				&lt;span class=&quot;c&quot;&gt;# Create home directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-home /mnt/home	&lt;span class=&quot;c&quot;&gt;# Mount home&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext2 /dev/sda1				&lt;span class=&quot;c&quot;&gt;# Create Ext2&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt;	/mnt/boot				&lt;span class=&quot;c&quot;&gt;# Create boot directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sda1 /mnt/boot			&lt;span class=&quot;c&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacstrap /mnt base&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;configure-system&quot;&gt;Configure System&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ genfstab -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab	&lt;span class=&quot;c1&quot;&gt;# Generate fstab&lt;/span&gt;
-$ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Add hostname to &lt;em&gt;/etc/hostname&lt;/em&gt; and &lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
-&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	hostname.subdomain.domain	hostname&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
+&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;subdomain&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;domain	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Set time zone:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Uncomment the locale in &lt;em&gt;/etc/locale.gen&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ locale-gen				&lt;span class=&quot;c1&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Set locale preference by adding &lt;em&gt;LANG=”en_NZ.UTF-8”&lt;/em&gt; to &lt;em&gt;/etc/locale.conf&lt;/em&gt;&lt;/p&gt;
 
@@ -764,100 +764,100 @@ $ arch-chroot /mnt			&lt;span class=&quot;c1&quot;&gt;# chroot&lt;/span&gt;&lt;/
 
 &lt;p&gt;Add &lt;em&gt;keyboard, encrypt&lt;/em&gt; and &lt;em&gt;lvm2&lt;/em&gt; hooks to &lt;em&gt;/etc/mkinitcpio.conf&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;... keyboard encrypt lvm2 fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(...&lt;/span&gt; keyboard encrypt lvm2 fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;mkinitcpio and set root password:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ mkinitcpio -p linux
-$ passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;install-boot-loader&quot;&gt;Install Boot Loader&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S gdisk			&lt;span class=&quot;c1&quot;&gt;# Prerequisite&lt;/span&gt;
-$ pacman -S syslinux
-$ syslinux-install_update -i -a -m&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gdisk			&lt;span class=&quot;c&quot;&gt;# Prerequisite&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; syslinux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;syslinux-install_update &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;/boot/syslinux/syslinux.cfg&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;LABEL arch
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;LABEL arch
     MENU LABEL Arch Linux
-    LINUX ../vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
-    APPEND root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root cryptdevice=/&lt;/span&gt;dev/sda2:cryptolvm rw
-    INITRD ../initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux.img
+    LINUX &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;/vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
+    APPEND root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root cryptdevice=/&lt;/span&gt;dev/sda2&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;cryptolvm rw
+    INITRD &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;/initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;img
 
 LABEL archfallback
     MENU LABEL Arch Linux Fallback
-    LINUX ../vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
-    APPEND root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root cryptdevice=/&lt;/span&gt;dev/sda2:cryptolvm rw
-    INITRD ../initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;fallback.img&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+    LINUX &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;/vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
+    APPEND root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root cryptdevice=/&lt;/span&gt;dev/sda2&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;cryptolvm rw
+    INITRD &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;/initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;fallback&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;img&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/crypttab&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Append line:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;cryptolvm	&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;sda2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;cryptolvm	&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;sda2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Create &lt;em&gt;crypttab.initramfs&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ cp /etc/crypttab /etc/crypttab.initramfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /etc/crypttab /etc/crypttab.initramfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;wireless-1&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;umount-and-reboot&quot;&gt;Umount and Reboot&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;# Exit from chroot environment&lt;/span&gt;
-$ umount -R /mnt
-$ reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;create-new-user&quot;&gt;Create New User&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ useradd -m -G wheel -s /bin/bash daniel
-$ passwd daniel
-$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The above creates a new user with home directory, change password and add user
 to additional groups.&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless-2&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ wifi-menu
-$ ls /etc/netctl/			&lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
-$ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name		&lt;span class=&quot;c1&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S sudo&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
 
 &lt;h4 id=&quot;additional-install&quot;&gt;Additional Install&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S openssh
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; sshd.service
-$ sudo pacman -S --needed base-devel
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
-$ tar xzvf cower.tar.gz
-$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; cower
-$ makepkg -s
-$ sudo pacman -U cower-&amp;lt;version&amp;gt;.pkg.tar.xz
-$ wget -c https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
-$ tar xzvf pacaur.tar.gz
-$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; pacaur
-$ makepkg -s
-$ sudo pacman -U pacaur-&amp;lt;version&amp;gt;.pkg.tar.xz&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; openssh
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;sshd.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--needed&lt;/span&gt; base-devel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xzvf cower.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;cower
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;makepkg &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; cower-&amp;lt;version&amp;gt;.pkg.tar.xz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xzvf pacaur.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;pacaur
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;makepkg &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-U&lt;/span&gt; pacaur-&amp;lt;version&amp;gt;.pkg.tar.xz&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;audio&quot;&gt;Audio&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S alsa-utils
-$ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; alsa-utils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;amixer sset Master unmute		&lt;span class=&quot;c&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;restore&quot;&gt;Restore&lt;/h4&gt;
 
 &lt;p&gt;Restore home from backup.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S - &amp;lt; pkglist.txt	&lt;span class=&quot;c1&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; - &amp;lt; pkglist.txt	&lt;span class=&quot;c&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Do the same for AUR with pacaur.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -870,24 +870,24 @@ $ amixer sset Master unmute		&lt;span class=&quot;c1&quot;&gt;# ALSA comes muted
 &lt;p&gt;Either way, install dosfstools.&lt;br /&gt;
 I’m using FAT32 (LBA), which is also the factory default for USB stick.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ lsblk
-$ sudo fdisk /dev/sdb
-$ o
-$ n
-$ p
-$ Enter
-$ Enter
-$ Enter
-$ t
-$ c
-$ w
-$ sudo mkfs.vfat /dev/sdb1 -n DN-U-001
-$ sudo mount -o &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;storage,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;113&lt;/span&gt;,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;002&lt;/span&gt; /dev/sdb1 /mnt/usbstick
-$ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk /dev/sdb
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;t
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;c
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkfs.vfat /dev/sdb1 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; DN-U-001
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;gid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;storage,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;113,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;002 /dev/sdb1 /mnt/usbstick
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Alternatively:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo mount -o &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;daniel /dev/sdb1 /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;daniel /dev/sdb1 /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;References:&lt;/p&gt;
 &lt;p /&gt;
@@ -905,13 +905,13 @@ $ sudo umount /mnt/usbstick&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;backup&quot;&gt;Backup&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo dd &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img    &lt;span class=&quot;c1&quot;&gt;# backup&lt;/span&gt;
-$ sudo dd &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c1&quot;&gt;# restore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img    &lt;span class=&quot;c&quot;&gt;# backup&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;raspbian.img &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c&quot;&gt;# restore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;or&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo dd &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; gzip &amp;gt; rasbian.img.gz             &lt;span class=&quot;c1&quot;&gt;# backup&lt;/span&gt;
-$ gunzip --stdout rasbian.img.gz &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sudo dd &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c1&quot;&gt;# restore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde | &lt;span class=&quot;nb&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; rasbian.img.gz             &lt;span class=&quot;c&quot;&gt;# backup&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;gunzip&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--stdout&lt;/span&gt; rasbian.img.gz | &lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sde    &lt;span class=&quot;c&quot;&gt;# restore&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Reference:
 &lt;a href=&quot;https://www.raspberrypi.org/documentation/linux/filesystem/backup.md&quot;&gt;Backups&lt;/a&gt;&lt;/p&gt;
@@ -924,76 +924,76 @@ page.&lt;/p&gt;
 
 &lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ fdisk /dev/sde
-$ o                      &lt;span class=&quot;c1&quot;&gt;# Clear out any partitions on the drive&lt;/span&gt;
-$ p                      &lt;span class=&quot;c1&quot;&gt;# List partitions&lt;/span&gt;
-$ n                      &lt;span class=&quot;c1&quot;&gt;# New partition&lt;/span&gt;
-$ p                      &lt;span class=&quot;c1&quot;&gt;# Primary&lt;/span&gt;
-$ &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;                      &lt;span class=&quot;c1&quot;&gt;# First partition on drive&lt;/span&gt;
-$ Enter                  &lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ +100M                  &lt;span class=&quot;c1&quot;&gt;# 100MB for boot partition&lt;/span&gt;
-$ t                      &lt;span class=&quot;c1&quot;&gt;# Partition type&lt;/span&gt;
-$ c                      &lt;span class=&quot;c1&quot;&gt;# Set partition type to W95 FAT32 (LBA)&lt;/span&gt;
-$ n                      &lt;span class=&quot;c1&quot;&gt;# New partition&lt;/span&gt;
-$ p                      &lt;span class=&quot;c1&quot;&gt;# Primary&lt;/span&gt;
-$ &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;                      &lt;span class=&quot;c1&quot;&gt;# Second partition on drive&lt;/span&gt;
-$ Enter                  &lt;span class=&quot;c1&quot;&gt;# Accept default first sector&lt;/span&gt;
-$ Enter                  &lt;span class=&quot;c1&quot;&gt;# Accept default last sector&lt;/span&gt;
-$ mkfs.vfat /dev/sde1    &lt;span class=&quot;c1&quot;&gt;# Create and mount the FAT filesystem&lt;/span&gt;
-$ mkdir boot
-$ mount /dev/sde1 boot
-$ mkfs.ext4 /dev/sde2    &lt;span class=&quot;c1&quot;&gt;# Create and mount the ext4 filesystem&lt;/span&gt;
-$ mkdir root
-$ mount /dev/sde2 root
-$ wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
-$ bsdtar -xpf ArchLinuxARM-rpi-2-latest.tar.gz -C root
-$ sync
-$ mv root/boot/* boot    &lt;span class=&quot;c1&quot;&gt;# Move boot files to the first partition&lt;/span&gt;
-$ umount boot root       &lt;span class=&quot;c1&quot;&gt;# Unmount the two partitions&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fdisk /dev/sde
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o                      &lt;span class=&quot;c&quot;&gt;# Clear out any partitions on the drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# List partitions&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n                      &lt;span class=&quot;c&quot;&gt;# New partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# Primary&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;1                      &lt;span class=&quot;c&quot;&gt;# First partition on drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+100M                  &lt;span class=&quot;c&quot;&gt;# 100MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;t                      &lt;span class=&quot;c&quot;&gt;# Partition type&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;c                      &lt;span class=&quot;c&quot;&gt;# Set partition type to W95 FAT32 (LBA)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n                      &lt;span class=&quot;c&quot;&gt;# New partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;p                      &lt;span class=&quot;c&quot;&gt;# Primary&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;2                      &lt;span class=&quot;c&quot;&gt;# Second partition on drive&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter                  &lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.vfat /dev/sde1    &lt;span class=&quot;c&quot;&gt;# Create and mount the FAT filesystem&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;boot
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sde1 boot
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/sde2    &lt;span class=&quot;c&quot;&gt;# Create and mount the ext4 filesystem&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/sde2 root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bsdtar &lt;span class=&quot;nt&quot;&gt;-xpf&lt;/span&gt; ArchLinuxARM-rpi-2-latest.tar.gz &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; root
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;root/boot/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; boot    &lt;span class=&quot;c&quot;&gt;# Move boot files to the first partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount boot root       &lt;span class=&quot;c&quot;&gt;# Unmount the two partitions&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;default&quot;&gt;Default&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;user: alarm
-password: alarm
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;user&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; alarm
+password&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; alarm
 
-user: root
-password: root&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+user&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; root
+password&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; root&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Reference: &lt;a href=&quot;https://goo.gl/63Gkry&quot;&gt;ARMv7 Installation&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S dialog wpa_supplicant
-$ wifi-menu
-$ ls /etc/netctl/               &lt;span class=&quot;c1&quot;&gt;# Find the wifi profile&lt;/span&gt;
-$ netctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; profile-name    &lt;span class=&quot;c1&quot;&gt;# Substitute profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/               &lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name    &lt;span class=&quot;c&quot;&gt;# Substitute profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;create-new-user&quot;&gt;Create New User&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ useradd -m -G wheel -s /bin/bash daniel
-$ passwd daniel
-$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The above creates a new user with home directory, change password and add user
 to additional groups.&lt;/p&gt;
 
 &lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ pacman -S sudo&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
 
 &lt;h4 id=&quot;update&quot;&gt;Update&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -Syu
-$ sudo pacman -Syy              &lt;span class=&quot;c1&quot;&gt;# If above failed&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Syu&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-Syy&lt;/span&gt;              &lt;span class=&quot;c&quot;&gt;# If above failed&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;xfce&quot;&gt;Xfce&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S xfce4
-$ sudo pacman -S xorg-server xorg-server-utils xorg-xinit
-$ sudo pacman -S xf86-video-fbdev
-$ startxfce4                    &lt;span class=&quot;c1&quot;&gt;# NOTE: To manually start Xfce&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xfce4
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xorg-server xorg-server-utils xorg-xinit
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; xf86-video-fbdev
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;startxfce4                    &lt;span class=&quot;c&quot;&gt;# NOTE: To manually start Xfce&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;&lt;/p&gt;
 
@@ -1001,44 +1001,44 @@ $ startxfce4                    &lt;span class=&quot;c1&quot;&gt;# NOTE: To manu
 
 &lt;h4 id=&quot;additional-install&quot;&gt;Additional Install&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S openssh
-$ sudo pacman -S vim
-$ sudo pacman -S tigervnc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; openssh
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; vim
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; tigervnc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Apply dotfiles.&lt;/p&gt;
 
 &lt;h4 id=&quot;vnc-setup&quot;&gt;VNC Setup&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ vncserver                     &lt;span class=&quot;c1&quot;&gt;# Create configs&lt;/span&gt;
-$ vncserver -kill :1            &lt;span class=&quot;c1&quot;&gt;# NOTE: To shutdown vncserver&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vncserver                     &lt;span class=&quot;c&quot;&gt;# Create configs&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1            &lt;span class=&quot;c&quot;&gt;# NOTE: To shutdown vncserver&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;~/.vnc/xstartup&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;#&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sh&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sh&lt;/span&gt;
 
 exec &lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/etc/&lt;/span&gt;xdg&lt;span class=&quot;sr&quot;&gt;/xfce4/&lt;/span&gt;xinitrc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/systemd/system/vncserver@:1.service&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;[Unit]
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Unit&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 Description&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;Remote desktop service &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;VNC&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-After&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;syslog.target network.target
+After&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;syslog&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;target network&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;target
 
-[Service]
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Service&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 Type&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;simple
 &lt;span class=&quot;nb&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;daniel
 PAMName&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;login
-PIDFile&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/home/&lt;/span&gt;daniel&lt;span class=&quot;sr&quot;&gt;/.vnc/&lt;/span&gt;%H:%&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;.pid
-ExecStartPre&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/usr/bin/vncserver -kill %i &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 || :&amp;#39;&lt;/span&gt;
-ExecStart&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/vncserver &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;geometry &lt;span class=&quot;m&quot;&gt;1280&lt;/span&gt;x&lt;span class=&quot;m&quot;&gt;720&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;alwaysshared &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;fg %&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;
+PIDFile&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/home/&lt;/span&gt;daniel&lt;span class=&quot;sr&quot;&gt;/.vnc/&lt;/span&gt;%H&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;%&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;pid
+ExecStartPre&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/usr/bin/vncserver -kill %i &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 || :'&lt;/span&gt;
+ExecStart&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/vncserver &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;geometry &lt;span class=&quot;m&quot;&gt;1280&lt;/span&gt;x720 &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;alwaysshared &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;fg %&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;
 ExecStop&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/vncserver &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;kill %&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;
 
-[Install]
-WantedBy&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;multi&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;user.target&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Install&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+WantedBy&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;multi&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;user&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;target&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Enable &lt;em&gt;vncserver@:1.service&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; vncserver@:1.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;vnc-client&quot;&gt;VNC Client&lt;/h4&gt;
 
@@ -1047,12 +1047,12 @@ Port: 5901&lt;/p&gt;
 
 &lt;h4 id=&quot;mount-usb-drive&quot;&gt;Mount USB Drive&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo mount /dev/sda1 /mnt/usb -o &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000&lt;/span&gt;,gid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000&lt;/span&gt;,utf8,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;027&lt;/span&gt;,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;137&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/sda1 /mnt/usb &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000,gid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000,utf8,dmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;027,fmask&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;137&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;sshfs&quot;&gt;sshfs&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ brew cask install osxfuse
-$ brew install sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>/log/2016/05/01/May</id><content type="html" xml:base="/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew cask &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;osxfuse
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;sshfs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2016/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2016-05-01T12:00:00+12:00</published><updated>2016-05-01T12:00:00+12:00</updated><id>/log/2016/05/01/May</id><content type="html" xml:base="/log/2016/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#plex-1&quot;&gt;Plex&lt;/a&gt;&lt;/li&gt;
@@ -1074,33 +1074,33 @@ from AUR.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;/usr/lib/systemd/system/plexmediaserver.service&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;MemoryLimit&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;G&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;MemoryLimit&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;G&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;iptables&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ iptables -A INPUT -p tcp -m multiport --dports &lt;span class=&quot;m&quot;&gt;32400&lt;/span&gt;,32469 -j ACCEPT
-$ iptables -A INPUT -p udp -m multiport --dports &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&amp;gt; &lt;span class=&quot;m&quot;&gt;1900&lt;/span&gt;,32410,32412,32413,32414 -j ACCEPT
-$ sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; plexmediaserver.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; INPUT &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; tcp &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; multiport &lt;span class=&quot;nt&quot;&gt;--dports&lt;/span&gt; 32400,32469 &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; ACCEPT
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iptables &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; INPUT &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; udp &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; multiport &lt;span class=&quot;nt&quot;&gt;--dports&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 1900,32410,32412,32413,32414 &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; ACCEPT
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;plexmediaserver.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;storage&quot;&gt;Storage&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo mkdir /shares
-$ df -h
-$ sudo blkid /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /shares
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;blkid /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/fstab&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;# UUID&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;f&lt;span class=&quot;m&quot;&gt;22599&lt;/span&gt;a&lt;span class=&quot;m&quot;&gt;-6&lt;/span&gt;b&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;f&lt;span class=&quot;m&quot;&gt;-4&lt;/span&gt;b&lt;span class=&quot;m&quot;&gt;90-81&lt;/span&gt;b&lt;span class=&quot;m&quot;&gt;0-4&lt;/span&gt;c&lt;span class=&quot;m&quot;&gt;471&lt;/span&gt;f&lt;span class=&quot;m&quot;&gt;761&lt;/span&gt;f&lt;span class=&quot;m&quot;&gt;47&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;# UUID&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;f22599a&lt;span class=&quot;m&quot;&gt;-6&lt;/span&gt;b0f&lt;span class=&quot;m&quot;&gt;-4&lt;/span&gt;b90&lt;span class=&quot;m&quot;&gt;-81&lt;/span&gt;b0&lt;span class=&quot;m&quot;&gt;-4&lt;/span&gt;c471f761f47
 &lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;sdb1    /shares    ext4    rw&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;relatime&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;data&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;ordered    &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Reboot&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /shares
-$ mkdir plex
-$ sudo chgrp plex plex
-$ sudo chmod g+w,o-rx plex
-$ sudo usermod -a -G plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /shares
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chgrp &lt;/span&gt;plex plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;g+w,o-rx plex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Reference: &lt;a href=&quot;https://wiki.archlinux.org/index.php/Plex&quot;&gt;Plex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Nov</title><link href="/log/2015/11/01/Nov.html" rel="alternate" type="text/html" title="Nov" /><published>2015-11-01T13:00:00+13:00</published><updated>2015-11-01T13:00:00+13:00</updated><id>/log/2015/11/01/Nov</id><content type="html" xml:base="/log/2015/11/01/Nov.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
@@ -1115,34 +1115,34 @@ $ sudo usermod -a -G plex daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;General maintenance related tasks:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ rvm get stable                 &lt;span class=&quot;c1&quot;&gt;# RVM&lt;/span&gt;
-$ rvm install &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.2.3              &lt;span class=&quot;c1&quot;&gt;# Ruby&lt;/span&gt;
-$ rvm --default use &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;.2.3        &lt;span class=&quot;c1&quot;&gt;# Set default version&lt;/span&gt;
-$ rvm rubygems latest            &lt;span class=&quot;c1&quot;&gt;# RubyGems&lt;/span&gt;
-$ gem install bundler            &lt;span class=&quot;c1&quot;&gt;# Dependencies&lt;/span&gt;
-$ bundle install                 &lt;span class=&quot;c1&quot;&gt;# Run within blog directory&lt;/span&gt;
-$ rvm -v                         &lt;span class=&quot;c1&quot;&gt;# Check versions&lt;/span&gt;
-$ ruby -v
-$ which ruby
-$ gem -v
-$ which gem&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm get stable                 &lt;span class=&quot;c&quot;&gt;# RVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.2.3              &lt;span class=&quot;c&quot;&gt;# Ruby&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nt&quot;&gt;--default&lt;/span&gt; use 2.2.3        &lt;span class=&quot;c&quot;&gt;# Set default version&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm rubygems latest            &lt;span class=&quot;c&quot;&gt;# RubyGems&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler            &lt;span class=&quot;c&quot;&gt;# Dependencies&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;                 &lt;span class=&quot;c&quot;&gt;# Run within blog directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rvm &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;                         &lt;span class=&quot;c&quot;&gt;# Check versions&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which ruby
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;which gem&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Arch uses Python version 3, whereas Octopress requires verions 2. Edit the 
 first line of mentos.py to the following instead:&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;~/.rvm/gems/ruby-2.2.3/gems/pygments.rb-0.3.4/lib/pygments/mentos.py&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;#&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/env python2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/env python2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Migrating to another computer:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ curl -L https://get.rvm.io &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; bash -s stable --ruby&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; https://get.rvm.io | bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; stable &lt;span class=&quot;nt&quot;&gt;--ruby&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Then do the upgrades as listed above.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ git clone -b &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; git@github.com:username/username.github.io.git
-$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; username.github.io.git
-$ git clone git@github.com:username/username.github.io.git _deploy&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;git@github.com:username/username.github.io.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;username.github.io.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone git@github.com:username/username.github.io.git _deploy&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Install the dependencies as listed above.&lt;/p&gt;
 
@@ -1150,45 +1150,45 @@ $ git clone git@github.com:username/username.github.io.git _deploy&lt;/code&gt;&
 
 &lt;p&gt;Push on one:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ rake generate
-$ rake deploy
-$ git add .
-$ git commit -a
-$ git push origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake generate
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rake deploy
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Pull on the other:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ git pull origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
-$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ./_deploy
-$ git pull origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull origin &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ./_deploy
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;i3&quot;&gt;&lt;a name=&quot;i3-1&quot;&gt;&lt;/a&gt;I3&lt;/h3&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo pacman -S i3
-$ sudo pacman -S dmenu
-$ sudo pacman -S feh                     &lt;span class=&quot;c1&quot;&gt;# for wallpaper&lt;/span&gt;
-$ sudo pacman -S scrot                   &lt;span class=&quot;c1&quot;&gt;# for screenshot&lt;/span&gt;
-$ sudo pacman -S mplayer
-$ sudo pacman -S archey3
-$ sudo pacman -S cmus
-$ sudo pacman -S gpicview
-$ sudo pacman -S firefox                 &lt;span class=&quot;c1&quot;&gt;# optional&lt;/span&gt;
-$ sudo pacman -S dnsutils
-$ sudo pacman -S whois
-$ sudo pacman -S imagemagick
-$ sudo pacman -S easytag
-$ sudo pacman -S rdesktop freerdp        &lt;span class=&quot;c1&quot;&gt;# optional&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; i3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dmenu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; feh                     &lt;span class=&quot;c&quot;&gt;# for wallpaper&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; scrot                   &lt;span class=&quot;c&quot;&gt;# for screenshot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; mplayer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; archey3
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; cmus
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; gpicview
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; firefox                 &lt;span class=&quot;c&quot;&gt;# optional&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dnsutils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; whois
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; imagemagick
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; easytag
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; rdesktop freerdp        &lt;span class=&quot;c&quot;&gt;# optional&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;em&gt;~/.config/i3/config&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;# Pulse Audio controls
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;startup&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;id pactl &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;sink&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;volume &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;% #increase sound volume
 bindsym XF86AudioLowerVolume exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;startup&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;id pactl &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;sink&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;volume &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-5&lt;/span&gt;% #decrease sound volume
 bindsym XF86AudioMute exec &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;no&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;startup&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;id pactl &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;sink&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;mute &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; toggle #mute sound
 
-# pause &lt;span class=&quot;sr&quot;&gt;/ play /&lt;/span&gt; next / &lt;span class=&quot;k&quot;&gt;previous&lt;/span&gt;
-bindsym XF86AudioPlay exec cmus&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;remote &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;C &lt;span class=&quot;s2&quot;&gt;&amp;quot;player-pause&amp;quot;&lt;/span&gt;
+# pause &lt;span class=&quot;sr&quot;&gt;/ play /&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; / &lt;span class=&quot;k&quot;&gt;previous&lt;/span&gt;
+bindsym XF86AudioPlay exec cmus&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;remote &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;C &lt;span class=&quot;s2&quot;&gt;&quot;player-pause&quot;&lt;/span&gt;
 bindsym XF86AudioNext exec cmus&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;remote &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;n&lt;/span&gt;
 bindsym XF86AudioPrev exec cmus&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;remote &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;r&lt;/span&gt;
 
@@ -1236,8 +1236,8 @@ commands off Arch
 
 &lt;p&gt;Workaround for undetected resolutions:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ nvidia-xconfig                &lt;span class=&quot;c1&quot;&gt;# Create xorg.conf based on detected hardware&lt;/span&gt;
-$ sudo vim /etc/X11/xorg.conf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nvidia-xconfig                &lt;span class=&quot;c&quot;&gt;# Create xorg.conf based on detected hardware&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/X11/xorg.conf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Amend Monitor section of xorg.conf with the correct specifications. In my case,
 the &lt;em&gt;HorizSync&lt;/em&gt; and &lt;em&gt;VertRefresh&lt;/em&gt; values were incorrect.&lt;/p&gt;
@@ -1246,23 +1246,23 @@ the &lt;em&gt;HorizSync&lt;/em&gt; and &lt;em&gt;VertRefresh&lt;/em&gt; values w
 
 &lt;p&gt;If it’s not listed, run the following to get its modeline details.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ cvt &lt;span class=&quot;m&quot;&gt;1680&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1050&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz&lt;/span&gt;
-Modeline &lt;span class=&quot;s2&quot;&gt;&amp;quot;1680x1050_60.00&amp;quot;&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;146&lt;/span&gt;.25  &lt;span class=&quot;m&quot;&gt;1680&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1784&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1960&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2240&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1050&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1053&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1059&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1089&lt;/span&gt;
--hsync +vsync&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cvt 1680 1050
+&lt;span class=&quot;c&quot;&gt;# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz&lt;/span&gt;
+Modeline &lt;span class=&quot;s2&quot;&gt;&quot;1680x1050_60.00&quot;&lt;/span&gt;  146.25  1680 1784 1960 2240  1050 1053 1059 1089
+&lt;span class=&quot;nt&quot;&gt;-hsync&lt;/span&gt; +vsync&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Add the modeline values to xorg.conf&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;/etc/X11/xorg.conf&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span&gt;&lt;/span&gt;Section &lt;span class=&quot;s2&quot;&gt;&amp;quot;Monitor&amp;quot;&lt;/span&gt;
-    Identifier     &lt;span class=&quot;s2&quot;&gt;&amp;quot;Monitor0&amp;quot;&lt;/span&gt;
-    VendorName     &lt;span class=&quot;s2&quot;&gt;&amp;quot;Samsung&amp;quot;&lt;/span&gt;
-    ModelName      &lt;span class=&quot;s2&quot;&gt;&amp;quot;SyncMaster 2253BW&amp;quot;&lt;/span&gt;
-    HorizSync       &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;81&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-    VertRefresh     &lt;span class=&quot;m&quot;&gt;56&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;75&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-    Option         &lt;span class=&quot;s2&quot;&gt;&amp;quot;DPMS&amp;quot;&lt;/span&gt;
-    Modeline       &lt;span class=&quot;s2&quot;&gt;&amp;quot;1680x1050_60.00&amp;quot;&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;146&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1680&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1784&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1960&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2240&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1050&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1053&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;Section &lt;span class=&quot;s2&quot;&gt;&quot;Monitor&quot;&lt;/span&gt;
+    Identifier     &lt;span class=&quot;s2&quot;&gt;&quot;Monitor0&quot;&lt;/span&gt;
+    VendorName     &lt;span class=&quot;s2&quot;&gt;&quot;Samsung&quot;&lt;/span&gt;
+    ModelName      &lt;span class=&quot;s2&quot;&gt;&quot;SyncMaster 2253BW&quot;&lt;/span&gt;
+    HorizSync       &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;81&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+    VertRefresh     &lt;span class=&quot;m&quot;&gt;56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+    Option         &lt;span class=&quot;s2&quot;&gt;&quot;DPMS&quot;&lt;/span&gt;
+    Modeline       &lt;span class=&quot;s2&quot;&gt;&quot;1680x1050_60.00&quot;&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;146&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1680&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1784&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1960&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2240&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1050&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1053&lt;/span&gt;
                     &lt;span class=&quot;m&quot;&gt;1059&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1089&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;hsync &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt;vsync
 EndSection&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -1282,9 +1282,9 @@ Open Disk Utility, select the drive.&amp;lt;/br&amp;gt;
 Choose Partition tab, select 1 Partition from Partition Layout.&amp;lt;/br&amp;gt;
 Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ sudo Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app/Contents/Resources/createinstallmedia &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
---volume /Volumes/untitled --applicationpath Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
---nointeraction&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app/Contents/Resources/createinstallmedia &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--volume&lt;/span&gt; /Volumes/untitled &lt;span class=&quot;nt&quot;&gt;--applicationpath&lt;/span&gt; Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--nointeraction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
 

@@ -9,10 +9,10 @@
   <title>May</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2016/05/01/May.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -105,33 +105,33 @@ from AUR.</p>
 
 <p><em>/usr/lib/systemd/system/plexmediaserver.service</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>MemoryLimit<span class="p">=</span><span class="m">2</span>G</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">MemoryLimit<span class="p">=</span><span class="m">2</span>G</code></pre></figure>
 
 <p><em>iptables</em></p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ iptables -A INPUT -p tcp -m multiport --dports <span class="m">32400</span>,32469 -j ACCEPT
-$ iptables -A INPUT -p udp -m multiport --dports <span class="se">\</span>
-&gt; <span class="m">1900</span>,32410,32412,32413,32414 -j ACCEPT
-$ sudo systemctl <span class="nb">enable</span> plexmediaserver.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">-m</span> multiport <span class="nt">--dports</span> 32400,32469 <span class="nt">-j</span> ACCEPT
+<span class="nv">$ </span>iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> udp <span class="nt">-m</span> multiport <span class="nt">--dports</span> <span class="se">\</span>
+<span class="o">&gt;</span> 1900,32410,32412,32413,32414 <span class="nt">-j</span> ACCEPT
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>plexmediaserver.service</code></pre></figure>
 
 <h4 id="storage">Storage</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo mkdir /shares
-$ df -h
-$ sudo blkid /dev/sdb1</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo mkdir</span> /shares
+<span class="nv">$ </span><span class="nb">df</span> <span class="nt">-h</span>
+<span class="nv">$ </span><span class="nb">sudo </span>blkid /dev/sdb1</code></pre></figure>
 
 <p><em>/etc/fstab</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span># UUID<span class="p">=</span><span class="m">1</span>f<span class="m">22599</span>a<span class="m">-6</span>b<span class="m">0</span>f<span class="m">-4</span>b<span class="m">90-81</span>b<span class="m">0-4</span>c<span class="m">471</span>f<span class="m">761</span>f<span class="m">47</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"># UUID<span class="p">=</span><span class="m">1</span>f22599a<span class="m">-6</span>b0f<span class="m">-4</span>b90<span class="m">-81</span>b0<span class="m">-4</span>c471f761f47
 <span class="sr">/dev/</span>sdb1    /shares    ext4    rw<span class="p">,</span>relatime<span class="p">,</span>data<span class="p">=</span>ordered    <span class="m">0</span> <span class="m">3</span></code></pre></figure>
 
 <p>Reboot</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ <span class="nb">cd</span> /shares
-$ mkdir plex
-$ sudo chgrp plex plex
-$ sudo chmod g+w,o-rx plex
-$ sudo usermod -a -G plex daniel</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd</span> /shares
+<span class="nv">$ </span><span class="nb">mkdir </span>plex
+<span class="nv">$ </span><span class="nb">sudo chgrp </span>plex plex
+<span class="nv">$ </span><span class="nb">sudo chmod </span>g+w,o-rx plex
+<span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> plex daniel</code></pre></figure>
 
 <p>Reference: <a href="https://wiki.archlinux.org/index.php/Plex">Plex</a></p>
 

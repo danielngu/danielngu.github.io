@@ -9,10 +9,10 @@
   <title>Feb</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2018/02/01/Feb.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -103,33 +103,33 @@
 <p>It’s a straight install but to run, it needs the following dependencies as 
 listed on their site.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>libc6:i386
-libasound2:i386
-libasound2<span class="p">-</span>data:i386
-libasound2<span class="p">-</span>plugins:i386
-libjson<span class="p">-</span>c2:i386
-libopenal1:i386
-libstdc<span class="p">++</span><span class="m">6</span>:i386
-libssl1.<span class="m">0</span>.<span class="m">0</span>:i386
-libexpat1:i386
-libx11<span class="m">-6</span>:i386
-libxau6:i386
-libxcb1:i386
-libxcursor1:i386
-libxdmcp6:i386
-libxext6:i386
-libxfixes3:i386
-libxinerama1:i386
-libxrandr2:i386
-libxrender1:i386
-libjson0:i386</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">libc6<span class="p">:</span>i386
+libasound2<span class="p">:</span>i386
+libasound2<span class="p">-</span>data<span class="p">:</span>i386
+libasound2<span class="p">-</span>plugins<span class="p">:</span>i386
+libjson<span class="p">-</span>c2<span class="p">:</span>i386
+libopenal1<span class="p">:</span>i386
+libstdc<span class="p">++</span><span class="m">6</span><span class="p">:</span>i386
+libssl1<span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">:</span>i386
+libexpat1<span class="p">:</span>i386
+libx11<span class="m">-6</span><span class="p">:</span>i386
+libxau6<span class="p">:</span>i386
+libxcb1<span class="p">:</span>i386
+libxcursor1<span class="p">:</span>i386
+libxdmcp6<span class="p">:</span>i386
+libxext6<span class="p">:</span>i386
+libxfixes3<span class="p">:</span>i386
+libxinerama1<span class="p">:</span>i386
+libxrandr2<span class="p">:</span>i386
+libxrender1<span class="p">:</span>i386
+libjson0<span class="p">:</span>i386</code></pre></figure>
 
 <p>To install Arch’s 32-bit equivalent, start off by uncommenting the
 <a href="https://wiki.archlinux.org/index.php/Multilib">multilib</a> section in 
 <em>/etc/pacman.conf</em>.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>[multilib]
-Include <span class="p">=</span> <span class="sr">/etc/</span>pacman.<span class="k">d</span>/mirrorlist</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">[</span>multilib<span class="p">]</span>
+Include <span class="p">=</span> <span class="sr">/etc/</span>pacman<span class="p">.</span><span class="k">d</span>/mirrorlist</code></pre></figure>
 
 <p><em>pacman -Sl multilib</em> to list all packages in the multilib repository.</p>
 
@@ -143,13 +143,13 @@ Include <span class="p">=</span> <span class="sr">/etc/</span>pacman.<span class
 
 <p>Dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>glibc</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">lib32<span class="p">-</span>glibc</code></pre></figure>
 
 <p><em>lib32-json-glib</em></p>
 
 <p>Dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>gcc<span class="p">-</span>libs
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">lib32<span class="p">-</span>gcc<span class="p">-</span>libs
 lib32<span class="p">-</span>pcre
 lib32<span class="p">-</span>libffi
 lib32<span class="p">-</span>util<span class="p">-</span>linux
@@ -158,8 +158,8 @@ lib32<span class="p">-</span>glib2</code></pre></figure>
 
 <p>Link:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">cd</span> <span class="sr">/usr/</span>lib32
-sudo ln <span class="p">-</span>s libjson<span class="p">-</span>glib<span class="m">-1</span>.<span class="m">0</span>.<span class="k">so</span>.<span class="m">0</span>.<span class="m">400</span>.<span class="m">2</span> libjson.<span class="k">so</span>.<span class="m">0</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">cd</span> <span class="sr">/usr/</span>lib32
+sudo ln <span class="p">-</span>s libjson<span class="p">-</span>glib<span class="m">-1</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="k">so</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">400</span><span class="p">.</span><span class="m">2</span> libjson<span class="p">.</span><span class="k">so</span><span class="p">.</span><span class="m">0</span></code></pre></figure>
 
 <p><em>lib32-openal</em></p>
 
@@ -167,7 +167,7 @@ sudo ln <span class="p">-</span>s libjson<span class="p">-</span>glib<span class
 
 <p>Dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>libpciaccess
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">lib32<span class="p">-</span>libpciaccess
 lib32<span class="p">-</span>libdrm
 lib32<span class="p">-</span>libxdmcp
 lib32<span class="p">-</span>libxau
@@ -196,13 +196,13 @@ lib32<span class="p">-</span>libglvnd</code></pre></figure>
 
 <p>Dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>libxrender</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">lib32<span class="p">-</span>libxrender</code></pre></figure>
 
 <p><em>lib32-libpulse</em></p>
 
 <p>Dependencies:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>lib32<span class="p">-</span>attr
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">lib32<span class="p">-</span>attr
 lib32<span class="p">-</span>libcap
 lib32<span class="p">-</span>libgpg<span class="p">-</span>error
 lib32<span class="p">-</span>libgcrypt

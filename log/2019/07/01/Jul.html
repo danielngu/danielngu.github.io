@@ -9,10 +9,10 @@
   <title>Jul</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2019/07/01/Jul.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -97,76 +97,76 @@
 
 <h4 id="keyboard">Keyboard</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ loadkeys us</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>loadkeys us</code></pre></figure>
 
 <h4 id="partition">Partition</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ lsblk				<span class="c1"># List block devices</span>
-$ gdisk /dev/nvme0n1		<span class="c1"># To partition /dev/nvme0n1</span>
-$ o				<span class="c1"># Either new or start over</span>
-$ y				<span class="c1"># Accept</span>
-$ n				<span class="c1"># Create new partition</span>
-$ Enter				<span class="c1"># Accept default partition number</span>
-$ Enter				<span class="c1"># Accept default first sector</span>
-$ +512M				<span class="c1"># Allocated 512MB for boot partition</span>
-$ EF00				<span class="c1"># Set type of partition or L to list</span>
-$ n				<span class="c1"># Create new partition</span>
-$ Enter				<span class="c1"># Accept default partition number</span>
-$ Enter				<span class="c1"># Accept default first sector</span>
-$ Enter				<span class="c1"># Accept default last sector</span>
-$ <span class="m">8300</span>				<span class="c1"># Set partition type to LVM</span>
-$ w				<span class="c1"># Write change</span>
-$ y				<span class="c1"># Accept</span>
-$ cryptsetup luksFormat --type luks2 /dev/nvme0n1p2	<span class="c1"># Create encrypted container</span>
-$ cryptsetup open /dev/nvme0n1p2 cryptolvm			<span class="c1"># Open container</span>
-$ pvcreate /dev/mapper/cryptolvm			<span class="c1"># Create physical volume</span>
-$ vgcreate MyVol /dev/mapper/cryptolvm			<span class="c1"># Create MyVol volume group</span>
-$ lvcreate -L 2G MyVol -n swap				<span class="c1"># Allocated 2GB for swap</span>
-$ lvcreate -l <span class="m">100</span>%FREE MyVol -n root			<span class="c1"># Allocated remaining for root</span>
-$ mkswap /dev/mapper/MyVol-swap				<span class="c1"># Format swap</span>
-$ mkfs.ext4 /dev/mapper/MyVol-root			<span class="c1"># Format root</span>
-$ swapon /dev/mapper/MyVol-swap				<span class="c1"># Mount swap</span>
-$ mount /dev/mapper/MyVol-root /mnt			<span class="c1"># Mount root</span>
-$ mkfs.vfat -F32 /dev/nvme0n1p1				<span class="c1"># Format boot</span>
-$ mkdir	/mnt/boot					<span class="c1"># Create boot directory</span>
-$ mount /dev/nvme0n1p1 /mnt/boot			<span class="c1"># Mount boot</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>lsblk				<span class="c"># List block devices</span>
+<span class="nv">$ </span>gdisk /dev/nvme0n1		<span class="c"># To partition /dev/nvme0n1</span>
+<span class="nv">$ </span>o				<span class="c"># Either new or start over</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+<span class="nv">$ </span>n				<span class="c"># Create new partition</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default partition number</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>+512M				<span class="c"># Allocated 512MB for boot partition</span>
+<span class="nv">$ </span>EF00				<span class="c"># Set type of partition or L to list</span>
+<span class="nv">$ </span>n				<span class="c"># Create new partition</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default partition number</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default first sector</span>
+<span class="nv">$ </span>Enter				<span class="c"># Accept default last sector</span>
+<span class="nv">$ </span>8300				<span class="c"># Set partition type to LVM</span>
+<span class="nv">$ </span>w				<span class="c"># Write change</span>
+<span class="nv">$ </span>y				<span class="c"># Accept</span>
+<span class="nv">$ </span>cryptsetup luksFormat <span class="nt">--type</span> luks2 /dev/nvme0n1p2	<span class="c"># Create encrypted container</span>
+<span class="nv">$ </span>cryptsetup open /dev/nvme0n1p2 cryptolvm			<span class="c"># Open container</span>
+<span class="nv">$ </span>pvcreate /dev/mapper/cryptolvm			<span class="c"># Create physical volume</span>
+<span class="nv">$ </span>vgcreate MyVol /dev/mapper/cryptolvm			<span class="c"># Create MyVol volume group</span>
+<span class="nv">$ </span>lvcreate <span class="nt">-L</span> 2G MyVol <span class="nt">-n</span> swap				<span class="c"># Allocated 2GB for swap</span>
+<span class="nv">$ </span>lvcreate <span class="nt">-l</span> 100%FREE MyVol <span class="nt">-n</span> root			<span class="c"># Allocated remaining for root</span>
+<span class="nv">$ </span>mkswap /dev/mapper/MyVol-swap				<span class="c"># Format swap</span>
+<span class="nv">$ </span>mkfs.ext4 /dev/mapper/MyVol-root			<span class="c"># Format root</span>
+<span class="nv">$ </span>swapon /dev/mapper/MyVol-swap				<span class="c"># Mount swap</span>
+<span class="nv">$ </span>mount /dev/mapper/MyVol-root /mnt			<span class="c"># Mount root</span>
+<span class="nv">$ </span>mkfs.vfat <span class="nt">-F32</span> /dev/nvme0n1p1				<span class="c"># Format boot</span>
+<span class="nv">$ </span><span class="nb">mkdir</span>	/mnt/boot					<span class="c"># Create boot directory</span>
+<span class="nv">$ </span>mount /dev/nvme0n1p1 /mnt/boot			<span class="c"># Mount boot</span></code></pre></figure>
 
 <p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_1">[1]</a></p>
 
 <h4 id="wireless">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ wifi-menu</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>wifi-menu</code></pre></figure>
 
 <p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_2">[2]</a></p>
 
 <h4 id="install-base-system">Install Base System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base base-devel</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacstrap /mnt base base-devel</code></pre></figure>
 
 <p><a href="#2021-03-22">2021-03-22</a> <a href="#2021-03-22_3">[3]</a></p>
 
 <h4 id="configure-system">Configure System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ genfstab -pU /mnt &gt;&gt; /mnt/etc/fstab	<span class="c1"># Generate fstab</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>genfstab <span class="nt">-pU</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab	<span class="c"># Generate fstab</span></code></pre></figure>
 
 <p>Edit <em>/mnt/etc/fstab</em> and change <em>relatime</em> to <em>noatime</em> for non-boot partitions.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ arch-chroot /mnt			<span class="c1"># chroot</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>arch-chroot /mnt			<span class="c"># chroot</span></code></pre></figure>
 
 <p>Add hostname to <em>/etc/hostname</em> and <em>/etc/hosts</em></p>
 
 <p><em>/etc/hosts</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>	localhost
-<span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>	hostname.subdomain.domain	hostname</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="m">127</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">1</span>	localhost
+<span class="m">127</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">0</span><span class="p">.</span><span class="m">1</span>	<span class="nb">hostname</span><span class="p">.</span>subdomain<span class="p">.</span>domain	<span class="nb">hostname</span></code></pre></figure>
 
 <p>Set time zone:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ ln -s /usr/share/zoneinfo/Pacific/Auckland /etc/localtime</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /usr/share/zoneinfo/Pacific/Auckland /etc/localtime</code></pre></figure>
 
 <p>Uncomment the locale in <em>/etc/locale.gen</em></p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ locale-gen				<span class="c1"># Generate locale </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>locale-gen				<span class="c"># Generate locale </span></code></pre></figure>
 
 <p>Set locale preference by adding <em>LANG=”en_NZ.UTF-8”</em> to <em>/etc/locale.conf</em></p>
 
@@ -177,20 +177,20 @@ $ mount /dev/nvme0n1p1 /mnt/boot			<span class="c1"># Mount boot</span></code></
 <p>Add <em>encrypt lvm2 resume</em> hooks to <em>/etc/mkinitcpio.conf</em> before <em>filesystems</em>
 and after <em>udev</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>HOOKS<span class="p">=(</span>base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck<span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">HOOKS<span class="p">=(</span>base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck<span class="p">)</span></code></pre></figure>
 
 <p>mkinitcpio and set root password:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ mkinitcpio -p linux
-$ passwd</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mkinitcpio <span class="nt">-p</span> linux
+<span class="nv">$ </span>passwd</code></pre></figure>
 
 <h4 id="install-boot-loader">Install Boot Loader</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ bootctl --path<span class="o">=</span>/boot install</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>bootctl <span class="nt">--path</span><span class="o">=</span>/boot <span class="nb">install</span></code></pre></figure>
 
 <p>Edit <em>/boot/loader/loader.conf</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>default arch
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">default arch
 <span class="nb">timeout</span> <span class="m">5</span>
 editor <span class="m">0</span></code></pre></figure>
 
@@ -198,41 +198,41 @@ editor <span class="m">0</span></code></pre></figure>
 Use <em>blkid</em> to find the UUID for <em>/dev/nvme0n1p2</em> and replace the &lt;UUID&gt; below
 without the bracket.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="nb">title</span> Arch Linux
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="nb">title</span> Arch Linux
 linux /vmlinuz<span class="p">-</span>linux
-initrd /initramfs<span class="p">-</span>linux.img
-<span class="k">options</span> cryptdevice<span class="p">=</span>UUID<span class="p">=&lt;</span>UUID<span class="p">&gt;</span>:MyVol root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root resume=/</span>dev<span class="sr">/mapper/</span>MyVol<span class="p">-</span><span class="k">swap</span> rw</code></pre></figure>
+initrd /initramfs<span class="p">-</span>linux<span class="p">.</span>img
+<span class="k">options</span> cryptdevice<span class="p">=</span>UUID<span class="p">=&lt;</span>UUID<span class="p">&gt;:</span>MyVol root<span class="p">=</span><span class="sr">/dev/</span>mapper<span class="sr">/MyVol-root resume=/</span>dev<span class="sr">/mapper/</span>MyVol<span class="p">-</span>swap rw</code></pre></figure>
 
 <h4 id="wireless-1">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S dialog wpa_supplicant</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> dialog wpa_supplicant</code></pre></figure>
 
 <h4 id="umount-and-reboot">Umount and Reboot</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ <span class="nb">exit</span>			<span class="c1"># Exit from chroot environment</span>
-$ umount -R /mnt
-$ reboot</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">exit</span>			<span class="c"># Exit from chroot environment</span>
+<span class="nv">$ </span>umount <span class="nt">-R</span> /mnt
+<span class="nv">$ </span>reboot</code></pre></figure>
 
 <h4 id="create-new-user">Create New User</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ useradd -m -G wheel -s /bin/bash daniel
-$ passwd daniel
-$ usermod -a -G audio,network,power,scanner,storage,systemd-journal,video daniel</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-G</span> wheel <span class="nt">-s</span> /bin/bash daniel
+<span class="nv">$ </span>passwd daniel
+<span class="nv">$ </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> audio,network,power,scanner,storage,systemd-journal,video daniel</code></pre></figure>
 
 <p>The above creates a new user with home directory, change password and add user
 to additional groups.</p>
 
 <h4 id="wireless-2">Wireless</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ wifi-menu
-$ ls /etc/netctl/			<span class="c1"># Find the wifi profile</span>
-$ netctl <span class="nb">enable</span> profile-name		<span class="c1"># profile-name as obtained above</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>wifi-menu
+<span class="nv">$ </span><span class="nb">ls</span> /etc/netctl/			<span class="c"># Find the wifi profile</span>
+<span class="nv">$ </span>netctl <span class="nb">enable </span>profile-name		<span class="c"># profile-name as obtained above</span></code></pre></figure>
 
 <p>Alternatively, a better approach is as follows rather than enabling profile:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S ifplugd					<span class="c1"># Wired</span>
-$ sudo systemctl <span class="nb">enable</span> netctl-ifplugd@interface.service	<span class="c1"># substitute interface with the value obtained from ip a</span>
-$ sudo systemctl <span class="nb">enable</span> netctl-auto@interface.service		<span class="c1"># substitute interface with the value obtained from ip a</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> ifplugd					<span class="c"># Wired</span>
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>netctl-ifplugd@interface.service	<span class="c"># substitute interface with the value obtained from ip a</span>
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>netctl-auto@interface.service		<span class="c"># substitute interface with the value obtained from ip a</span></code></pre></figure>
 
 <p>References:</p>
 <p />
@@ -242,7 +242,7 @@ $ sudo systemctl <span class="nb">enable</span> netctl-auto@interface.service		<
 
 <h4 id="sudo">Sudo</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S sudo</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span></code></pre></figure>
 
 <p>Run visudo, edit it to restrict sudo to specific group or user.</p>
 
@@ -252,14 +252,14 @@ $ sudo systemctl <span class="nb">enable</span> netctl-auto@interface.service		<
 
 <h4 id="audio">Audio</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S alsa-utils
-$ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> alsa-utils
+<span class="nv">$ </span>amixer sset Master unmute		<span class="c"># ALSA comes muted by default.</span></code></pre></figure>
 
 <h4 id="restore">Restore</h4>
 
 <p>Restore home from backup.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S - &lt; pkglist.txt	<span class="c1"># Install all packages from backup list</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> - &lt; pkglist.txt	<span class="c"># Install all packages from backup list</span></code></pre></figure>
 
 <p>Do the same for AUR with <em>yay</em>.<br /></p>
 
@@ -269,9 +269,9 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 
 <p>Edit <em>/etc/bluetooth/main.conf</em> and add the following line.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>AutoEnable<span class="p">=</span>true</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">AutoEnable<span class="p">=</span>true</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> bluetooth.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>bluetooth.service</code></pre></figure>
 
 <p>Enable bluetooth service then pair devices.</p>
 
@@ -279,12 +279,12 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 
 <p>Edit <em>/etc/pulse/system.pa</em> and add the following lines.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>policy
-<span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>discover</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">load<span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>policy
+load<span class="p">-</span>module module<span class="p">-</span>bluetooth<span class="p">-</span>discover</code></pre></figure>
 
 <p>Edit <em>/etc/pulse/default.pa</em> and add the following line.</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span><span class="k">load</span><span class="p">-</span>module module<span class="p">-</span>switch<span class="p">-</span><span class="k">on</span><span class="p">-</span>connect</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">load<span class="p">-</span>module module<span class="p">-</span>switch<span class="p">-</span><span class="k">on</span><span class="p">-</span>connect</code></pre></figure>
 
 <p>Run <em>sudo usermod -a -G lp daniel</em> to add to lp group.</p>
 
@@ -294,9 +294,9 @@ $ amixer sset Master unmute		<span class="c1"># ALSA comes muted by default.</sp
 
 <p>Install, enable and start CUPS</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S cups
-$ sudo systemctl <span class="nb">enable</span> org.cups.cupsd.service
-$ sudo systemctl start org.cups.cupsd.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> cups
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>org.cups.cupsd.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl start org.cups.cupsd.service</code></pre></figure>
 
 <p>Run <em>sudo usermod -a -G cups daniel</em> to add to <em>cups</em> group.</p>
 
@@ -304,8 +304,8 @@ $ sudo systemctl start org.cups.cupsd.service</code></pre></figure>
 
 <p>At this point, re-logon for the permission to be effective.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S brother-mfc-l2713dw
-$ yay -S brscan4</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yay <span class="nt">-S</span> brother-mfc-l2713dw
+<span class="nv">$ </span>yay <span class="nt">-S</span> brscan4</code></pre></figure>
 
 <p>Install printer and scanner drivers.</p>
 
@@ -323,7 +323,7 @@ to Off</em>. And again drop down <em>Administration</em> and select <em>Set As S
 
 <p>For scanning:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ brsaneconfig4 -a <span class="nv">name</span><span class="o">=(</span>name your device<span class="o">)</span> <span class="nv">model</span><span class="o">=(</span>model name<span class="o">)</span> <span class="nv">ip</span><span class="o">=</span>xx.xx.xx.xx</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>brsaneconfig4 <span class="nt">-a</span> <span class="nv">name</span><span class="o">=(</span>name your device<span class="o">)</span> <span class="nv">model</span><span class="o">=(</span>model name<span class="o">)</span> <span class="nv">ip</span><span class="o">=</span>xx.xx.xx.xx</code></pre></figure>
 
 <p>Use gscan2pdf:</p>
 
@@ -340,27 +340,27 @@ Just do a test print, that will activate the auto start on boot.</p>
 
 <h4 id="ios">iOS</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ usbmuxd -f -v
-$ idevice_id -l
-$ ideviceinfo
-$ ideviceinstaller -l
-$ ifuse ~/iPhone
-$ umount ~/iPhone</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>usbmuxd <span class="nt">-f</span> <span class="nt">-v</span>
+<span class="nv">$ </span>idevice_id <span class="nt">-l</span>
+<span class="nv">$ </span>ideviceinfo
+<span class="nv">$ </span>ideviceinstaller <span class="nt">-l</span>
+<span class="nv">$ </span>ifuse ~/iPhone
+<span class="nv">$ </span>umount ~/iPhone</code></pre></figure>
 
 <h4 id="ntp">NTP</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo systemctl <span class="nb">enable</span> ntpd.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>ntpd.service</code></pre></figure>
 
 <h3 id="additional-install--configuration-for-macbook--laptop-only">Additional Install / Configuration for MacBook / Laptop Only</h3>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop thermald cpupower mbpfan-git tlp
-$ powertop --calibrate
-$ sudo systemctl <span class="nb">enable</span> powertop.service
-$ sudo systemctl <span class="nb">enable</span> thermald.service
-$ sudo systemctl <span class="nb">enable</span> cpupower.service
-$ sudo systemctl <span class="nb">enable</span> mbpfan.service
-$ sudo systemctl <span class="nb">enable</span> tlp.service
-$ sudo systemctl <span class="nb">enable</span> tlp-sleep.service</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yay <span class="nt">-S</span> powertop thermald cpupower mbpfan-git tlp
+<span class="nv">$ </span>powertop <span class="nt">--calibrate</span>
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>powertop.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>thermald.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>cpupower.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>mbpfan.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>tlp.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>tlp-sleep.service</code></pre></figure>
 
 <p>For BCM4360 wireless network adapter, install <em>broadcom-wl-dkms</em> and
 <em>linux-headers</em>. Then reboot before trying wifi-menu.</p>
@@ -385,76 +385,76 @@ $ sudo systemctl <span class="nb">enable</span> tlp-sleep.service</code></pre></
 
 <p>For dual boot, in my case, tested working with Macbook Air.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>sda1 EFI /boot <span class="c1"># This is Mac&#39;s EFI, sharing it with Linux)</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sda1 EFI /boot <span class="c"># This is Mac's EFI, sharing it with Linux)</span>
 sad2 MAC
-sda3 EFI       <span class="c1"># Left blank</span>
+sda3 EFI       <span class="c"># Left blank</span>
 sda4 LUKS
-<span class="p">|</span>-MyVol
-  <span class="p">|</span>- MyVol-swap <span class="o">[</span>SWAP<span class="o">]</span>
-  <span class="p">|</span>- MyVol-root /</code></pre></figure>
+|-MyVol
+  |- MyVol-swap <span class="o">[</span>SWAP]
+  |- MyVol-root /</code></pre></figure>
 
 <h4 id="2-wireless"><a name="2021-03-22_2"></a>[2] Wireless</h4>
 
 <p>netctl is no longer included by default.
 Use ethernet or install netctl package.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacman -S netctl</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> netctl</code></pre></figure>
 
 <h4 id="3-install-base-system"><a name="2021-03-22_3"></a>[3] Install Base System</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl</code></pre></figure>
 
 <p>linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
 default so have to install them explicitly.</p>
 
 <h4 id="4-additional-install--configuration-for-macbook--laptop-only"><a name="2021-03-22_4"></a>[4] Additional Install / Configuration for MacBook / Laptop Only</h4>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ yay -S powertop laptop-mode-tools cpupower thermald mbpfan-git
-$ sudo pacman -S acpi acpid
-$ powertop --calibrate
-$ sudo vim /etc/systemd/system/powertop.service
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yay <span class="nt">-S</span> powertop laptop-mode-tools cpupower thermald mbpfan-git
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> acpi acpid
+<span class="nv">$ </span>powertop <span class="nt">--calibrate</span>
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/systemd/system/powertop.service
 
-<span class="o">[</span>Unit<span class="o">]</span>
+<span class="o">[</span>Unit]
 <span class="nv">Description</span><span class="o">=</span>Powertop tunings
 
-<span class="o">[</span>Service<span class="o">]</span>
+<span class="o">[</span>Service]
 <span class="nv">Type</span><span class="o">=</span>oneshot
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/powertop --auto-tune
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/powertop <span class="nt">--auto-tune</span>
 
-<span class="o">[</span>Install<span class="o">]</span>
+<span class="o">[</span>Install]
 <span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
 
-$ sudo systemctl <span class="nb">enable</span> powertop.service
-$ sudo vim /etc/laptop-mode/laptop-mode.conf
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>powertop.service
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/laptop-mode.conf
 
-<span class="nv">ENABLE_LAPTOP_MODE_ON_AC</span><span class="o">=</span><span class="m">1</span>
-<span class="nv">ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">ENABLE_LAPTOP_MODE_ON_AC</span><span class="o">=</span>1
+<span class="nv">ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED</span><span class="o">=</span>1
 
-$ sudo vim /etc/laptop-mode/conf.d/cpufreq.conf
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/conf.d/cpufreq.conf
 
-<span class="nv">CONTROL_CPU_FREQUENCY</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">CONTROL_CPU_FREQUENCY</span><span class="o">=</span>0
 
-$ sudo vim /etc/laptop-mode/conf.d/intel_pstate.conf
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/conf.d/intel_pstate.conf
 
-<span class="nv">CONTROL_INTEL_PSTATE</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">CONTROL_INTEL_PSTATE</span><span class="o">=</span>0
 
-$ sudo systemctl <span class="nb">enable</span> laptop-mode.service
-$ sudo systemctl <span class="nb">enable</span> acpid.service
-$ sudo vim /etc/default/cpupower
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>laptop-mode.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>acpid.service
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/default/cpupower
 
-<span class="nv">governor</span><span class="o">=</span><span class="s1">&#39;powersave&#39;</span>
-<span class="nv">max_freq</span><span class="o">=</span><span class="s2">&quot;1.3GHz&quot;</span>
+<span class="nv">governor</span><span class="o">=</span><span class="s1">'powersave'</span>
+<span class="nv">max_freq</span><span class="o">=</span><span class="s2">"1.3GHz"</span>
 
-$ sudo systemctl <span class="nb">enable</span> cpupower.service
-$ sudo systemctl <span class="nb">enable</span> thermald.service
-$ sudo vim /usr/lib/systemd/system/mbpfan.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>cpupower.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>thermald.service
+<span class="nv">$ </span><span class="nb">sudo </span>vim /usr/lib/systemd/system/mbpfan.service
 
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/mbpfan -f
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/mbpfan <span class="nt">-f</span>
 
-$ sudo systemctl <span class="nb">enable</span> mbpfan.service
-$ sudo pacman -S broadcom-wl-dkms linux-headers <span class="c1"># linux-headers package is not required but installed it anyway</span>
-$ sudo rmmod b43 ssb bcma wl                    <span class="c1"># Either this or reboot</span>
-$ sudo modprobe wl</code></pre></figure>
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>mbpfan.service
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> broadcom-wl-dkms linux-headers <span class="c"># linux-headers package is not required but installed it anyway</span>
+<span class="nv">$ </span><span class="nb">sudo </span>rmmod b43 ssb bcma wl                    <span class="c"># Either this or reboot</span>
+<span class="nv">$ </span><span class="nb">sudo </span>modprobe wl</code></pre></figure>
 
 
   </div>

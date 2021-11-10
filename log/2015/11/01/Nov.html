@@ -9,10 +9,10 @@
   <title>Nov</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2015/11/01/Nov.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -96,34 +96,34 @@
 
 <p>General maintenance related tasks:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ rvm get stable                 <span class="c1"># RVM</span>
-$ rvm install <span class="m">2</span>.2.3              <span class="c1"># Ruby</span>
-$ rvm --default use <span class="m">2</span>.2.3        <span class="c1"># Set default version</span>
-$ rvm rubygems latest            <span class="c1"># RubyGems</span>
-$ gem install bundler            <span class="c1"># Dependencies</span>
-$ bundle install                 <span class="c1"># Run within blog directory</span>
-$ rvm -v                         <span class="c1"># Check versions</span>
-$ ruby -v
-$ which ruby
-$ gem -v
-$ which gem</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rvm get stable                 <span class="c"># RVM</span>
+<span class="nv">$ </span>rvm <span class="nb">install </span>2.2.3              <span class="c"># Ruby</span>
+<span class="nv">$ </span>rvm <span class="nt">--default</span> use 2.2.3        <span class="c"># Set default version</span>
+<span class="nv">$ </span>rvm rubygems latest            <span class="c"># RubyGems</span>
+<span class="nv">$ </span>gem <span class="nb">install </span>bundler            <span class="c"># Dependencies</span>
+<span class="nv">$ </span>bundle <span class="nb">install</span>                 <span class="c"># Run within blog directory</span>
+<span class="nv">$ </span>rvm <span class="nt">-v</span>                         <span class="c"># Check versions</span>
+<span class="nv">$ </span>ruby <span class="nt">-v</span>
+<span class="nv">$ </span>which ruby
+<span class="nv">$ </span>gem <span class="nt">-v</span>
+<span class="nv">$ </span>which gem</code></pre></figure>
 
 <p>Arch uses Python version 3, whereas Octopress requires verions 2. Edit the 
 first line of mentos.py to the following instead:</p>
 
 <p><em>~/.rvm/gems/ruby-2.2.3/gems/pygments.rb-0.3.4/lib/pygments/mentos.py</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>#<span class="p">!</span><span class="sr">/usr/</span><span class="nb">bin</span>/env python2</code></pre></figure>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">#<span class="p">!</span><span class="sr">/usr/</span><span class="nb">bin</span>/env python2</code></pre></figure>
 
 <p>Migrating to another computer:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ curl -L https://get.rvm.io <span class="p">|</span> bash -s stable --ruby</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-L</span> https://get.rvm.io | bash <span class="nt">-s</span> stable <span class="nt">--ruby</span></code></pre></figure>
 
 <p>Then do the upgrades as listed above.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git clone -b <span class="nb">source</span> git@github.com:username/username.github.io.git
-$ <span class="nb">cd</span> username.github.io.git
-$ git clone git@github.com:username/username.github.io.git _deploy</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git clone <span class="nt">-b</span> <span class="nb">source </span>git@github.com:username/username.github.io.git
+<span class="nv">$ </span><span class="nb">cd </span>username.github.io.git
+<span class="nv">$ </span>git clone git@github.com:username/username.github.io.git _deploy</code></pre></figure>
 
 <p>Install the dependencies as listed above.</p>
 
@@ -131,45 +131,45 @@ $ git clone git@github.com:username/username.github.io.git _deploy</code></pre><
 
 <p>Push on one:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ rake generate
-$ rake deploy
-$ git add .
-$ git commit -a
-$ git push origin <span class="nb">source</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rake generate
+<span class="nv">$ </span>rake deploy
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-a</span>
+<span class="nv">$ </span>git push origin <span class="nb">source</span></code></pre></figure>
 
 <p>Pull on the other:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git pull origin <span class="nb">source</span>
-$ <span class="nb">cd</span> ./_deploy
-$ git pull origin master</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git pull origin <span class="nb">source</span>
+<span class="nv">$ </span><span class="nb">cd</span> ./_deploy
+<span class="nv">$ </span>git pull origin master</code></pre></figure>
 
 <p><br /></p>
 <h3 id="i3"><a name="i3-1"></a>I3</h3>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo pacman -S i3
-$ sudo pacman -S dmenu
-$ sudo pacman -S feh                     <span class="c1"># for wallpaper</span>
-$ sudo pacman -S scrot                   <span class="c1"># for screenshot</span>
-$ sudo pacman -S mplayer
-$ sudo pacman -S archey3
-$ sudo pacman -S cmus
-$ sudo pacman -S gpicview
-$ sudo pacman -S firefox                 <span class="c1"># optional</span>
-$ sudo pacman -S dnsutils
-$ sudo pacman -S whois
-$ sudo pacman -S imagemagick
-$ sudo pacman -S easytag
-$ sudo pacman -S rdesktop freerdp        <span class="c1"># optional</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> i3
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> dmenu
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> feh                     <span class="c"># for wallpaper</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> scrot                   <span class="c"># for screenshot</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> mplayer
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> archey3
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> cmus
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> gpicview
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> firefox                 <span class="c"># optional</span>
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> dnsutils
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> whois
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> imagemagick
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> easytag
+<span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> rdesktop freerdp        <span class="c"># optional</span></code></pre></figure>
 
 <p><em>~/.config/i3/config</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span># Pulse Audio controls
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"># Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>volume <span class="m">0</span> <span class="p">+</span><span class="m">5</span>% #increase sound volume
 bindsym XF86AudioLowerVolume exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>volume <span class="m">0</span> <span class="m">-5</span>% #decrease sound volume
 bindsym XF86AudioMute exec <span class="p">--</span>no<span class="p">-</span>startup<span class="p">-</span>id pactl <span class="k">set</span><span class="p">-</span>sink<span class="p">-</span>mute <span class="m">0</span> toggle #mute sound
 
-# pause <span class="sr">/ play /</span> next / <span class="k">previous</span>
-bindsym XF86AudioPlay exec cmus<span class="p">-</span>remote <span class="p">-</span>C <span class="s2">&quot;player-pause&quot;</span>
+# pause <span class="sr">/ play /</span> <span class="k">next</span> / <span class="k">previous</span>
+bindsym XF86AudioPlay exec cmus<span class="p">-</span>remote <span class="p">-</span>C <span class="s2">"player-pause"</span>
 bindsym XF86AudioNext exec cmus<span class="p">-</span>remote <span class="p">-</span><span class="k">n</span>
 bindsym XF86AudioPrev exec cmus<span class="p">-</span>remote <span class="p">-</span><span class="k">r</span>
 

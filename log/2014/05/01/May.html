@@ -9,10 +9,10 @@
   <title>May</title>
   <meta name="description" content="Contents">
 
-  <link rel="stylesheet" href="/log/assets/main.css">
+  <link rel="stylesheet" href="/log/assets/base16.dark.css">
   <link rel="canonical" href="/log/2014/05/01/May.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
-  
+
   
 
 </head>
@@ -101,8 +101,8 @@
 
 <p>Workaround for undetected resolutions:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ nvidia-xconfig                <span class="c1"># Create xorg.conf based on detected hardware</span>
-$ sudo vim /etc/X11/xorg.conf</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>nvidia-xconfig                <span class="c"># Create xorg.conf based on detected hardware</span>
+<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/X11/xorg.conf</code></pre></figure>
 
 <p>Amend Monitor section of xorg.conf with the correct specifications. In my case,
 the <em>HorizSync</em> and <em>VertRefresh</em> values were incorrect.</p>
@@ -111,23 +111,23 @@ the <em>HorizSync</em> and <em>VertRefresh</em> values were incorrect.</p>
 
 <p>If it’s not listed, run the following to get its modeline details.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ cvt <span class="m">1680</span> <span class="m">1050</span>
-<span class="c1"># 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz</span>
-Modeline <span class="s2">&quot;1680x1050_60.00&quot;</span>  <span class="m">146</span>.25  <span class="m">1680</span> <span class="m">1784</span> <span class="m">1960</span> <span class="m">2240</span>  <span class="m">1050</span> <span class="m">1053</span> <span class="m">1059</span> <span class="m">1089</span>
--hsync +vsync</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>cvt 1680 1050
+<span class="c"># 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz</span>
+Modeline <span class="s2">"1680x1050_60.00"</span>  146.25  1680 1784 1960 2240  1050 1053 1059 1089
+<span class="nt">-hsync</span> +vsync</code></pre></figure>
 
 <p>Add the modeline values to xorg.conf</p>
 
 <p><em>/etc/X11/xorg.conf</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span></span>Section <span class="s2">&quot;Monitor&quot;</span>
-    Identifier     <span class="s2">&quot;Monitor0&quot;</span>
-    VendorName     <span class="s2">&quot;Samsung&quot;</span>
-    ModelName      <span class="s2">&quot;SyncMaster 2253BW&quot;</span>
-    HorizSync       <span class="m">30</span>.<span class="m">0</span> <span class="p">-</span> <span class="m">81</span>.<span class="m">0</span>
-    VertRefresh     <span class="m">56</span>.<span class="m">0</span> <span class="p">-</span> <span class="m">75</span>.<span class="m">0</span>
-    Option         <span class="s2">&quot;DPMS&quot;</span>
-    Modeline       <span class="s2">&quot;1680x1050_60.00&quot;</span>  <span class="m">146</span>.<span class="m">25</span>  <span class="m">1680</span> <span class="m">1784</span> <span class="m">1960</span> <span class="m">2240</span>  <span class="m">1050</span> <span class="m">1053</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">Section <span class="s2">"Monitor"</span>
+    Identifier     <span class="s2">"Monitor0"</span>
+    VendorName     <span class="s2">"Samsung"</span>
+    ModelName      <span class="s2">"SyncMaster 2253BW"</span>
+    HorizSync       <span class="m">30</span><span class="p">.</span><span class="m">0</span> <span class="p">-</span> <span class="m">81</span><span class="p">.</span><span class="m">0</span>
+    VertRefresh     <span class="m">56</span><span class="p">.</span><span class="m">0</span> <span class="p">-</span> <span class="m">75</span><span class="p">.</span><span class="m">0</span>
+    Option         <span class="s2">"DPMS"</span>
+    Modeline       <span class="s2">"1680x1050_60.00"</span>  <span class="m">146</span><span class="p">.</span><span class="m">25</span>  <span class="m">1680</span> <span class="m">1784</span> <span class="m">1960</span> <span class="m">2240</span>  <span class="m">1050</span> <span class="m">1053</span>
                     <span class="m">1059</span> <span class="m">1089</span> <span class="p">-</span>hsync <span class="p">+</span>vsync
 EndSection</code></pre></figure>
 
@@ -147,9 +147,9 @@ Open Disk Utility, select the drive.&lt;/br&gt;
 Choose Partition tab, select 1 Partition from Partition Layout.&lt;/br&gt;
 Click Options, choose GUID Partition Table, then OK and Apply.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ sudo Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app/Contents/Resources/createinstallmedia <span class="se">\</span>
---volume /Volumes/untitled --applicationpath Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app <span class="se">\</span>
---nointeraction</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app/Contents/Resources/createinstallmedia <span class="se">\</span>
+<span class="nt">--volume</span> /Volumes/untitled <span class="nt">--applicationpath</span> Install<span class="se">\ </span>OS<span class="se">\ </span>X<span class="se">\ </span>Mavericks.app <span class="se">\</span>
+<span class="nt">--nointeraction</span></code></pre></figure>
 
 <h4 id="installation">Installation</h4>
 

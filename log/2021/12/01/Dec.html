@@ -267,7 +267,8 @@ to additional groups.</p>
 
 <p>Restore home from GFS backup.</p>
 
-<p>Restore system from SYS backup.</p>
+<p>SYS backup is available for configuration reference if needed but do not restore
+straight from it since that will wipe newer configurations for fresh build.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> - &lt; pkglist.txt	<span class="c"># Install all packages from backup list</span></code></pre></figure>
 
@@ -286,6 +287,8 @@ to additional groups.</p>
 <p>Enable bluetooth service then pair devices.</p>
 
 <h4 id="pulseaudio-deprecated-replaced-by-pipewire">PulseAudio (Deprecated, replaced by PipeWire)</h4>
+
+<p><em>Left here for reference</em>.</p>
 
 <p>Edit <em>/etc/pulse/system.pa</em> and add the following lines.</p>
 
@@ -306,7 +309,7 @@ load<span class="p">-</span>module module<span class="p">-</span>bluetooth<span 
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>org.cups.cupsd.service
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl start org.cups.cupsd.service</code></pre></figure>
 
-<p>Run <em>sudo usermod -a -G lp daniel</em> to add to lp group.
+<p>Run <em>sudo usermod -a -G lp daniel</em> to add to lp group.<br />
 Run <em>sudo usermod -a -G cups daniel</em> to add to <em>cups</em> group.</p>
 
 <p>Append <em>wheel</em> to <em>SystemGroup sys root</em> in <em>/etc/cups/cups-files.conf</em></p>
@@ -476,6 +479,7 @@ default so have to install them explicitly.</p>
 <span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> broadcom-wl-dkms linux-headers <span class="c"># linux-headers package is not required but installed it anyway</span>
 <span class="nv">$ </span><span class="nb">sudo </span>rmmod b43 ssb bcma wl                    <span class="c"># Either this or reboot</span>
 <span class="nv">$ </span><span class="nb">sudo </span>modprobe wl</code></pre></figure>
+
 
   </div>
 

@@ -1,4 +1,396 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-11-10T19:40:58+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="/log/feed.xml" rel="self" type="application/atom+xml" /><link href="/log/" rel="alternate" type="text/html" /><updated>2021-12-20T15:02:57+13:00</updated><id>/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Dec</title><link href="/log/2021/12/01/Dec.html" rel="alternate" type="text/html" title="Dec" /><published>2021-12-01T13:00:00+13:00</published><updated>2021-12-01T13:00:00+13:00</updated><id>/log/2021/12/01/Dec</id><content type="html" xml:base="/log/2021/12/01/Dec.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;mon-dec-20-2021&quot;&gt;Mon, Dec 20, 2021&lt;/h3&gt;
+
+&lt;h3 id=&quot;arch-installation--encrypted-setup--systemd-boot&quot;&gt;&lt;a name=&quot;arch-1&quot;&gt;&lt;/a&gt;ARCH INSTALLATION / ENCRYPTED SETUP / systemd-boot&lt;/h3&gt;
+
+&lt;p&gt;This is &lt;a href=&quot;https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS&quot;&gt;LVM on LUKS&lt;/a&gt; setup based on Arch’s wiki documentation.&lt;/p&gt;
+
+&lt;h4 id=&quot;keyboard&quot;&gt;Keyboard&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;loadkeys us&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;partition&quot;&gt;Partition&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lsblk				&lt;span class=&quot;c&quot;&gt;# List block devices&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdisk /dev/nvme0n1		&lt;span class=&quot;c&quot;&gt;# To partition /dev/nvme0n1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o				&lt;span class=&quot;c&quot;&gt;# Either new or start over&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;+512M				&lt;span class=&quot;c&quot;&gt;# Allocated 512MB for boot partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;EF00				&lt;span class=&quot;c&quot;&gt;# Set type of partition or L to list&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;n				&lt;span class=&quot;c&quot;&gt;# Create new partition&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default partition number&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default first sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Enter				&lt;span class=&quot;c&quot;&gt;# Accept default last sector&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;8300				&lt;span class=&quot;c&quot;&gt;# Set partition type to LVM&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;w				&lt;span class=&quot;c&quot;&gt;# Write change&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;y				&lt;span class=&quot;c&quot;&gt;# Accept&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup luksFormat &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; luks2 /dev/nvme0n1p2	&lt;span class=&quot;c&quot;&gt;# Create encrypted container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cryptsetup open /dev/nvme0n1p2 cryptolvm			&lt;span class=&quot;c&quot;&gt;# Open container&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pvcreate /dev/mapper/cryptolvm			&lt;span class=&quot;c&quot;&gt;# Create physical volume&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vgcreate MyVol /dev/mapper/cryptolvm			&lt;span class=&quot;c&quot;&gt;# Create MyVol volume group&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; 2G MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; swap				&lt;span class=&quot;c&quot;&gt;# Allocated 2GB for swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;lvcreate &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 100%FREE MyVol &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; root			&lt;span class=&quot;c&quot;&gt;# Allocated remaining for root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkswap /dev/mapper/MyVol-swap				&lt;span class=&quot;c&quot;&gt;# Format swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.ext4 /dev/mapper/MyVol-root			&lt;span class=&quot;c&quot;&gt;# Format root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;swapon /dev/mapper/MyVol-swap				&lt;span class=&quot;c&quot;&gt;# Mount swap&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/mapper/MyVol-root /mnt			&lt;span class=&quot;c&quot;&gt;# Mount root&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkfs.vfat &lt;span class=&quot;nt&quot;&gt;-F32&lt;/span&gt; /dev/nvme0n1p1				&lt;span class=&quot;c&quot;&gt;# Format boot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt;	/mnt/boot					&lt;span class=&quot;c&quot;&gt;# Create boot directory&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mount /dev/nvme0n1p1 /mnt/boot			&lt;span class=&quot;c&quot;&gt;# Mount boot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_1&quot;&gt;[1]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_2&quot;&gt;[2]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_3&quot;&gt;[3]&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;configure-system&quot;&gt;Configure System&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;genfstab &lt;span class=&quot;nt&quot;&gt;-pU&lt;/span&gt; /mnt &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /mnt/etc/fstab	&lt;span class=&quot;c&quot;&gt;# Generate fstab&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/mnt/etc/fstab&lt;/em&gt; and change &lt;em&gt;relatime&lt;/em&gt; to &lt;em&gt;noatime&lt;/em&gt; for non-boot partitions.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;arch-chroot /mnt			&lt;span class=&quot;c&quot;&gt;# chroot&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Add hostname to &lt;em&gt;/etc/hostname&lt;/em&gt; and &lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/etc/hosts&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	localhost
+&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;subdomain&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;domain	&lt;span class=&quot;nb&quot;&gt;hostname&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Set time zone:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /usr/share/zoneinfo/Pacific/Auckland /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Uncomment the locale in &lt;em&gt;/etc/locale.gen&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;locale-gen				&lt;span class=&quot;c&quot;&gt;# Generate locale &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Set locale preference by adding &lt;em&gt;LANG=”en_NZ.UTF-8”&lt;/em&gt; to &lt;em&gt;/etc/locale.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;configure-mkinitcpio&quot;&gt;Configure mkinitcpio&lt;/h4&gt;
+
+&lt;p&gt;Add &lt;em&gt;ext4&lt;/em&gt; to MODULES&lt;/p&gt;
+
+&lt;p&gt;Add &lt;em&gt;encrypt lvm2 resume&lt;/em&gt; hooks to &lt;em&gt;/etc/mkinitcpio.conf&lt;/em&gt; before &lt;em&gt;filesystems&lt;/em&gt;
+and after &lt;em&gt;udev&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;HOOKS&lt;span class=&quot;p&quot;&gt;=(&lt;/span&gt;base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;mkinitcpio and set root password:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkinitcpio &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; linux
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;install-boot-loader&quot;&gt;Install Boot Loader&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bootctl &lt;span class=&quot;nt&quot;&gt;--path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/boot &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/boot/loader/loader.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;default lts
+&lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
+editor &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Use &lt;em&gt;blkid&lt;/em&gt; to find the UUID for &lt;em&gt;/dev/nvme0n1p2&lt;/em&gt; and replace the &amp;lt;UUID&amp;gt; below
+without the bracket.&lt;/p&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/boot/loader/entries/arch.conf&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;nb&quot;&gt;title&lt;/span&gt; Arch Linux
+linux /vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux
+initrd /initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;img
+&lt;span class=&quot;k&quot;&gt;options&lt;/span&gt; cryptdevice&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;MyVol root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root resume=/&lt;/span&gt;dev&lt;span class=&quot;sr&quot;&gt;/mapper/&lt;/span&gt;MyVol&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;swap rw&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/boot/loader/entries/lts.conf&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;nb&quot;&gt;title&lt;/span&gt; LTS
+linux /vmlinuz&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;lts
+initrd /initramfs&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;linux&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;lts&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;img
+&lt;span class=&quot;k&quot;&gt;options&lt;/span&gt; cryptdevice&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;UUID&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;MyVol root&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/dev/&lt;/span&gt;mapper&lt;span class=&quot;sr&quot;&gt;/MyVol-root resume=/&lt;/span&gt;dev&lt;span class=&quot;sr&quot;&gt;/mapper/&lt;/span&gt;MyVol&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;swap rw&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;wireless-1&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; dialog wpa_supplicant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;umount-and-reboot&quot;&gt;Umount and Reboot&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;			&lt;span class=&quot;c&quot;&gt;# Exit from chroot environment&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; /mnt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;reboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;create-new-user&quot;&gt;Create New User&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; wheel &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;passwd daniel
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; audio,network,power,scanner,storage,systemd-journal,video daniel&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The above creates a new user with home directory, change password and add user
+to additional groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;wireless-2&quot;&gt;Wireless&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wifi-menu
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; /etc/netctl/			&lt;span class=&quot;c&quot;&gt;# Find the wifi profile&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;netctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;profile-name		&lt;span class=&quot;c&quot;&gt;# profile-name as obtained above&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Alternatively, a better approach is as follows rather than enabling profile:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; ifplugd					&lt;span class=&quot;c&quot;&gt;# Wired&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;netctl-ifplugd@interface.service	&lt;span class=&quot;c&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;netctl-auto@interface.service		&lt;span class=&quot;c&quot;&gt;# substitute interface with the value obtained from ip a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/netctl#Enabling_a_profile&quot;&gt;netctl: Enabling a profile&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/netctl#Special_systemd_units&quot;&gt;netctl: Special systemd units: wired / wireless&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;sudo&quot;&gt;Sudo&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run visudo, edit it to restrict sudo to specific group or user.&lt;/p&gt;
+
+&lt;h4 id=&quot;additional-install&quot;&gt;Additional Install&lt;/h4&gt;
+
+&lt;p&gt;Install &lt;em&gt;yay&lt;/em&gt; from AUR.&lt;/p&gt;
+
+&lt;h4 id=&quot;audio&quot;&gt;Audio&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; alsa-utils
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;amixer sset Master unmute		&lt;span class=&quot;c&quot;&gt;# ALSA comes muted by default.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;restore&quot;&gt;Restore&lt;/h4&gt;
+
+&lt;p&gt;Restore home from GFS backup.&lt;/p&gt;
+
+&lt;p&gt;Restore system from SYS backup.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; - &amp;lt; pkglist.txt	&lt;span class=&quot;c&quot;&gt;# Install all packages from backup list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Do the same for AUR with &lt;em&gt;yay&lt;/em&gt;.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;extra-configuration&quot;&gt;Extra Configuration&lt;/h3&gt;
+
+&lt;h4 id=&quot;bluetooth&quot;&gt;Bluetooth&lt;/h4&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/bluetooth/main.conf&lt;/em&gt; and add the following line.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;AutoEnable&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;true&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;bluetooth.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Enable bluetooth service then pair devices.&lt;/p&gt;
+
+&lt;h4 id=&quot;pulseaudio-deprecated-replaced-by-pipewire&quot;&gt;PulseAudio (Deprecated, replaced by PipeWire)&lt;/h4&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/pulse/system.pa&lt;/em&gt; and add the following lines.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;policy
+load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;bluetooth&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;discover&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Edit &lt;em&gt;/etc/pulse/default.pa&lt;/em&gt; and add the following line.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;load&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;module module&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;switch&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;connect&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If cookie not found then &lt;em&gt;cp ~/.pulse-cookie ~/.config/pulse/cookie&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;cups&quot;&gt;CUPS&lt;/h4&gt;
+
+&lt;p&gt;Install, enable and start CUPS&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; cups
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;org.cups.cupsd.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start org.cups.cupsd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run &lt;em&gt;sudo usermod -a -G lp daniel&lt;/em&gt; to add to lp group.
+Run &lt;em&gt;sudo usermod -a -G cups daniel&lt;/em&gt; to add to &lt;em&gt;cups&lt;/em&gt; group.&lt;/p&gt;
+
+&lt;p&gt;Append &lt;em&gt;wheel&lt;/em&gt; to &lt;em&gt;SystemGroup sys root&lt;/em&gt; in &lt;em&gt;/etc/cups/cups-files.conf&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, re-logon for the permission to be effective.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; brother-mfc-l2713dw
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; brscan4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Install printer and scanner drivers.&lt;/p&gt;
+
+&lt;p&gt;Browse to &lt;em&gt;http://localhost:631&lt;/em&gt;, go to &lt;em&gt;Administration -&amp;gt; Add Printer&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;LPD/LPR Host or Printer&lt;/em&gt;&lt;br /&gt;
+Enter &lt;em&gt;lpd://(Your printer’s IP address)/binary_p1&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;Brother&lt;/em&gt;&lt;br /&gt;
+Select the printer driver, which should already be automatically selected. It’s
+the CUPS version.&lt;br /&gt;
+Name the printer.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then go to &lt;em&gt;Printers&lt;/em&gt;, select the printer, drop down &lt;em&gt;Administration&lt;/em&gt; and select &lt;em&gt;Set
+Default Options&lt;/em&gt;, set &lt;em&gt;A4&lt;/em&gt;, &lt;em&gt;Plain Paper&lt;/em&gt;, &lt;em&gt;600dpi&lt;/em&gt;, &lt;em&gt;Tray1&lt;/em&gt;, &lt;em&gt;DuplexNoTumble&lt;/em&gt;, &lt;em&gt;Toner Save
+to Off&lt;/em&gt;. And again drop down &lt;em&gt;Administration&lt;/em&gt; and select &lt;em&gt;Set As Server Default&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;For scanning:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brsaneconfig4 &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;name your device&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;model name&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xx.xx.xx.xx&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Use gscan2pdf:&lt;/p&gt;
+
+&lt;p&gt;Untick &lt;em&gt;OCR scanned pages&lt;/em&gt;&lt;br /&gt;
+Select &lt;em&gt;All&lt;/em&gt; pages&lt;br /&gt;
+Leave &lt;em&gt;Mode&lt;/em&gt; as default&lt;br /&gt;
+Change &lt;em&gt;Geometry&lt;/em&gt; from &lt;em&gt;Manual&lt;/em&gt; to &lt;em&gt;A4&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;gscan2pdf will need &lt;em&gt;yay -S pdftk-bin&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Even though &lt;em&gt;org.cups.cupsd.service&lt;/em&gt; has been enabled, it won’t auto start on
+boot.&lt;br /&gt;
+Just do a test print, that will activate the auto start on boot.&lt;/p&gt;
+
+&lt;h4 id=&quot;ntp&quot;&gt;NTP&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;ntpd.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;optional&quot;&gt;Optional&lt;/h3&gt;
+
+&lt;h4 id=&quot;ios&quot;&gt;iOS&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;usbmuxd &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;idevice_id &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ideviceinfo
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ideviceinstaller &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ifuse ~/iPhone
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;umount ~/iPhone&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;power-management&quot;&gt;Power Management&lt;/h3&gt;
+
+&lt;h4 id=&quot;desktop&quot;&gt;Desktop&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; thermald
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;laptop&quot;&gt;Laptop&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; powertop thermald cpupower mbpfan-git tlp
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;powertop &lt;span class=&quot;nt&quot;&gt;--calibrate&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;powertop.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;cpupower.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mbpfan.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_4&quot;&gt;[4]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
+&lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
+
+&lt;p&gt;Suspend works out of the box.&lt;/p&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Broadcom_wireless&quot;&gt;Broadcom wireless&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#WiFi&quot;&gt;WiFi&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Suspend_and_Hibernate&quot;&gt;Suspend&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://wiki.archlinux.org/index.php/Mac#Mid_2013_13%22_-_Version_6,2&quot;&gt;Mid 2013&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;notes&quot;&gt;Notes&lt;/h3&gt;
+
+&lt;h4 id=&quot;2021-12-20&quot;&gt;&lt;a name=&quot;2021-12-20&quot;&gt;&lt;/a&gt;2021-12-20&lt;/h4&gt;
+
+&lt;h4 id=&quot;1-partition&quot;&gt;&lt;a name=&quot;2021-12-20_1&quot;&gt;&lt;/a&gt;[1] Partition&lt;/h4&gt;
+
+&lt;p&gt;For dual boot, in my case, tested working with Macbook Air.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sda1 EFI /boot &lt;span class=&quot;c&quot;&gt;# This is Mac's EFI, sharing it with Linux)&lt;/span&gt;
+sad2 MAC
+sda3 EFI       &lt;span class=&quot;c&quot;&gt;# Left blank&lt;/span&gt;
+sda4 LUKS
+|-MyVol
+  |- MyVol-swap &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;SWAP]
+  |- MyVol-root /&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;2-wireless&quot;&gt;&lt;a name=&quot;2021-12-20_2&quot;&gt;&lt;/a&gt;[2] Wireless&lt;/h4&gt;
+
+&lt;p&gt;netctl is no longer included by default.
+Use ethernet or install netctl package.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;3-install-base-system&quot;&gt;&lt;a name=&quot;2021-12-20_3&quot;&gt;&lt;/a&gt;[3] Install Base System&lt;/h4&gt;
+
+&lt;p&gt;Edit /etc/pacman.d/mirrorlist so that the preferred mirror is on top of the 
+list.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
+default so have to install them explicitly.&lt;/p&gt;
+
+&lt;h4 id=&quot;4-laptop&quot;&gt;&lt;a name=&quot;2021-12-20_4&quot;&gt;&lt;/a&gt;[4] Laptop&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;yay &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; powertop laptop-mode-tools cpupower thermald mbpfan-git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; acpi acpid
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;powertop &lt;span class=&quot;nt&quot;&gt;--calibrate&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/systemd/system/powertop.service
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit]
+&lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Powertop tunings
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service]
+&lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;oneshot
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/powertop &lt;span class=&quot;nt&quot;&gt;--auto-tune&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install]
+&lt;span class=&quot;nv&quot;&gt;WantedBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;multi-user.target
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;powertop.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/laptop-mode.conf
+
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_ON_AC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+&lt;span class=&quot;nv&quot;&gt;ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/conf.d/cpufreq.conf
+
+&lt;span class=&quot;nv&quot;&gt;CONTROL_CPU_FREQUENCY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/laptop-mode/conf.d/intel_pstate.conf
+
+&lt;span class=&quot;nv&quot;&gt;CONTROL_INTEL_PSTATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;laptop-mode.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;acpid.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/default/cpupower
+
+&lt;span class=&quot;nv&quot;&gt;governor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'powersave'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;max_freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.3GHz&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;cpupower.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /usr/lib/systemd/system/mbpfan.service
+
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/sbin/mbpfan &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mbpfan.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; broadcom-wl-dkms linux-headers &lt;span class=&quot;c&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;rmmod b43 ssb bcma wl                    &lt;span class=&quot;c&quot;&gt;# Either this or reboot&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Sep</title><link href="/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>/log/2021/09/01/Sep</id><content type="html" xml:base="/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#bujo-1&quot;&gt;Bullet Journal (with Roam)&lt;/a&gt;&lt;/li&gt;
@@ -1221,74 +1613,4 @@ commands off Arch
 &lt;p&gt;Alternatively, a better option is to clone the entire drive 
 (&lt;a href=&quot;http://goo.gl/L5pgF9&quot;&gt;save disk image&lt;/a&gt;) for backup. Then restore it with 
 &lt;a href=&quot;http://goo.gl/bRLzfJ&quot;&gt;“restore disk image”&lt;/a&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">May</title><link href="/log/2014/05/01/May.html" rel="alternate" type="text/html" title="May" /><published>2014-05-01T12:00:00+12:00</published><updated>2014-05-01T12:00:00+12:00</updated><id>/log/2014/05/01/May</id><content type="html" xml:base="/log/2014/05/01/May.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;#external-1&quot;&gt;External Monitor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#osx-1&quot;&gt;OS X Installation&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;sun-may-18-2014&quot;&gt;Sun, May 18, 2014&lt;/h3&gt;
-
-&lt;h3 id=&quot;external-monitor&quot;&gt;&lt;a name=&quot;external-1&quot;&gt;&lt;/a&gt;EXTERNAL MONITOR&lt;/h3&gt;
-
-&lt;h4 id=&quot;resolution&quot;&gt;Resolution&lt;/h4&gt;
-
-&lt;p&gt;Workaround for undetected resolutions:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nvidia-xconfig                &lt;span class=&quot;c&quot;&gt;# Create xorg.conf based on detected hardware&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/X11/xorg.conf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Amend Monitor section of xorg.conf with the correct specifications. In my case,
-the &lt;em&gt;HorizSync&lt;/em&gt; and &lt;em&gt;VertRefresh&lt;/em&gt; values were incorrect.&lt;/p&gt;
-
-&lt;p&gt;Reboot, then check display for native resolution.&lt;/p&gt;
-
-&lt;p&gt;If it’s not listed, run the following to get its modeline details.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cvt 1680 1050
-&lt;span class=&quot;c&quot;&gt;# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz&lt;/span&gt;
-Modeline &lt;span class=&quot;s2&quot;&gt;&quot;1680x1050_60.00&quot;&lt;/span&gt;  146.25  1680 1784 1960 2240  1050 1053 1059 1089
-&lt;span class=&quot;nt&quot;&gt;-hsync&lt;/span&gt; +vsync&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Add the modeline values to xorg.conf&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;/etc/X11/xorg.conf&lt;/em&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;Section &lt;span class=&quot;s2&quot;&gt;&quot;Monitor&quot;&lt;/span&gt;
-    Identifier     &lt;span class=&quot;s2&quot;&gt;&quot;Monitor0&quot;&lt;/span&gt;
-    VendorName     &lt;span class=&quot;s2&quot;&gt;&quot;Samsung&quot;&lt;/span&gt;
-    ModelName      &lt;span class=&quot;s2&quot;&gt;&quot;SyncMaster 2253BW&quot;&lt;/span&gt;
-    HorizSync       &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;81&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-    VertRefresh     &lt;span class=&quot;m&quot;&gt;56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-    Option         &lt;span class=&quot;s2&quot;&gt;&quot;DPMS&quot;&lt;/span&gt;
-    Modeline       &lt;span class=&quot;s2&quot;&gt;&quot;1680x1050_60.00&quot;&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;146&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1680&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1784&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1960&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2240&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;1050&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1053&lt;/span&gt;
-                    &lt;span class=&quot;m&quot;&gt;1059&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1089&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;hsync &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt;vsync
-EndSection&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Reboot, the native resolution should now be listed.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;mon-may-19-2014&quot;&gt;Mon, May 19, 2014&lt;/h3&gt;
-
-&lt;h3 id=&quot;os-x-installation&quot;&gt;&lt;a name=&quot;osx-1&quot;&gt;&lt;/a&gt;OS X INSTALLATION&lt;/h3&gt;
-
-&lt;h4 id=&quot;media&quot;&gt;Media&lt;/h4&gt;
-
-&lt;p&gt;Obtainable from Applications prior to installation when downloaded from App
-Store.&lt;/p&gt;
-
-&lt;p&gt;To create bootable USB flash drive:&amp;lt;/br&amp;gt;
-Open Disk Utility, select the drive.&amp;lt;/br&amp;gt;
-Choose Partition tab, select 1 Partition from Partition Layout.&amp;lt;/br&amp;gt;
-Click Options, choose GUID Partition Table, then OK and Apply.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app/Contents/Resources/createinstallmedia &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--volume&lt;/span&gt; /Volumes/untitled &lt;span class=&quot;nt&quot;&gt;--applicationpath&lt;/span&gt; Install&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;OS&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;X&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Mavericks.app &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;--nointeraction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
-
-&lt;p&gt;Reboot while holding down the option key.&amp;lt;/br&amp;gt;
-Select the USB flash drive.&amp;lt;/br&amp;gt;
-For clean install, select Disk Utility. Erase the / partition.&amp;lt;/br&amp;gt;
-After that, select Reinstall OS X.&lt;/p&gt;</content><author><name></name></author><category term="linux" /><category term="mac" /><summary type="html">Contents</summary></entry></feed>
+&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry></feed>

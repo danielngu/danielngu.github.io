@@ -10,7 +10,7 @@
   <meta name="description" content="Contents">
 
   <link rel="stylesheet" href="/log/assets/base16.dark.css">
-  <link rel="canonical" href="/log/2021/12/01/Dec.html">
+  <link rel="canonical" href="http://localhost:4000/log/2021/12/01/Dec.html">
   <link rel="alternate" type="application/rss+xml" title="Daniel Ngu&#39;s Log" href="/log/feed.xml">
 
   
@@ -263,6 +263,10 @@ to additional groups.</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> alsa-utils
 <span class="nv">$ </span>amixer sset Master unmute		<span class="c"># ALSA comes muted by default.</span></code></pre></figure>
 
+<p>Create <em>/etc/modprobe.d/disablePower.conf</em><br /></p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">options</span> snd_hda_intel power_save<span class="p">=</span><span class="m">0</span></code></pre></figure>
+
 <h4 id="restore">Restore</h4>
 
 <p>Restore home from GFS backup.</p>
@@ -435,47 +439,51 @@ default so have to install them explicitly.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>yay <span class="nt">-S</span> powertop laptop-mode-tools cpupower thermald mbpfan-git
 <span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> acpi acpid
-<span class="nv">$ </span>powertop <span class="nt">--calibrate</span>
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/systemd/system/powertop.service
+<span class="nv">$ </span>powertop <span class="nt">--calibrate</span></code></pre></figure>
 
-<span class="o">[</span>Unit]
-<span class="nv">Description</span><span class="o">=</span>Powertop tunings
+<p>Edit <em>/etc/systemd/system/powertop.service</em><br /></p>
 
-<span class="o">[</span>Service]
-<span class="nv">Type</span><span class="o">=</span>oneshot
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/powertop <span class="nt">--auto-tune</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">[</span>Unit<span class="p">]</span>
+Description<span class="p">=</span>Powertop tunings
 
-<span class="o">[</span>Install]
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+<span class="p">[</span>Service<span class="p">]</span>
+Type<span class="p">=</span>oneshot
+ExecStart<span class="p">=</span><span class="sr">/usr/</span><span class="nb">bin</span>/powertop <span class="p">--</span>auto<span class="p">-</span>tune
 
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>powertop.service
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/laptop-mode.conf
+<span class="p">[</span>Install<span class="p">]</span>
+WantedBy<span class="p">=</span>multi<span class="p">-</span>user<span class="p">.</span>target</code></pre></figure>
 
-<span class="nv">ENABLE_LAPTOP_MODE_ON_AC</span><span class="o">=</span>1
-<span class="nv">ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED</span><span class="o">=</span>1
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>powertop.service</code></pre></figure>
 
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/conf.d/cpufreq.conf
+<p>Edit <em>/etc/laptop-mode/laptop-mode.conf</em><br /></p>
 
-<span class="nv">CONTROL_CPU_FREQUENCY</span><span class="o">=</span>0
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">ENABLE_LAPTOP_MODE_ON_AC<span class="p">=</span><span class="m">1</span>
+ENABLE_LAPTOP_MODE_WHEN_LID_CLOSED<span class="p">=</span><span class="m">1</span></code></pre></figure>
 
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/laptop-mode/conf.d/intel_pstate.conf
+<p>Edit <em>/etc/laptop-mode/conf.d/cpufreq.conf</em><br /></p>
 
-<span class="nv">CONTROL_INTEL_PSTATE</span><span class="o">=</span>0
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">CONTROL_CPU_FREQUENCY<span class="p">=</span><span class="m">0</span></code></pre></figure>
 
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>laptop-mode.service
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>acpid.service
-<span class="nv">$ </span><span class="nb">sudo </span>vim /etc/default/cpupower
+<p>Edit <em>/etc/laptop-mode/conf.d/intel_pstate.conf</em><br /></p>
 
-<span class="nv">governor</span><span class="o">=</span><span class="s1">'powersave'</span>
-<span class="nv">max_freq</span><span class="o">=</span><span class="s2">"1.3GHz"</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">CONTROL_INTEL_PSTATE<span class="p">=</span><span class="m">0</span></code></pre></figure>
 
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>cpupower.service
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>thermald.service
-<span class="nv">$ </span><span class="nb">sudo </span>vim /usr/lib/systemd/system/mbpfan.service
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>laptop-mode.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>acpid.service</code></pre></figure>
 
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/mbpfan <span class="nt">-f</span>
+<p>Edit <em>/etc/default/cpupower</em><br /></p>
 
-<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>mbpfan.service
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">governor<span class="p">=</span><span class="s1">'powersave'</span>
+max_freq<span class="p">=</span><span class="s2">"1.3GHz"</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>cpupower.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>thermald.service</code></pre></figure>
+
+<p>Edit <em>/usr/lib/systemd/system/mbpfan.service</em><br /></p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">ExecStart<span class="p">=</span><span class="sr">/usr/</span>sbin/mbpfan <span class="p">-</span><span class="k">f</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>mbpfan.service
 <span class="nv">$ </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> broadcom-wl-dkms linux-headers <span class="c"># linux-headers package is not required but installed it anyway</span>
 <span class="nv">$ </span><span class="nb">sudo </span>rmmod b43 ssb bcma wl                    <span class="c"># Either this or reboot</span>
 <span class="nv">$ </span><span class="nb">sudo </span>modprobe wl</code></pre></figure>

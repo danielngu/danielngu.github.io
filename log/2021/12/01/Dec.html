@@ -393,7 +393,8 @@ Just do a test print, that will activate the auto start on boot.</p>
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>tlp.service
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>tlp-sleep.service</code></pre></figure>
 
-<p><a href="#2021-12-20">2021-12-20</a> <a href="#2021-12-20_4">[4]</a></p>
+<p><a href="#2021-12-20">2021-12-20</a> <a href="#2021-12-20_4">[4]</a><br />
+<a href="#2022-05-31">2022-05-31</a> <a href="#2022-05-31_1">[1]</a></p>
 
 <p>For BCM4360 wireless network adapter, install <em>broadcom-wl-dkms</em> and
 <em>linux-headers</em>. Then reboot before trying wifi-menu.</p>
@@ -494,6 +495,18 @@ max_freq<span class="p">=</span><span class="s2">"1.3GHz"</span></code></pre></f
 <span class="nv">$ </span><span class="nb">sudo </span>rmmod b43 ssb bcma wl                    <span class="c"># Either this or reboot</span>
 <span class="nv">$ </span><span class="nb">sudo </span>modprobe wl</code></pre></figure>
 
+<h4 id="2022-05-31"><a name="2022-05-31"></a>2022-05-31</h4>
+
+<h4 id="1-desktop--laptop"><a name="2022-05-31_1"></a>[1] Desktop / Laptop</h4>
+
+<p><a href="https://wiki.archlinux.org/title/CPU_frequency_scaling#power-profiles-daemon">power-profile-daemon</a>
+simplifies power management.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> thermald power-profiles-daemon upower
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>thermald.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>power-profiles-daemon.service
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>upower.service</code></pre></figure>
+
 
   </div>
 
@@ -511,7 +524,7 @@ max_freq<span class="p">=</span><span class="s2">"1.3GHz"</span></code></pre></f
     <div class="footer-col-wrapper">
       
       <div class="footer-col footer-col-1">
-	      Copyright &copy; 2021 - Daniel Ngu
+	      Copyright &copy; 2022 - Daniel Ngu
       </div>
     
     </div>

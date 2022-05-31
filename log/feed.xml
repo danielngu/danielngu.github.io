@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2021-12-28T12:53:36+13:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Dec</title><link href="http://localhost:4000/log/2021/12/01/Dec.html" rel="alternate" type="text/html" title="Dec" /><published>2021-12-01T13:00:00+13:00</published><updated>2021-12-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2021/12/01/Dec</id><content type="html" xml:base="http://localhost:4000/log/2021/12/01/Dec.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2022-05-31T13:07:53+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Dec</title><link href="http://localhost:4000/log/2021/12/01/Dec.html" rel="alternate" type="text/html" title="Dec" /><published>2021-12-01T13:00:00+13:00</published><updated>2021-12-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2021/12/01/Dec</id><content type="html" xml:base="http://localhost:4000/log/2021/12/01/Dec.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -308,7 +308,8 @@ Just do a test print, that will activate the auto start on boot.&lt;/p&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp.service
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_4&quot;&gt;[4]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_4&quot;&gt;[4]&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#2022-05-31&quot;&gt;2022-05-31&lt;/a&gt; &lt;a href=&quot;#2022-05-31_1&quot;&gt;[1]&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
 &lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
@@ -407,7 +408,19 @@ max_freq&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&qu
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mbpfan.service
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; broadcom-wl-dkms linux-headers &lt;span class=&quot;c&quot;&gt;# linux-headers package is not required but installed it anyway&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;rmmod b43 ssb bcma wl                    &lt;span class=&quot;c&quot;&gt;# Either this or reboot&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Sep</title><link href="http://localhost:4000/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2021/09/01/Sep</id><content type="html" xml:base="http://localhost:4000/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;modprobe wl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;2022-05-31&quot;&gt;&lt;a name=&quot;2022-05-31&quot;&gt;&lt;/a&gt;2022-05-31&lt;/h4&gt;
+
+&lt;h4 id=&quot;1-desktop--laptop&quot;&gt;&lt;a name=&quot;2022-05-31_1&quot;&gt;&lt;/a&gt;[1] Desktop / Laptop&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/title/CPU_frequency_scaling#power-profiles-daemon&quot;&gt;power-profile-daemon&lt;/a&gt;
+simplifies power management.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; thermald power-profiles-daemon upower
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;power-profiles-daemon.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;upower.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Sep</title><link href="http://localhost:4000/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2021/09/01/Sep</id><content type="html" xml:base="http://localhost:4000/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#bujo-1&quot;&gt;Bullet Journal (with Roam)&lt;/a&gt;&lt;/li&gt;

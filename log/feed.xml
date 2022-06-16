@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2022-05-31T13:07:53+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Dec</title><link href="http://localhost:4000/log/2021/12/01/Dec.html" rel="alternate" type="text/html" title="Dec" /><published>2021-12-01T13:00:00+13:00</published><updated>2021-12-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2021/12/01/Dec</id><content type="html" xml:base="http://localhost:4000/log/2021/12/01/Dec.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/log/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/log/" rel="alternate" type="text/html" /><updated>2022-06-16T23:23:52+12:00</updated><id>http://localhost:4000/log/feed.xml</id><title type="html">Daniel Ngu’s Log</title><entry><title type="html">Dec</title><link href="http://localhost:4000/log/2021/12/01/Dec.html" rel="alternate" type="text/html" title="Dec" /><published>2021-12-01T13:00:00+13:00</published><updated>2021-12-01T13:00:00+13:00</updated><id>http://localhost:4000/log/2021/12/01/Dec</id><content type="html" xml:base="http://localhost:4000/log/2021/12/01/Dec.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#arch-1&quot;&gt;Arch Installation / Encrypted Setup / systemd-boot&lt;/a&gt;&lt;/li&gt;
@@ -105,7 +105,7 @@ and after &lt;em&gt;udev&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Edit &lt;em&gt;/boot/loader/loader.conf&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;default lts
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;default lts&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;conf&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
 editor &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -309,7 +309,8 @@ Just do a test print, that will activate the auto start on boot.&lt;/p&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;tlp-sleep.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;#2021-12-20&quot;&gt;2021-12-20&lt;/a&gt; &lt;a href=&quot;#2021-12-20_4&quot;&gt;[4]&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;#2022-05-31&quot;&gt;2022-05-31&lt;/a&gt; &lt;a href=&quot;#2022-05-31_1&quot;&gt;[1]&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#2022-05-31&quot;&gt;2022-05-31&lt;/a&gt; &lt;a href=&quot;#2022-05-31_1&quot;&gt;[1]&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#2022-06-16&quot;&gt;2022-06-16&lt;/a&gt; &lt;a href=&quot;#2022-06-16_1&quot;&gt;[1]&lt;/a&gt; &lt;a href=&quot;#2022-06-16_2&quot;&gt;[2]&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;For BCM4360 wireless network adapter, install &lt;em&gt;broadcom-wl-dkms&lt;/em&gt; and
 &lt;em&gt;linux-headers&lt;/em&gt;. Then reboot before trying wifi-menu.&lt;/p&gt;
@@ -352,7 +353,8 @@ Use ethernet or install netctl package.&lt;/p&gt;
 &lt;p&gt;Edit /etc/pacman.d/mirrorlist so that the preferred mirror is on top of the 
 list.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	dhcpcd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
 default so have to install them explicitly.&lt;/p&gt;
@@ -420,7 +422,43 @@ simplifies power management.&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; thermald power-profiles-daemon upower
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;thermald.service
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;power-profiles-daemon.service
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;upower.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Sep</title><link href="http://localhost:4000/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2021/09/01/Sep</id><content type="html" xml:base="http://localhost:4000/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;upower.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;2022-06-16&quot;&gt;&lt;a name=&quot;2022-06-16&quot;&gt;&lt;/a&gt;2022-06-16&lt;/h4&gt;
+
+&lt;h4 id=&quot;1-nvidia&quot;&gt;&lt;a name=&quot;2022-06-16_1&quot;&gt;&lt;/a&gt;[1] Nvidia&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pacman &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; nvidia nvidia-lts nvidia-utils nvidia-settings nvidia-prime &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+	mesa-utils virtualgl&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Use nvidia-smi to check offloading and wattage.&lt;br /&gt;
+Use prime-run if need to explicitly use nvidia.&lt;br /&gt;
+Some programs will do that automatically such as mpv.&lt;br /&gt;
+Otherwise, they default to the integrated GPU.&lt;br /&gt;
+For Intel, that’s i915.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-slock&quot;&gt;&lt;a name=&quot;2022-06-16_2&quot;&gt;&lt;/a&gt;[2] Slock&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/title/Slock#Lock_on_suspend&quot;&gt;Lock on suspend&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Create &lt;em&gt;/etc/systemd/system/slock@.service&lt;/em&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Unit&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+Description&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;Lock X session using slock &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; user %&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;
+Before&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;target
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Service&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;%&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;
+Environment&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;DISPLAY&lt;span class=&quot;p&quot;&gt;=:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+ExecStartPre&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bin&lt;/span&gt;/xset dpms force &lt;span class=&quot;k&quot;&gt;suspend&lt;/span&gt;
+ExecStart&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/usr/&lt;/span&gt;local&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;slock
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;Install&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+WantedBy&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;target&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;slock@user.service &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Substitute user with value from &lt;em&gt;echo $USER&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">Contents</summary></entry><entry><title type="html">Sep</title><link href="http://localhost:4000/log/2021/09/01/Sep.html" rel="alternate" type="text/html" title="Sep" /><published>2021-09-01T12:00:00+12:00</published><updated>2021-09-01T12:00:00+12:00</updated><id>http://localhost:4000/log/2021/09/01/Sep</id><content type="html" xml:base="http://localhost:4000/log/2021/09/01/Sep.html">&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;#bujo-1&quot;&gt;Bullet Journal (with Roam)&lt;/a&gt;&lt;/li&gt;

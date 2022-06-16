@@ -190,7 +190,7 @@ and after <em>udev</em></p>
 
 <p>Edit <em>/boot/loader/loader.conf</em></p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim">default lts
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">default lts<span class="p">.</span><span class="k">conf</span>
 <span class="nb">timeout</span> <span class="m">5</span>
 editor <span class="m">0</span></code></pre></figure>
 
@@ -394,7 +394,8 @@ Just do a test print, that will activate the auto start on boot.</p>
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>tlp-sleep.service</code></pre></figure>
 
 <p><a href="#2021-12-20">2021-12-20</a> <a href="#2021-12-20_4">[4]</a><br />
-<a href="#2022-05-31">2022-05-31</a> <a href="#2022-05-31_1">[1]</a></p>
+<a href="#2022-05-31">2022-05-31</a> <a href="#2022-05-31_1">[1]</a><br />
+<a href="#2022-06-16">2022-06-16</a> <a href="#2022-06-16_1">[1]</a> <a href="#2022-06-16_2">[2]</a></p>
 
 <p>For BCM4360 wireless network adapter, install <em>broadcom-wl-dkms</em> and
 <em>linux-headers</em>. Then reboot before trying wifi-menu.</p>
@@ -437,7 +438,8 @@ Use ethernet or install netctl package.</p>
 <p>Edit /etc/pacman.d/mirrorlist so that the preferred mirror is on top of the 
 list.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacstrap /mnt base base-devel linux linux-firmware mkinitcpio lvm2 netctl <span class="se">\</span>
+	dhcpcd</code></pre></figure>
 
 <p>linux, linux-firmware, mkinitcpio lvm2 and netctl are no longer included by
 default so have to install them explicitly.</p>
@@ -507,6 +509,41 @@ simplifies power management.</p>
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>power-profiles-daemon.service
 <span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>upower.service</code></pre></figure>
 
+<h4 id="2022-06-16"><a name="2022-06-16"></a>2022-06-16</h4>
+
+<h4 id="1-nvidia"><a name="2022-06-16_1"></a>[1] Nvidia</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pacman <span class="nt">-S</span> nvidia nvidia-lts nvidia-utils nvidia-settings nvidia-prime <span class="se">\</span>
+	mesa-utils virtualgl</code></pre></figure>
+
+<p>Use nvidia-smi to check offloading and wattage.<br />
+Use prime-run if need to explicitly use nvidia.<br />
+Some programs will do that automatically such as mpv.<br />
+Otherwise, they default to the integrated GPU.<br />
+For Intel, that’s i915.</p>
+
+<h4 id="2-slock"><a name="2022-06-16_2"></a>[2] Slock</h4>
+
+<p><a href="https://wiki.archlinux.org/title/Slock#Lock_on_suspend">Lock on suspend</a></p>
+
+<p>Create <em>/etc/systemd/system/slock@.service</em><br /></p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">[</span>Unit<span class="p">]</span>
+Description<span class="p">=</span>Lock X session using slock <span class="k">for</span> user %<span class="k">i</span>
+Before<span class="p">=</span><span class="k">sleep</span><span class="p">.</span>target
+
+<span class="p">[</span>Service<span class="p">]</span>
+<span class="nb">User</span><span class="p">=</span>%<span class="k">i</span>
+Environment<span class="p">=</span>DISPLAY<span class="p">=:</span><span class="m">0</span>
+ExecStartPre<span class="p">=</span><span class="sr">/usr/</span><span class="nb">bin</span>/xset dpms force <span class="k">suspend</span>
+ExecStart<span class="p">=</span><span class="sr">/usr/</span>local<span class="sr">/bin/</span>slock
+
+<span class="p">[</span>Install<span class="p">]</span>
+WantedBy<span class="p">=</span><span class="k">sleep</span><span class="p">.</span>target</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>slock@user.service </code></pre></figure>
+
+<p>Substitute user with value from <em>echo $USER</em></p>
 
   </div>
 
